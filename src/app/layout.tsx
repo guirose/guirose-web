@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import BarraSuperior from "@/ui/BarraSuperior";
+import Encabezado from "@/ui/Encabezado";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -15,6 +17,14 @@ export const metadata: Metadata = {
   description: "Motores fuera de borda, repuestos, lubricantes y accesorios Mercury. Asesoría para tu embarcación y envíos a todo el Perú.",
 };
 
+// Provisional: los enlaces apuntan a "#" hasta definir las páginas
+const enlacesMenu = [
+  { texto: "Motores", href: "#"},
+  { texto: "Repuestos y accesorios", href: "#"},
+  { texto: "Servicios", href: "#"},
+  { texto: "Contacto", href: "#"},
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,6 +33,8 @@ export default function RootLayout({
   return (
    <html lang="es">
     <body className={`${poppins.variable} font-sans antialiased`}>
+      <BarraSuperior />
+      <Encabezado enlaces={enlacesMenu} cantidadCotizacion={0} />
       {children}
     </body>
    </html> 
