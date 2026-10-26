@@ -1,4 +1,4 @@
-import { IconoLupa } from "./iconos";
+import { MagnifyingGlassIcon } from "@phosphor-icons/react/ssr";
 
 type PropsBuscador = {
   id: string;
@@ -11,7 +11,10 @@ export default function Buscador({ id, className = "" }: PropsBuscador) {
       <label htmlFor={id} className="sr-only">
         Buscar productos
       </label>
-      <IconoLupa className="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-guirose-marino" />
+      <MagnifyingGlassIcon
+        aria-hidden="true"
+        className="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-guirose-marino"
+      />
       <input
         id={id}
         type="search"
