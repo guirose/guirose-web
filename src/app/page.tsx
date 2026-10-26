@@ -6,7 +6,9 @@ export default function Home() {
       </h1>
       <h2 className="mt-4 text-2x1 font-bold">Explora Motores Mercury</h2>
       <p className="mt-2 font-semibold">Texto Semibold (botones y menú)</p>
-      <p className="mt-1">Texto Regular: rendimiento confiable para el trabajo diario en el mar.</p>
+      <p className="mt-1">
+        Texto Regular: rendimiento confiable para el trabajo diario en el mar.
+      </p>
 
       <div className="mt-8 flex flex-wrap gap-3">
         <span className="rounded-md bg-guirose-marino px-4 py-2 font-semibold text-white">
@@ -28,6 +30,7 @@ export default function Home() {
           Marino al 60%
         </span>
       </div>
+      <div className="h-[2000px]" />
     </main>
   );
 }
