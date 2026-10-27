@@ -4,6 +4,7 @@ import Seccion from "@/ui/Seccion"
 import TarjetaMotor from "@/ui/TarjetaMotor";
 import BannerPromocion from "@/ui/BannerPromocion";
 import TarjetaCategoria from "@/ui/TarjetaCategoria";
+import BannerServicio from "@/ui/BannerServicio";
 
 export default function Home() {
   return (
@@ -120,6 +121,24 @@ export default function Home() {
             fill
             sizes="(min-width: 1440px) 1306px, 100vw"
             className="object-cover object-right"
+          />
+        }
+      />
+      <BannerServicio
+        titulo="Te acompañamos antes y después de elegir"
+        lineas={[
+          "Asesoria en cada compra",
+          "Consulta las condiciones de nuestros servicios",
+        ]}
+        textoBoton="Clientes Satisfechos"
+        hrefBoton="#"
+        imagen={
+          <Image
+            src="/imagenes/banner-servicio.jpg"
+            alt="Técnico de Mercury revisando un motor fuera de borda"
+            fill
+            sizes="(min-width: 1024px) 693px, 100vw"
+            className="object-cover object-left"
           />
         }
       />
