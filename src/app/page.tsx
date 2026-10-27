@@ -10,6 +10,8 @@ export default function Home() {
         descripcion="Elige sus características y completa tu equipo con asesoría GUIROSE."
         textoBoton="Encontrar mi motor"
         hrefBoton="#"
+        textoEnlace="Ver todos los motores"
+        hrefEnlace="#"
         fondo={
           <Image
             src="/imagenes/hero.jpg"
@@ -18,7 +20,7 @@ export default function Home() {
             preload
             sizes="100vw"
             className="object-cover object-right"
-          /> 
+          />
         }
       />
     </main>
