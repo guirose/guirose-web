@@ -3,6 +3,7 @@ import Hero from "@/ui/Hero";
 import Seccion from "@/ui/Seccion"
 import TarjetaMotor from "@/ui/TarjetaMotor";
 import BannerPromocion from "@/ui/BannerPromocion";
+import TarjetaCategoria from "@/ui/TarjetaCategoria";
 
 export default function Home() {
   return (
@@ -55,6 +56,52 @@ export default function Home() {
                 fill
                 sizes="200px"
                 className="object-contain object-bottom"
+              />
+            }
+          />
+        </div>
+      </Seccion>
+      <Seccion
+        titulo="Completa tu motor en el siguiente paso"
+        subtitulo="Encuentra los mejores repuestos y accesorios"
+      >
+        <div className="grid grid-cols-1 gap-[22px] lg:grid-cols-3">
+          <TarjetaCategoria
+            titulo="Accesorios"
+            href="#"
+            imagen={
+              <Image
+                src="/imagenes/categoria-accesorios.png"
+                alt="Hélice de motor fuera de borda"
+                fill
+                sizes="170px"
+                className="object-contain"
+              />
+            }
+          />
+          <TarjetaCategoria
+            titulo="Lubricantes"
+            href="#"
+            imagen={
+              <Image
+                src="/imagenes/categoria-lubricantes.jpg"
+                alt="Lubricante Mercury"
+                fill
+                sizes="170px"
+                className="object-contain"
+              />
+            }
+          />
+          <TarjetaCategoria
+            titulo="Accesorios"
+            href="#"
+            imagen={
+              <Image
+                src="/imagenes/categoria-repuestos.png"
+                alt="Batería para motor"
+                fill
+                sizes="170px"
+                className="object-contain"
               />
             }
           />
