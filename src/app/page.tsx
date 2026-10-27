@@ -2,6 +2,7 @@ import Image from "next/image";
 import Hero from "@/ui/Hero";
 import Seccion from "@/ui/Seccion"
 import TarjetaMotor from "@/ui/TarjetaMotor";
+import BannerPromocion from "@/ui/BannerPromocion";
 
 export default function Home() {
   return (
@@ -59,6 +60,22 @@ export default function Home() {
           />
         </div>
       </Seccion>
+      <BannerPromocion
+        etiqueta="Promociones GUIROSE"
+        titulo="Beneficios para tu próximo motor"
+        descripcion="Aprovecha las ofertas en motores, repuestos y accesorios Mercury."
+        textoBoton="Ver beneficios y condiciones"
+        hrefBoton="#"
+        fondo={
+          <Image
+            src="/imagenes/banner-promociones.jpg"
+            alt=""
+            fill
+            sizes="(min-width: 1440px) 1306px, 100vw"
+            className="object-cover object-right"
+          />
+        }
+      />
     </main>
   );
 }
