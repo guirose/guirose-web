@@ -4,6 +4,7 @@ import "./globals.css";
 import BarraSuperior from "@/ui/BarraSuperior";
 import Encabezado from "@/ui/Encabezado";
 import EncabezadoFijo from "@/ui/EncabezadoFijo";
+import PieDePagina from "@/ui/PieDePagina";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,6 +28,19 @@ const enlacesMenu = [
   { texto: "Contacto", href: "#" },
 ];
 
+// Provisional: los enlaces apuntan a "#" hasta definir las páginas
+const enlacesCatalogo = [
+  { texto: "Motores", href: "#" },
+  { texto: "Repuestos y accesorios", href: "#" },
+  { texto: "Servicios", href: "#"},
+];
+
+const enlacesPrivacidad = [
+  { texto: "Motores", href: "#" },
+  { texto: "Repuestos y accesorios", href: "#"},
+  { texto: "Servicios", href: "#"},
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,6 +53,7 @@ export default function RootLayout({
         <Encabezado enlaces={enlacesMenu} cantidadCotizacion={0} />
         <EncabezadoFijo cantidadCotizacion={0} />
         {children}
+        <PieDePagina catalogo={enlacesCatalogo} privacidad={enlacesPrivacidad} /> 
       </body>
     </html>
   );
