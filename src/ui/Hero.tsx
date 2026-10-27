@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowRightIcon } from "@phosphor-icons/react/ssr";
+import Boton from "./Boton";
 
 type PropsHero = {
   etiqueta: string;
@@ -41,13 +41,14 @@ export default function Hero({
         <p className="mt-4 max-w-[470px] text-lg lg:text-2xl lg:leading-[33px]">
           {descripcion}
         </p>
-        <a
+
+        <Boton
           href={hrefBoton}
-          className="mt-9 flex h-[60px] items-center gap-10 rounded-[5px] bg-guirose-azul px-6 text-xl font-medium transition-colors hover:bg-white hover:text-guirose-azul lg:text-2xl"
+          variante="relleno"
+          className="mt-9 h-[60px] gap-10 px-6 text-xl font-medium lg:text-2xl"
         >
           {textoBoton}
-          <ArrowRightIcon aria-hidden="true" className="h-5 w-5" />
-        </a>
+        </Boton>
 
         <a
           href={hrefEnlace}

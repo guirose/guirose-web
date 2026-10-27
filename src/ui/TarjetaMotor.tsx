@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowRightIcon } from "@phosphor-icons/react/ssr";
+import Boton from "./Boton";
 
 type PropsTarjetaMotor = {
   titulo: string;
@@ -24,13 +24,13 @@ export default function TarjetaMotor({
         <p className="max-w-[290px] text-lg leading-[23px]">{descripcion}</p>
       </div>
 
-      <a
+      <Boton
         href={hrefBoton}
-        className="flex h-[57px] w-[283px] items-center justify-center gap-2 rounded-md border border-guirose-marino text-xl font-semibold text-guirose-marino transition-colors hover:bg-guirose-marino hover:text-white"
+        variante="borde"
+        className="h-[57px] w-[283px] justify-center gap-2 text-xl font-semibold"
       >
         {textoBoton}
-        <ArrowRightIcon aria-hidden="true" className="h-5 w-5" />
-      </a>
+      </Boton>
 
       {/* Foto del motor */}
       <div className="absolute right-[7px] top-[17px] h-[262px] w-[200px]">
