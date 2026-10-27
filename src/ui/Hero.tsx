@@ -23,12 +23,12 @@ export default function Hero({
   fondo,
 }: PropsHero) {
   return (
-    <section className="relative isolate overflow-hidden bg-gruirose-marino text-white">
+    <section className="relative isolate overflow-hidden bg-guirose-marino text-white">
       {/* Foto de fondo */}
       <div className="absolute inset-0 -z-20">{fondo}</div>
 
       {/* capa azul marino */}
-      <div className="absolute inset-0 -z-10 bg-linear-to-t from-guirose-marino/90 from-35% to-transparent to-60%" />
+      <div className="absolute inset-0 -z-10 bg-linear-to-r from-guirose-marino/90 from-35% to-transparent to-60%" />
 
       <div className="mx-auto flex min-h-[567px] max-w-[1440px] flex-col items-start px-6 pb-10 pt-[73px] lg:px-[44px]">
         <p className="text-lg uppercase lg:text-2xl">{etiqueta}</p>
@@ -38,7 +38,7 @@ export default function Hero({
           {titulo}
         </h1>
 
-        <p className="mt-4 max-w-[470px] text-lg lg:next-2xl lg:leading-[33px]">
+        <p className="mt-4 max-w-[470px] text-lg lg:text-2xl lg:leading-[33px]">
           {descripcion}
         </p>
         <a
