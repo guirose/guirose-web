@@ -15,7 +15,7 @@ export default function TarjetaCategoria({
   return (
     <a
       href={href}
-      className="group flex min-h-[258px] items-center gap-4 rounded-md border border-guirose-borde px-6 transition-colors hover:border-guirose-azul"
+      className="group flex min-h-[258px] items-center gap-4 rounded-md border border-guirose-borde px-6 transition duration-150 ease-out hover:border-guirose-azul active:scale-[0.98]"
     >
       <div className="relative h-[200px] w-[170px] shrink-0">{imagen}</div>
       <div className="flex flex-1 items-center justify-between gap-3">
