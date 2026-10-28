@@ -94,7 +94,7 @@ export default function Home() {
               href="#"
               imagen={
                 <Image
-                  src="/imagenes/categoria-lubricantes.jpg"
+                  src="/imagenes/categoria-lubricantes.png"
                   alt="Lubricante Mercury"
                   fill
                   sizes="170px"

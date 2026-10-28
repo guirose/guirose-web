@@ -1,46 +1,42 @@
 import Buscador from "./Buscador";
 import BotonCotizacion from "./BotonCotizacion";
+import MenuPrincipal, { type EnlaceMenu } from "./MenuPrincipal";
 
-type EnlaceMenu = { texto: string; href: string };
+type Sugerencia = { texto: string; href: string };
 
 type PropsEncabezado = {
   enlaces: EnlaceMenu[];
+  sugerencias: Sugerencia[];
   cantidadCotizacion: number;
 };
 
 export default function Encabezado({
   enlaces,
+  sugerencias,
   cantidadCotizacion,
 }: PropsEncabezado) {
   return (
-    <header className="bg-white">
-      <div className="mx-auto grid max-w-[1300px] grid-cols-1 gap-x-12 gap-y-4 px-6 py-5 lg:grid-cols-[230px_1fr_auto] lg:px-[70px]">
+    <header className="z-30 border-b border-guirose-borde bg-white lg:sticky lg:top-0">
+      <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-x-9 gap-y-3 px-6 py-3.5 lg:px-[88px]">
         {/* Logo: texto provisional hasta tener el archivo */}
         <a
           href="/"
-          className="text-4xl font-extrabold tracking-tight text-guirose-marino transition-opacity hover:opacity-80 lg:row-span-2 lg:self-center lg:text-center"
+          className="text-4xl font-extrabold italic leading-none tracking-[0.06em] text-guirose-marino transition-opacity hover:opacity-80"
         >
           GUIROSE
         </a>
 
-        <Buscador id="buscador" className="h-[60px]" />
+        <Buscador
+          id="buscador"
+          sugerencias={sugerencias}
+          className="min-w-[260px] max-w-[640px] flex-1 lg:ml-auto"
+        />
 
-        <BotonCotizacion cantidad={cantidadCotizacion} className="h-[60px]" />
+        <BotonCotizacion cantidad={cantidadCotizacion} className="h-[50px]" />
+      </div>
 
-        <nav aria-label="Principal" className="lg:col-start-2">
-          <ul className="flex flex-wrap gap-x-12 gap-y-2 text-base font-semibold uppercase text-guirose-marino">
-            {enlaces.map((enlace) => (
-              <li key={enlace.texto}>
-                <a
-                  href={enlace.href}
-                  className="decoration-2 underline-offset-8 transition-colors hover:text-guirose-azul hover:underline focus-visible:underline"
-                >
-                  {enlace.texto}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <div className="mx-auto max-w-[1440px] px-2.5 pb-2.5 lg:px-[74px]">
+        <MenuPrincipal enlaces={enlaces} />
       </div>
     </header>
   );

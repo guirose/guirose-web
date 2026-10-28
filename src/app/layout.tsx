@@ -3,7 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import BarraSuperior from "@/ui/BarraSuperior";
 import Encabezado from "@/ui/Encabezado";
-import EncabezadoFijo from "@/ui/EncabezadoFijo";
+import type { EnlaceMenu } from "@/ui/MenuPrincipal";
 import PieDePagina from "@/ui/PieDePagina";
 
 const poppins = Poppins({
@@ -15,30 +15,57 @@ const poppins = Poppins({
 
 // Provisional (confirmar textos)
 export const metadata: Metadata = {
-  title: "GRUIROSE | Motores fuera de borda Mercury",
+  title: "GUIROSE | Motores fuera de borda Mercury",
   description:
     "Motores fuera de borda, repuestos, lubricantes y accesorios Mercury. Asesoría para tu embarcación y envíos a todo el Perú.",
 };
 
 // Provisional: los enlaces apuntan a "#" hasta definir las páginas
-const enlacesMenu = [
-  { texto: "Motores", href: "#" },
-  { texto: "Repuestos y accesorios", href: "#" },
-  { texto: "Servicios", href: "#" },
-  { texto: "Contacto", href: "#" },
+const enlacesMenu: EnlaceMenu[] = [
+  {
+    texto: "Motores",
+    href: "#",
+    icono: "motores",
+    actual: true,
+    submenu: [
+      {
+        texto: "Motores 2 tiempos",
+        descripcion: "Sencillos y de fácil mantenimiento",
+        href: "#",
+      },
+      {
+        texto: "Motores 4 tiempos",
+        descripcion: "Silenciosos y de menor consumo",
+        href: "#",
+      },
+    ],
+    enlaceFinal: { texto: "Ver todos los motores", href: "#" },
+  },
+  { texto: "Repuestos y accesorios", href: "#", icono: "repuestos" },
+  { texto: "Servicios", href: "#", icono: "servicios" },
+  { texto: "Contacto", href: "#", icono: "contacto" },
+];
+
+// Provisional: busquedas mas frecuentes
+const sugerenciasBuscador = [
+  { texto: "Motores 2 tiempos", href: "#" },
+  { texto: "Motores 4 tiempos", href: "#" },
+  { texto: "Hélices", href: "#" },
+  { texto: "Lubricantes", href: "#" },
+  { texto: "Repuestos", href: "#" },
 ];
 
 // Provisional: los enlaces apuntan a "#" hasta definir las páginas
 const enlacesCatalogo = [
   { texto: "Motores", href: "#" },
   { texto: "Repuestos y accesorios", href: "#" },
-  { texto: "Servicios", href: "#"},
+  { texto: "Servicios", href: "#" },
 ];
 
 const enlacesPrivacidad = [
   { texto: "Motores", href: "#" },
-  { texto: "Repuestos y accesorios", href: "#"},
-  { texto: "Servicios", href: "#"},
+  { texto: "Repuestos y accesorios", href: "#" },
+  { texto: "Servicios", href: "#" },
 ];
 
 export default function RootLayout({
@@ -50,10 +77,16 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${poppins.variable} font-sans antialiased`}>
         <BarraSuperior />
-        <Encabezado enlaces={enlacesMenu} cantidadCotizacion={0} />
-        <EncabezadoFijo cantidadCotizacion={0} />
+        <Encabezado
+          enlaces={enlacesMenu}
+          sugerencias={sugerenciasBuscador}
+          cantidadCotizacion={0}
+        />
         {children}
-        <PieDePagina catalogo={enlacesCatalogo} privacidad={enlacesPrivacidad} /> 
+        <PieDePagina
+          catalogo={enlacesCatalogo}
+          privacidad={enlacesPrivacidad}
+        />
       </body>
     </html>
   );
