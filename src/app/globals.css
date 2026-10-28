@@ -47,4 +47,42 @@ body {
 @theme {
   --color-guirose-accion: #0069d9;
   --color-guirose-espuma: #eaf4fb;
+  --color-guirose-texto: #2b3f55;
+}
+
+/* Entrada del hero: se ejecuta una sola vez al cargar */
+@keyframes entra {
+  from {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dibuja {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.entra {
+  animation: entra 1600ms var(--ease-out) var(--retraso, 0ms) both;
+}
+
+.linea-dibuja {
+  transform-origin: left center;
+  animation: dibuja 700ms var(--ease-out) 150ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entra,
+  .linea-dibuja {
+    animation: none;
+  }
 }
