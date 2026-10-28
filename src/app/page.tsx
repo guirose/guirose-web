@@ -21,7 +21,7 @@ export default function Home() {
         fondo={
           <Image
             src="/imagenes/hero.jpg"
-            alt=""
+            alt="Pescador junto a un motor Mercury en su bote"
             fill
             preload
             sizes="100vw"
@@ -30,10 +30,10 @@ export default function Home() {
         }
       />
       <Seccion titulo="Explora Motores Mercury">
-        <div className="mx-auto grid max-w-[1149px] grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-[99px]">
+        <div className="grid grid-cols-1 gap-y+u lg:grid-cols-2">
           <Aparecer>
             <TarjetaMotor
-              titulo="Motores 2 Tiempos"
+              titulo={"Motores 2\u00A0tiempos"}
               descripcion="Rendimiento confiable para el trabajo diario en el mar."
               textoBoton="Ver motores"
               hrefBoton="#"
@@ -43,7 +43,7 @@ export default function Home() {
                   alt="Motor fuera de borda Mercury de 2 tiempos"
                   fill
                   loading="eager"
-                  sizes="200px"
+                  sizes="260px"
                   className="object-contain object-bottom"
                 />
               }
@@ -51,16 +51,16 @@ export default function Home() {
           </Aparecer>
           <Aparecer retraso={100}>
             <TarjetaMotor
-              titulo="Motores 4 Tiempos"
+              titulo={"Motores 4\u00A0tiempos"}
               descripcion="Eficiencia y versatilidad para tus actividades."
               textoBoton="Ver motores"
               hrefBoton="#"
               imagen={
                 <Image
                   src="/imagenes/motor-4-tiempos.png"
-                  alt="Motor fuera de borda Mercury de 2 tiempos"
+                  alt="Motor fuera de borda Mercury de 4 tiempos"
                   fill
-                  sizes="200px"
+                  sizes="260px"
                   className="object-contain object-bottom"
                 />
               }
@@ -139,7 +139,7 @@ export default function Home() {
       <BannerServicio
         titulo="Te acompañamos antes y después de elegir"
         lineas={[
-          "Asesoria en cada compra",
+          "Asesoría en cada compra",
           "Consulta las condiciones de nuestros servicios",
         ]}
         textoBoton="Clientes Satisfechos"
