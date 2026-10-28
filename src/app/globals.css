@@ -43,3 +43,8 @@ body {
     transition: opacity 200ms ease;
   }
 }
+
+@theme {
+  --color-guirose-accion: #0069d9;
+  --color-guirose-espuma: #eaf4fb;
+}
