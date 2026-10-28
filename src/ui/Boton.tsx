@@ -9,10 +9,9 @@ type PropsBoton = {
 };
 
 const estilos = {
-  relleno: "bg-guirose-azul text-white hover:bg-white hover:text-guirose-azul",
-  borde:
-    "border border-guirose-marino text-guirose-marino hover:bg-guirose-marino hover:text-white",
-};
+  relleno: "border-2 border-guirose-accion bg-guirose-accion text-white hover:bg-white hover:text-guirose-accion",
+  borde: "border border-guirose-marino text-guirose-marino hover:bg-guirose-marino hover:text-white",
+}
 
 export default function Boton({
   href,
