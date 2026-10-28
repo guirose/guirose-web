@@ -48,6 +48,7 @@ body {
   --color-guirose-accion: #0069d9;
   --color-guirose-espuma: #eaf4fb;
   --color-guirose-texto: #2b3f55;
+  --color-guirose-espuma-fuerte: #dcebfa;
 }
 
 /* Entrada del hero: se ejecuta una sola vez al cargar */
