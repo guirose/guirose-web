@@ -2,7 +2,8 @@ import type { ReactNode } from "react";
 import Boton from "./Boton";
 
 type PropsBannerPromocion = {
-  etiqueta: string;
+  id?: string;
+  etiqueta?: string;
   titulo: string;
   descripcion: string;
   textoBoton: string;
@@ -11,6 +12,7 @@ type PropsBannerPromocion = {
 };
 
 export default function BannerPromocion({
+  id,
   etiqueta,
   titulo,
   descripcion,
@@ -19,7 +21,10 @@ export default function BannerPromocion({
   fondo,
 }: PropsBannerPromocion) {
   return (
-    <section className="mx-auto max-w-[1440px] px-6 pb-3 pt-10 lg:px-[67px]">
+    <section
+      id={id}
+      className="mx-auto max-w-[1440px] scroll-mt-28 px-6 pb-3 pt-10 lg:px-[67px]"
+    >
       <div className="relative isolate overflow-hidden rounded-xl bg-guirose-marino text-white">
         {/* Foto de fondo */}
         <div className="absolute inset-0 -z-30">{fondo}</div>
@@ -57,11 +62,13 @@ export default function BannerPromocion({
         </svg>
 
         <div className="flex min-h-[420px] flex-col items-start justify-center px-6 py-12 lg:px-[52px]">
-          <p className="rounded-md bg-guirose-rojo px-5 py-2 text-lg font-semibold lg:text-[19px]">
-            {etiqueta}
-          </p>
+          {etiqueta && (
+            <p className="mb-5 rounded-md bg-guirose-rojo px-5 py-2 text-lg font-semibold lg:text-[19px]">
+              {etiqueta}
+            </p>
+          )}
 
-          <h2 className="mt-5 max-w-[560px] text-4xl font-bold leading-[1.08] tracking-[-0.03em] lg:text-[52px]">
+          <h2 className="max-w-[560px] text-4xl font-bold leading-[1.08] tracking-[-0.03em] lg:text-[52px]">
             {titulo}
           </h2>
 

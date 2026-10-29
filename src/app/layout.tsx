@@ -7,7 +7,6 @@ import BarraSuperior from "@/ui/BarraSuperior";
 import Encabezado from "@/ui/Encabezado";
 import type { EnlaceMenu } from "@/ui/MenuPrincipal";
 import PieDePagina from "@/ui/PieDePagina";
-import { FlyingSaucerIcon } from "@phosphor-icons/react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -47,13 +46,19 @@ const enlacesMenu: EnlaceMenu[] = [
     enlaceFinal: { texto: "Ver todos los motores", href: "#motores" },
   },
   {
+    texto: "Clientes",
+    href: "#clientes",
+    icono: "clientes",
+    seccion: "clientes",
+  },
+  {
     texto: "Repuestos y accesorios",
     href: "#repuestos",
     icono: "repuestos",
     seccion: "repuestos",
   },
   { 
-    texto: "Servicios", 
+    texto: "Garatía y servicios", 
     href: "#servicios", 
     icono: "servicios", 
     seccion: "servicios",
@@ -83,9 +88,8 @@ const enlacesCatalogo = [
 ];
 
 const enlacesPrivacidad = [
-  { texto: "Motores", href: "#" },
-  { texto: "Repuestos y accesorios", href: "#" },
-  { texto: "Servicios", href: "#" },
+  { texto: "Política de privacidad", href: "#" },
+  { texto: "Términos y condiciones", href: "#" },
 ];
 
 export default function RootLayout({

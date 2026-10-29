@@ -4,7 +4,7 @@ import Boton from "./Boton";
 type PropsBannerServicio = {
   id?: string;
   titulo: string;
-  lineas: string[];
+  descripcion: string;
   textoBoton: string;
   hrefBoton: string;
   imagen: ReactNode;
@@ -13,7 +13,7 @@ type PropsBannerServicio = {
 export default function BannerServicio({
   id,
   titulo,
-  lineas,
+  descripcion,
   textoBoton,
   hrefBoton,
   imagen,
@@ -33,12 +33,8 @@ export default function BannerServicio({
             {titulo}
           </h2>
           <div className="mt-5 h-[3px] w-56 bg-guirose-azul" />
-          <p className="mt-5 text-lg text-guirose-texto lg:text-[22px] lg:leading-[1.4]">
-            {lineas.map((linea) => (
-              <span key={linea} className="block">
-                {linea}
-              </span>
-            ))}
+          <p className="mt-5 max-w-[500px] text-lg text-guirose-texto lg:text-[22px] lg:leading-[1.4]">
+            {descripcion}
           </p>
           <Boton
             href={hrefBoton}

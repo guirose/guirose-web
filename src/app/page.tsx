@@ -34,7 +34,7 @@ export default function Home() {
           <Aparecer>
             <TarjetaMotor
               titulo={"Motores 2\u00A0tiempos"}
-              descripcion="Rendimiento confiable para el trabajo diario en el mar."
+              descripcion="Rendimiento confiable de arranque rápido y fácil de transporte."
               textoBoton="Ver motores"
               hrefBoton="#"
               imagen={
@@ -52,7 +52,7 @@ export default function Home() {
           <Aparecer retraso={100}>
             <TarjetaMotor
               titulo={"Motores 4\u00A0tiempos"}
-              descripcion="Eficiencia y versatilidad para tus actividades."
+              descripcion="Potencia y ahorro de combustible, con funcionamiento silencioso y gran durabilidad."
               textoBoton="Ver motores"
               hrefBoton="#"
               imagen={
@@ -68,6 +68,22 @@ export default function Home() {
           </Aparecer>
         </div>
       </Seccion>
+      <BannerPromocion
+        id="clientes"
+        titulo="La confianza de nuestros clientes nos respalda"
+        descripcion="Conoce las experiencias de nuestros clientes y por qué eligen Mercury"
+        textoBoton="Conoce sus experiencias"
+        hrefBoton="#"
+        fondo={
+          <Image
+            src="/imagenes/banner-confianza.jpg"
+            alt=""
+            fill
+            sizes="(min-width: 1440px) 1306px, 100vw"
+            className="object-cover object-right"
+          />
+        }
+      />
       <Seccion
         id="repuestos"
         titulo="Completa tu motor en el siguiente paso"
@@ -127,30 +143,11 @@ export default function Home() {
           </Aparecer>
         </div>
       </Seccion>
-      <BannerPromocion
-        etiqueta="Promociones GUIROSE"
-        titulo="Beneficios para tu próximo motor"
-        descripcion="Aprovecha las ofertas en motores, repuestos y accesorios Mercury."
-        textoBoton="Ver beneficios y condiciones"
-        hrefBoton="#"
-        fondo={
-          <Image
-            src="/imagenes/banner-promociones.jpg"
-            alt=""
-            fill
-            sizes="(min-width: 1440px) 1306px, 100vw"
-            className="object-cover object-right"
-          />
-        }
-      />
       <BannerServicio
         id="servicios"
-        titulo="Te acompañamos antes y después de elegir"
-        lineas={[
-          "Asesoría en cada compra",
-          "Consulta las condiciones de nuestros servicios",
-        ]}
-        textoBoton="Clientes Satisfechos"
+        titulo="Garantía y servicios para motores Mercury"
+        descripcion="Conoce las condiciones de garantía, las opciones de entrega y los servicios que GUIROSE tiene para tí"
+        textoBoton="Resuelve tus dudas"
         hrefBoton="#"
         imagen={
           <Image
