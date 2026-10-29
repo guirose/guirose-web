@@ -12,8 +12,8 @@ export default function Home() {
     <main>
       <Hero
         etiqueta="Prepárate para la temporada"
-        titulo="Tu próximo motor empieza aquí."
-        descripcion="Elige sus características y completa tu equipo con asesoría GUIROSE."
+        titulo="Tu próximo motor empieza aquí"
+        descripcion="Elige sus características y completa tu equipo con asesoría GUIROSE"
         textoBoton="Encontrar mi motor"
         hrefBoton="#"
         textoEnlace="Ver todos los motores"
@@ -76,13 +76,15 @@ export default function Home() {
           <Aparecer>
             <TarjetaCategoria
               titulo="Accesorios"
+              descripcion="Hélices, mandos, tanques y más para tu embarcación"
+              textoEnlace="Ver accesorios"
               href="#"
               imagen={
                 <Image
                   src="/imagenes/categoria-accesorios.png"
                   alt="Hélice de motor fuera de borda"
                   fill
-                  sizes="170px"
+                  sizes="150px"
                   className="object-contain"
                 />
               }
@@ -91,13 +93,15 @@ export default function Home() {
           <Aparecer retraso={100}>
             <TarjetaCategoria
               titulo="Lubricantes"
+              descripcion="Aceite y productos para el cuidado de tu motor"
+              textoEnlace="Ver lubricantes"
               href="#"
               imagen={
                 <Image
                   src="/imagenes/categoria-lubricantes.png"
                   alt="Lubricante Mercury"
                   fill
-                  sizes="170px"
+                  sizes="150px"
                   className="object-contain"
                 />
               }
@@ -106,6 +110,8 @@ export default function Home() {
           <Aparecer retraso={200}>
             <TarjetaCategoria
               titulo="Repuestos"
+              descripcion="Repuestos originales para un rendimiento condfiable"
+              textoEnlace="Ver repuestos"
               href="#"
               imagen={
                 <Image
