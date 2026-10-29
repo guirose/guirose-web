@@ -60,7 +60,7 @@ const enlacesMenu: EnlaceMenu[] = [
     seccion: "repuestos",
   },
   { 
-    texto: "Garatía y servicios", 
+    texto: "Garantía y servicios", 
     href: "#servicios", 
     icono: "servicios", 
     seccion: "servicios",

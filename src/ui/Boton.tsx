@@ -22,7 +22,7 @@ export default function Boton({
   return (
     <a
       href={href}
-      className={`flex items-center rounded-[5px] transition duration-150 ease-out active:escale-[0.97] ${estilos[variante]} ${className}`}
+      className={`flex items-center rounded-[5px] transition duration-150 ease-out active:scale-[0.97] ${estilos[variante]} ${className}`}
     >
       {children}
       <ArrowRightIcon aria-hidden="true" className="h-5 w-5" />

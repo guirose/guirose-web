@@ -30,7 +30,7 @@ export default function Home() {
         }
       />
       <Seccion id="motores" titulo="Explora Motores Mercury">
-        <div className="grid grid-cols-1 gap-y+u lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-7 lg:grid-cols-2">
           <Aparecer>
             <TarjetaMotor
               titulo={"Motores 2\u00A0tiempos"}
@@ -127,7 +127,7 @@ export default function Home() {
           <Aparecer retraso={200}>
             <TarjetaCategoria
               titulo="Repuestos"
-              descripcion="Repuestos originales para un rendimiento condfiable"
+              descripcion="Repuestos originales para un rendimiento confiable"
               textoEnlace="Ver repuestos"
               href="#"
               imagen={
@@ -146,7 +146,7 @@ export default function Home() {
       <BannerServicio
         id="servicios"
         titulo="Garantía y servicios para motores Mercury"
-        descripcion="Conoce las condiciones de garantía, las opciones de entrega y los servicios que GUIROSE tiene para tí"
+        descripcion="Conoce las condiciones de garantía, las opciones de entrega y los servicios que GUIROSE tiene para ti"
         textoBoton="Resuelve tus dudas"
         hrefBoton="#"
         imagen={

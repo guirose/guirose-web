@@ -23,7 +23,7 @@ export default function Seccion({
       </h2>
       <div aria-hidden="true" className="mt-4 h-[3px] w-24 bg-guirose-azul" />
       {subtitulo && (
-        <p className="mt-4 text-lg text-guirose-texto lg:text.xl">
+        <p className="mt-4 text-lg text-guirose-texto lg:text-xl">
           {subtitulo}
         </p>
       )}
