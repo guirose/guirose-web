@@ -26,26 +26,41 @@ export const metadata: Metadata = {
 const enlacesMenu: EnlaceMenu[] = [
   {
     texto: "Motores",
-    href: "#",
+    href: "#motores",
     icono: "motores",
-    actual: true,
+    seccion: "motores",
     submenu: [
       {
         texto: "Motores 2 tiempos",
         descripcion: "Sencillos y de fácil mantenimiento",
-        href: "#",
+        href: "#motores",
       },
       {
         texto: "Motores 4 tiempos",
         descripcion: "Silenciosos y de menor consumo",
-        href: "#",
+        href: "#motores",
       },
     ],
-    enlaceFinal: { texto: "Ver todos los motores", href: "#" },
+    enlaceFinal: { texto: "Ver todos los motores", href: "#motores" },
   },
-  { texto: "Repuestos y accesorios", href: "#", icono: "repuestos" },
-  { texto: "Servicios", href: "#", icono: "servicios" },
-  { texto: "Contacto", href: "#", icono: "contacto" },
+  {
+    texto: "Repuestos y accesorios",
+    href: "#repuestos",
+    icono: "repuestos",
+    seccion: "repuestos",
+  },
+  { 
+    texto: "Servicios", 
+    href: "#servicios", 
+    icono: "servicios", 
+    seccion: "servicios",
+  },
+  {
+    texto: "Contacto",
+    href: "#contacto",
+    icono: "contacto",
+    seccion: "contacto",
+  },
 ];
 
 // Provisional: busquedas mas frecuentes
@@ -76,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" data-scroll-behavior="smooth">
       <body className={`${poppins.variable} font-sans antialiased`}>
         <BarraSuperior />
         <Encabezado
@@ -93,10 +108,12 @@ export default function RootLayout({
           }
         />
         {children}
-        <PieDePagina
-          catalogo={enlacesCatalogo}
-          privacidad={enlacesPrivacidad}
-        />
+        <div id="contacto">
+          <PieDePagina
+            catalogo={enlacesCatalogo}
+            privacidad={enlacesPrivacidad}
+          />
+        </div>
       </body>
     </html>
   );

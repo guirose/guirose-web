@@ -15,9 +15,9 @@ export default function Home() {
         titulo="Tu próximo motor empieza aquí"
         descripcion="Elige sus características y completa tu equipo con asesoría GUIROSE"
         textoBoton="Encontrar mi motor"
-        hrefBoton="#"
+        hrefBoton="#motores"
         textoEnlace="Ver todos los motores"
-        hrefEnlace="#"
+        hrefEnlace="#motores"
         fondo={
           <Image
             src="/imagenes/hero.jpg"
@@ -29,7 +29,7 @@ export default function Home() {
           />
         }
       />
-      <Seccion titulo="Explora Motores Mercury">
+      <Seccion id="motores" titulo="Explora Motores Mercury">
         <div className="grid grid-cols-1 gap-y+u lg:grid-cols-2">
           <Aparecer>
             <TarjetaMotor
@@ -69,6 +69,7 @@ export default function Home() {
         </div>
       </Seccion>
       <Seccion
+        id="repuestos"
         titulo="Completa tu motor en el siguiente paso"
         subtitulo="Encuentra los mejores repuestos y accesorios con nosotros"
       >
@@ -143,6 +144,7 @@ export default function Home() {
         }
       />
       <BannerServicio
+        id="servicios"
         titulo="Te acompañamos antes y después de elegir"
         lineas={[
           "Asesoría en cada compra",

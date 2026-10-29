@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useState } from "react";
 import {
   CaretDownIcon,
   ChatCircleTextIcon,
@@ -12,7 +14,7 @@ export type EnlaceMenu = {
   texto: string;
   href: string;
   icono: "motores" | "repuestos" | "servicios" | "contacto";
-  actual?: boolean;
+  seccion?: string;
   submenu?: OpcionSubmenu[];
   enlaceFinal?: { texto: string; href: string };
 };
@@ -24,21 +26,61 @@ const iconos = {
   contacto: ChatCircleTextIcon,
 };
 
+const LINEA_LECTURA = 180;
+
 const clasesEnlace =
-  "flex h-11 items-center gap-2 rounded-full px-3.5 text-base font-semibold text-guirose-marino transition duration-150 ease-out hover:bg-white hover:text-guirose-accion active:scale-[0.97] aria-[current=page]:bg-white aria-[current=page]:text-guirose-accion";
+  "flex h-11 items-center gap-2 rounded-full px-3.5 text-base font-semibold text-guirose-marino transition duration-150 ease-out hover:bg-white hover:text-guirose-accion active:scale-[0.97] aria-[current=location]:bg-white aria-[current=location]:text-guirose-accion";
 
 export default function MenuPrincipal({ enlaces }: { enlaces: EnlaceMenu[] }) {
+  const [activa, setActiva] = useState<string | null>(null);
+
+  useEffect(() => {
+    const ids = enlaces.flatMap((enlace) =>
+    enlace.seccion ? [enlace.seccion] : [],
+  );
+
+    function calcular() {
+      let actual: string | null = null;
+
+      for (const id of ids) {
+        const elemento = document.getElementById(id);
+        if (elemento && elemento.getBoundingClientRect().top <= LINEA_LECTURA) {
+          actual = id;
+        }
+      }
+
+      const alFinal =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+      if (alFinal && ids.length > 0) {
+        actual = ids[ids.length - 1];
+      }
+
+      setActiva(actual);
+    }
+
+    calcular();
+    window.addEventListener("scroll", calcular, { passive: true });
+    window.addEventListener("resize", calcular);
+
+    return () => {
+      window.removeEventListener("scroll", calcular);
+      window.removeEventListener("resize", calcular);
+    };
+  }, [enlaces]);
+  
   return (
     <nav aria-label="Principal">
       <ul className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1">
         {enlaces.map((enlace) => {
           const Icono = iconos[enlace.icono];
+          const esActual = enlace.seccion != undefined && enlace.seccion === activa;
 
           return (
             <li key={enlace.texto} className="group/item relative">
               <a
                 href={enlace.href}
-                aria-current={enlace.actual ? "page" : undefined}
+                aria-current={esActual ? "location" : undefined}
                 className={clasesEnlace}
               >
                 <Icono aria-hidden="true" className="h-[19px] w-[19px]" />
@@ -64,7 +106,7 @@ export default function MenuPrincipal({ enlaces }: { enlaces: EnlaceMenu[] }) {
                         <span className="block text-base font-semibold text-guirose-marino">
                           {opcion.texto}
                         </span>
-                        <span className="mt-0.5 block text-sm text-gray-600">
+                        <span className="mt-0.5 block text-sm text-guirose-texto">
                           {opcion.descripcion}
                         </span>
                       </a>

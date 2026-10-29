@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Boton from "./Boton";
 
 type PropsBannerServicio = {
+  id?: string;
   titulo: string;
   lineas: string[];
   textoBoton: string;
@@ -10,6 +11,7 @@ type PropsBannerServicio = {
 };
 
 export default function BannerServicio({
+  id,
   titulo,
   lineas,
   textoBoton,
@@ -17,7 +19,10 @@ export default function BannerServicio({
   imagen,
 }: PropsBannerServicio) {
   return (
-    <section className="mx-auto max-w-[1440px] px-6 pb-16 pt-3 lg:px-[67px] lg:pb-20">
+    <section
+      id={id}
+      className="mx-auto max-w-[1440px] px-6 pb-16 pt-3 lg:px-[67px] lg:pb-20"
+    >
       <div className="relative overflow-hidden rounded-xl bg-guirose-azul/10 text-guirose-marino lg:flex lg:min-h-[343px] lg:items-center">
         <div className="relative h-56 lg:absolute lg:inset-y-0 lg:left-0 lg:h-auto lg:w-[53%]">
           {imagen}
