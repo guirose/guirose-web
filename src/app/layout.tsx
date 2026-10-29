@@ -7,6 +7,7 @@ import BarraSuperior from "@/ui/BarraSuperior";
 import Encabezado from "@/ui/Encabezado";
 import type { EnlaceMenu } from "@/ui/MenuPrincipal";
 import PieDePagina from "@/ui/PieDePagina";
+import { FlyingSaucerIcon } from "@phosphor-icons/react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,6 +21,8 @@ export const metadata: Metadata = {
   title: "GUIROSE | Motores fuera de borda Mercury",
   description:
     "Motores fuera de borda, repuestos, lubricantes y accesorios Mercury. Asesoría para tu embarcación y envíos a todo el Perú.",
+  // Provisional: por el momento es una prueba publica que Google no indexa
+  robots: { index: false, follow: false },
 };
 
 // Provisional: los enlaces apuntan a "#" hasta definir las páginas
