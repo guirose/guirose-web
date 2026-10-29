@@ -25,7 +25,7 @@ const iconos = {
 };
 
 const clasesEnlace =
-  "flex h-11 items-center gap-2 rounded-full px-3.5 text-base font-semibold text-guirose-marino transition duration-150 ease-out hover:bg-guirose-espuma hover:text-guirose-accion active:scale-[0.97] aria-[current=page]:bg-guirose-espuma aria-[current=page]:text-guirose-accion";
+  "flex h-11 items-center gap-2 rounded-full px-3.5 text-base font-semibold text-guirose-marino transition duration-150 ease-out hover:bg-white hover:text-guirose-accion active:scale-[0.97] aria-[current=page]:bg-white aria-[current=page]:text-guirose-accion";
 
 export default function MenuPrincipal({ enlaces }: { enlaces: EnlaceMenu[] }) {
   return (

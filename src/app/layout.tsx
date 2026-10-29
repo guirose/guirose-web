@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Image from "next/image";
+import logoGuirose from "@/recursos/logo_Guirose-azul.png";
 import "./globals.css";
 import BarraSuperior from "@/ui/BarraSuperior";
 import Encabezado from "@/ui/Encabezado";
@@ -81,6 +83,14 @@ export default function RootLayout({
           enlaces={enlacesMenu}
           sugerencias={sugerenciasBuscador}
           cantidadCotizacion={0}
+          logo={
+            <Image
+              src={logoGuirose}
+              alt="GUIROSE"
+              preload
+              className="h-11 w-auto sm:h-12 lg:h-[60px]"
+            />
+          }
         />
         {children}
         <PieDePagina
