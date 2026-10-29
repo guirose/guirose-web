@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
 import logoGuirose from "@/recursos/logo_Guirose-azul.png";
+import logoMercury from "@/recursos/logo-mercury.png";
 import "./globals.css";
 import BarraSuperior from "@/ui/BarraSuperior";
 import Encabezado from "@/ui/Encabezado";
+import LogoAlternado from "@/ui/LogoAlternado";
 import type { EnlaceMenu } from "@/ui/MenuPrincipal";
 import PieDePagina from "@/ui/PieDePagina";
 
@@ -106,11 +108,27 @@ export default function RootLayout({
           sugerencias={sugerenciasBuscador}
           cantidadCotizacion={0}
           logo={
-            <Image
-              src={logoGuirose}
-              alt="GUIROSE"
-              preload
-              className="h-11 w-auto sm:h-12 lg:h-[60px]"
+            <LogoAlternado
+              principal={
+                <Image
+                  src={logoGuirose}
+                  alt="GUIROSE"
+                  preload
+                  className="h-11 w-auto sm:h-12 lg:h-[60px]"
+                />
+              }
+              secundario={
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-[11px] font-medium leading-none text-guirose-texto">
+                    Distribuidor autorizado de
+                  </span>
+                  <Image
+                    src={logoMercury}
+                    alt="Mercury"
+                    className="h-6 w-auto lg:h-7"
+                  />
+                </div>
+              }
             />
           }
         />

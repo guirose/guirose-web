@@ -93,3 +93,54 @@ body {
     scroll-behavior: smooth;
   }
 }
+
+/* Logos del encabezado: se alternan con un difuminado suave (14 s por ciclo) */
+@keyframes logo-principal {
+  0%,
+  43% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  50%,
+  93% {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes logo-secundario {
+  0%,
+  43% {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  50%,
+  93% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+.logo-principal {
+  animation: logo-principal 14s ease-in-out infinite;
+}
+
+.logo-secundario {
+  opacity: 0;
+  animation: logo-secundario 14s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-principal,
+  .logo-secundario {
+    animation: none;
+  }
+}
