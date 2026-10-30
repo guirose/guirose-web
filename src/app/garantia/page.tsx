@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ShieldCheckIcon } from "@phosphor-icons/react/ssr";
 import CabeceraAyuda from "@/app/_ayuda/CabeceraAyuda";
 import SelectorGarantia from "@/ui/SelectorGarantia";
 import Desplegable from "@/ui/Desplegable";
+import Boton from "@/ui/Boton";
+import { ruta } from "@/ruta";
 import type { PanelGarantia } from "@/ui/SelectorGarantia";
 import { CORREO_SOPORTE, NOMBRE_TIENDA, describirHoras, garantias } from "@/contenido/garantia";
 import type { TipoMotor } from "@/contenido/garantia";
@@ -59,14 +62,35 @@ export default function PaginaGarantia() {
     <>
       <CabeceraAyuda activa="garantia" />
       <section className="mx-auto max-w-[1440px] px-6 py-12 lg:px-[67px] lg:py-16">
+        <header className="mx-auto mb-10 flex max-w-[640px] flex-col items-center gap-3 text-center lg:mb-14">
+          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-guirose-espuma text-guirose-accion">
+            <ShieldCheckIcon
+              aria-hidden="true"
+              weight="duotone"
+              className="h-9 w-9"
+            />
+          </span>
+          <h2 className="text-3xl font-bold text-guirose-marino lg:text-4xl">
+            Garantías Mercury
+          </h2>
+          <p className="text-lg font-semibold text-guirose-accion lg:text-xl">
+            Protección y respaldo para tu motor.
+          </p>
+          <p className="text-base text-guirose-texto lg:text-lg">
+            Conoce los periodos de garantía de los motores Mercury de 2 y 4
+            tiempos según el tipo de uso de tu embarcación.
+          </p>
+        </header>
         <SelectorGarantia paneles={paneles} />
       </section>
       <section className="mx-auto flex max-w-[1000px] flex-col gap-4 px-6 pb-12 lg:pb-16">
         <Desplegable titulo="Cambios no atribuibles a garantía">
           <p>
-            La empresa se reserva el derecho de aceptar el cambio de un producto que no sea atribuible a mal funcionamiento por defectos de fábrica.
-            De ser este el caso, el cliente tiene hasta siete (7) días calendario contados desde la fecha en que recibió el producto para solicitar el cambio.
-            Para ello debe cominicarse al correo{" "}
+            La empresa se reserva el derecho de aceptar el cambio de un producto
+            que no sea atribuible a mal funcionamiento por defectos de fábrica.
+            De ser este el caso, el cliente tiene hasta siete (7) días
+            calendario contados desde la fecha en que recibió el producto para
+            solicitar el cambio. Para ello debe cominicarse al correo{" "}
             <a
               href={`mailto:${CORREO_SOPORTE}`}
               className="text-guirose-accion underline underline-offset-4"
@@ -77,18 +101,26 @@ export default function PaginaGarantia() {
           </p>
         </Desplegable>
 
-        <Desplegable titulo="Devolusiones">
+        <Desplegable titulo="Devoluciones">
           <p>
-            Solo se acepta la devolución de productos que cumplan las siguientes condiciones:
+            Solo se acepta la devolución de productos que cumplan las siguientes
+            condiciones:
           </p>
           <ul className="mt-3 list-disc space-y-1 pl-6">
             <li>Hayan sido adquiridos en la tienda {NOMBRE_TIENDA}</li>
-            <li>
-                Hayan presentado problemas de funcionamiento atribuibles a 
-            </li>
+            <li>Hayan presentado problemas de funcionamiento atribuibles a</li>
           </ul>
         </Desplegable>
       </section>
+      <div className="flex justify-center px-6 pb-16 lg:pb-24">
+        <Boton
+          href={ruta("/")}
+          variante="relleno"
+          className="h-14 w-fit gap-3 px-10 text-lg font-semibold"
+        >
+          Volver al inicio
+        </Boton>
+      </div>
     </>
   );
 }
