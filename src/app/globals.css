@@ -166,3 +166,74 @@ body {
   .ola-lenta, .ola-rapida { animation: none; }
   .hero-entra, .hero-entra-2 { animation: none; opacity: 1; }
 }
+
+/* Paneles de garantias */
+@property --n {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes onda {
+  from { transform: sclae(0.3); opacity: 0.55; }
+  to { transform: scale(1.5); opacity: 0; }
+}
+
+.garantia-onda { opacity: 0; animation: onda 4.8s ease-out infinite; }
+
+.garantia-panel {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease-out, visibility 0s 450ms;
+}
+
+.garantia-panel[data-posicion="activo"] {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 300ms ease-out;
+}
+
+.garantia-panel:not([data-posicion="activo"]) .garantia-onda {
+  animation-play-state: paused;
+}
+
+.garantia-foto,
+.garantia-uso {
+  opacity: 0;
+  transition: opacity 350ms ease-out, transform 500ms var(--ease-out);
+}
+
+.garantia-panel[data-posicion="derecha"] :is(.garantia-foto, .garantia-uso) { transform: translateX(70px); }
+.garantia-panel[data-posicion="izquierda"] :is(.garantia-foto, .garantia-uso) { transform: translateX(-70px); }
+.garantia-panel[data-posicion="activo"] :is(.garantia-foto, .garantia-uso) { opacity: 1; transform: none; }
+
+.garantia-panel[data-posicion="activo"] .garantia-uso:nth-child(1) { transition-delay: 60ms; }
+.garantia-panel[data-posicion="activo"] .garantia-uso:nth-child(2) { transition-delay: 120ms; }
+.garantia-panel[data-posicion="activo"] .garantia-uso:nth-child(3) { transition-delay: 180ms; }
+
+/* Contador */
+.garantia-cifra { counter-reset: n var(--n); }
+.garantia-cifra::after { content: counter(n); }
+
+.garantia-panel .garantia-cifra {
+  --n: 0;
+  transition: --n 0s 450ms;
+}
+
+.garantia-panel[data-posicion="activo"] .garantia-cifra {
+  --n: var(--t);
+  transition: --n 900ms var(--ease-out) 150ms;
+}
+
+@starting-style {
+  .garantia-panel[data-posicion="activo"] .garantia-cifra { --n: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .garantia-onda { animation: none; }
+  .garantia-foto, .garantia-uso { transform: none !important; transition: opacity 200ms ease !important; }
+  .garantia-panel[data-posicion] .garantia-cifra { --n: var(--t); transition: none; }
+}

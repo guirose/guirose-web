@@ -42,3 +42,8 @@ export function describirPeriodo({
   if (horasMaximas === null) return `${tiempo} sin límite de horas`;
   return `${tiempo} ó ${horasMaximas.toLocaleString("en-US")} horas`;
 }
+
+export function describirHoras({ horasMaximas }: PeriodoGarantia): string {
+    if(horasMaximas === null) return "sin límite de horas";
+    return `ó hasta ${horasMaximas?.toLocaleString("en-US")} horas`;
+}
