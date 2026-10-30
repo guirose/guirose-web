@@ -24,7 +24,7 @@ export default function CabeceraAyuda({ activa }: Props) {
           />
         }
       />
-      <div className="px-6 pt-10 lg:px-[67px]">
+      <div className="px-6 pt-6 lg:px-[67px]">
         <Pestanas
           pestanas={[
             {

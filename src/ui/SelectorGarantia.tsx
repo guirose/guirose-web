@@ -52,7 +52,7 @@ export default function SelectorGarantia({
       >
         <span
           aria-hidden="true"
-          className={`absolute left-1.5 top-1.5 h-[60px] rounded-xl transition-[translate,background-color] duration-[450ms] ease-[cubic-bezier(0.77,0,0.175,1)] ${colores[paneles[activo].color]}`}
+          className={`absolute left-1.5 top-1.5 h-[45px] rounded-xl transition-[translate,background-color] duration-[450ms] ease-[cubic-bezier(0.77,0,0.175,1)] ${colores[paneles[activo].color]}`}
           style={{
             width: `calc((100% - 12px) / ${paneles.length})`,
             translate: `${activo * 100}% 0`,
@@ -61,7 +61,7 @@ export default function SelectorGarantia({
         {paneles.map((panel, indice) => (
           <label
             key={panel.titulo}
-            className={`relative z-10 flex h-[60px] cursor-pointer items-center justify-center rounded-xl text-lg font-semibold transition-colors duration-200 has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-guirose-marino sm:text-xl ${
+            className={`relative z-10 flex h-[45px] cursor-pointer items-center justify-center rounded-xl text-base font-semibold transition-colors duration-200 has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-guirose-marino sm:text-xl ${
               indice === activo
                 ? "text-white"
                 : "text-guirose-texto hover:text-guirose-marino"
@@ -79,14 +79,14 @@ export default function SelectorGarantia({
         ))}
       </div>
 
-      <div className="mt-10 grid">
+      <div className="mt-6 grid">
         {paneles.map((panel, indice) => (
           <div
             key={panel.titulo}
             data-posicion={posicion(indice, activo)}
-            className="garantia-panel grid grid-cols-1 items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14"
+            className="garantia-panel grid grid-cols-1 items-center gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10"
           >
-            <div className="garantia-foto relative h-[300px] overflow-hidden rounded-[28px] bg-guirose-espuma lg:h-[460px]">
+            <div className="garantia-foto relative h-[300px] overflow-hidden rounded-[28px] bg-guirose-espuma lg:h-[440px]">
               {[0, 1, 2].map((n) => (
                 <span
                   key={n}
@@ -95,7 +95,7 @@ export default function SelectorGarantia({
                   style={{ animationDelay: `${n * 1.6}s` }}
                 />
               ))}
-              <div className="absolute inset-8">{panel.imagen}</div>
+              <div className="absolute inset-6">{panel.imagen}</div>
               <span
                 className={`absolute left-6 top-6 rounded-full px-5 py-2 text-[15px] font-bold tracking-[0.04em] text-white ${colores[panel.color]}`}
               >

@@ -26,7 +26,7 @@ export default function Pestanas({ pestanas }: { pestanas: Pestana[] }) {
             key={pestana.texto}
             href={pestana.href}
             aria-current={pestana.activa ? "page" : undefined}
-            className="flex h-[52px] flex-1 items-center justify-center gap-2 rounded-[10px] px-2 text-[15px] font-semibold text-guirose-texto transition duration-150 ease-out hover:bg-guirose-espuma-fuerte hover:text-guirose-marino active:scale-[0.97] aria-[current=page]:bg-guirose-accion aria-[current=page]:text-white aria-[current=page]:hover:bg-guirose-accion aria-[current=page]:hover:text-white sm:gap-3 sm:text-[19px]"
+            className="flex h-11 flex-1 items-center justify-center gap-2 rounded-[10px] px-2 text-[15px] font-semibold text-guirose-texto transition duration-150 ease-out hover:bg-guirose-espuma-fuerte hover:text-guirose-marino active:scale-[0.97] aria-[current=page]:bg-guirose-accion aria-[current=page]:text-white aria-[current=page]:hover:bg-guirose-accion aria-[current=page]:hover:text-white sm:gap-3 sm:text-[19px]"
           >
             <Icono aria-hidden="true" className="hidden h-6 w-6 sm:block" />
             {pestana.texto}
