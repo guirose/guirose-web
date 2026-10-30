@@ -54,8 +54,10 @@ export default function Desplegable({
         className="invisible grid grid-rows-[0fr] [transition:grid-template-rows_320ms_var(--ease-out),visibility_0s_320ms] group-data-[abierto=true]:visible group-data-[abierto=true]:grid-rows-[1fr] group-data-[abierto=true]:[transition:grid-template-rows_320ms_var(--ease-out),visibility_0s] motion-reduce:transition-none"
       >
         <div className="min-h-0 overflow-hidden">
-          <div className={numero !== undefined ? "pl-12" : undefined}>
-            {children}
+          <div className="-translate-y-2 px-5 pb-6 text-base leading-relaxed text-guirose-texto opacity-0 transition-[opacity,translate] duration-300 ease-[var(--ease-out)] group-data-[abierto=true]:translate-y-0 group-data-[abierto=true]:opacity-100 group-data-[abierto=true]:delay-75 lg:px-7 lg:text-lg">
+            <div className={numero !== undefined ? "pl-12" : undefined}>
+              {children}
+            </div>
           </div>
         </div>
       </div>
