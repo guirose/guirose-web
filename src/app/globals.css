@@ -237,3 +237,62 @@ body {
   .garantia-foto, .garantia-uso { transform: none !important; transition: opacity 200ms ease !important; }
   .garantia-panel[data-posicion] .garantia-cifra { --n: var(--t); transition: none; }
 }
+
+/* Preguntas frecuentes: panel por categoria apilados */
+.pf-panel {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 250ms ease-out,
+    visibility 0s 450ms,
+    grid-template-rows 320ms var(--ease-out) 450ms;
+}
+
+.pf-panel[data-posicion="activo"] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition:
+    opacity 250ms ease-out,
+    grid-template-rows 320ms var(--ease-out);
+}
+
+.pf-clip {
+  min-height: 0;
+  overflow: hidden;
+  padding: 8px 14px 34px;
+  margin: -8px -14px -34px;
+}
+
+.pf-item {
+  opacity: 0;
+  transition:
+    opacity 350ms ease-out,
+    transform 500ms var(--ease-out);
+}
+
+.pf-panel[data-posicion="arriba"] .pf-item { transform: translateY(-28px); }
+.pf-panel[data-posicion="abajo"] .pf-item { transform: translateY(28px); }
+
+.pf-panel[data-posicion="activo"] .pf-item {
+  opacity: 1;
+  transform: none;
+  transition-delay: min(calc(60ms + var(--i) * 60ms), 420ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-item {
+    transform: none !important;
+    transition: opacity 200ms ease !important;
+    transition-delay: 0s !important;
+  }
+  .pf-panel {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
