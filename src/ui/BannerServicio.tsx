@@ -21,7 +21,7 @@ export default function BannerServicio({
   return (
     <section
       id={id}
-      className="mx-auto max-w-[1440px] px-6 pb-16 pt-3 lg:px-[67px] lg:pb-20"
+      className="mx-auto max-w-[1440px] scroll-mt-38 px-6 pb-16 pt-3 lg:px-[67px] lg:pb-20"
     >
       <div className="relative overflow-hidden rounded-xl bg-guirose-azul/10 text-guirose-marino lg:flex lg:min-h-[343px] lg:items-center">
         <div className="relative h-56 lg:absolute lg:inset-y-0 lg:left-0 lg:h-auto lg:w-[53%]">
