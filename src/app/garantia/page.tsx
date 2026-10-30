@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import CabeceraAyuda from "@/app/_ayuda/CabeceraAyuda";
 import SelectorGarantia from "@/ui/SelectorGarantia";
+import Desplegable from "@/ui/Desplegable";
 import type { PanelGarantia } from "@/ui/SelectorGarantia";
-import { describirHoras, garantias } from "@/contenido/garantia";
+import { CORREO_SOPORTE, NOMBRE_TIENDA, describirHoras, garantias } from "@/contenido/garantia";
 import type { TipoMotor } from "@/contenido/garantia";
 
 export const metadata: Metadata = {
@@ -59,6 +60,34 @@ export default function PaginaGarantia() {
       <CabeceraAyuda activa="garantia" />
       <section className="mx-auto max-w-[1440px] px-6 py-12 lg:px-[67px] lg:py-16">
         <SelectorGarantia paneles={paneles} />
+      </section>
+      <section className="mx-auto flex max-w-[1000px] flex-col gap-4 px-6 pb-12 lg:pb-16">
+        <Desplegable titulo="Cambios no atribuibles a garantía">
+          <p>
+            La empresa se reserva el derecho de aceptar el cambio de un producto que no sea atribuible a mal funcionamiento por defectos de fábrica.
+            De ser este el caso, el cliente tiene hasta siete (7) días calendario contados desde la fecha en que recibió el producto para solicitar el cambio.
+            Para ello debe cominicarse al correo{" "}
+            <a
+              href={`mailto:${CORREO_SOPORTE}`}
+              className="text-guirose-accion underline underline-offset-4"
+            >
+              {CORREO_SOPORTE}
+            </a>
+            .
+          </p>
+        </Desplegable>
+
+        <Desplegable titulo="Devolusiones">
+          <p>
+            Solo se acepta la devolución de productos que cumplan las siguientes condiciones:
+          </p>
+          <ul className="mt-3 list-disc space-y-1 pl-6">
+            <li>Hayan sido adquiridos en la tienda {NOMBRE_TIENDA}</li>
+            <li>
+                Hayan presentado problemas de funcionamiento atribuibles a 
+            </li>
+          </ul>
+        </Desplegable>
       </section>
     </>
   );

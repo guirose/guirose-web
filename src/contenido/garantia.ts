@@ -47,3 +47,7 @@ export function describirHoras({ horasMaximas }: PeriodoGarantia): string {
     if(horasMaximas === null) return "sin límite de horas";
     return `ó hasta ${horasMaximas?.toLocaleString("en-US")} horas`;
 }
+
+// Datos de la empresa
+export const CORREO_SOPORTE = "guirose@gmail.com";
+export const NOMBRE_TIENDA = "GUIROSE"
