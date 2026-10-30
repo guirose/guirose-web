@@ -6,6 +6,7 @@ import BannerPromocion from "@/ui/BannerPromocion";
 import TarjetaCategoria from "@/ui/TarjetaCategoria";
 import BannerServicio from "@/ui/BannerServicio";
 import Aparecer from "@/ui/Aparecer";
+import { ruta } from "@/ruta";
 
 export default function Home() {
   return (
@@ -148,7 +149,7 @@ export default function Home() {
         titulo="Garantía y servicios para motores Mercury"
         descripcion="Conoce las condiciones de garantía, las opciones de entrega y los servicios que GUIROSE tiene para ti"
         textoBoton="Resuelve tus dudas"
-        hrefBoton="#"
+        hrefBoton={ruta("/garantia")}
         imagen={
           <Image
             src="/imagenes/banner-servicio.jpg"

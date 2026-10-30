@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   CaretDownIcon,
   ChatCircleTextIcon,
@@ -16,6 +16,7 @@ export type EnlaceMenu = {
   href: string;
   icono: "motores" | "clientes" | "repuestos" | "servicios" | "contacto";
   seccion?: string;
+  paginas?: string[]; // rutas de páginas propias
   submenu?: OpcionSubmenu[];
   enlaceFinal?: { texto: string; href: string };
 };
@@ -30,16 +31,32 @@ const iconos = {
 
 const LINEA_LECTURA = 180;
 
+const quitarBarra = (texto: string) => texto.replace(/\/+$/, "");
+
+const noSuscribir = () => () => {};
+
 const classEnlace =
-  "flex h-11 items-center gap-2 rounded-full px-3.5 text-base font-semibold text-guirose-marino transition duration-150 ease-out hover:bg-white hover:text-guirose-accion active:scale-[0.97] aria-[current=location]:bg-white aria-[current=location]:text-guirose-accion";
+  "flex h-11 items-center gap-2 rounded-full px-3.5 text-base font-semibold text-guirose-marino transition duration-150 ease-out hover:bg-white hover:text-guirose-accion active:scale-[0.97] aria-[current=location]:bg-white aria-[current=location]:text-guirose-accion aria-[current=page]:bg-white aria-[current=page]:text-guirose-accion";
 
 export default function MenuPrincipal({ enlaces }: { enlaces: EnlaceMenu[] }) {
   const [activa, setActiva] = useState<string | null>(null);
 
+  // Ruta actual leída del navegador
+  const camino = useSyncExternalStore(
+    noSuscribir,
+    () => quitarBarra(window.location.pathname),
+    () => null,
+  );
+
+  const paginaActual =
+    enlaces.find((enlace) =>
+      enlace.paginas?.some((pagina) => quitarBarra(pagina) === camino),
+    )?.texto ?? null;
+
   useEffect(() => {
     const ids = enlaces.flatMap((enlace) =>
-    enlace.seccion ? [enlace.seccion] : [],
-  );
+      enlace.seccion ? [enlace.seccion] : [],
+    );
 
     function calcular() {
       let actual: string | null = null;
@@ -69,20 +86,29 @@ export default function MenuPrincipal({ enlaces }: { enlaces: EnlaceMenu[] }) {
       window.removeEventListener("scroll", calcular);
       window.removeEventListener("resize", calcular);
     };
-  }, [enlaces]);
+  }, [enlaces, paginaActual]);
   
   return (
     <nav aria-label="Principal">
       <ul className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1">
         {enlaces.map((enlace) => {
           const Icono = iconos[enlace.icono];
-          const esActual = enlace.seccion != undefined && enlace.seccion === activa;
+          const esActual = 
+            !paginaActual &&
+            enlace.seccion != undefined && 
+            enlace.seccion === activa;
+          const marca = 
+            enlace.texto === paginaActual
+              ? "page"
+              : esActual
+                ? "location"
+                : undefined;
 
           return (
             <li key={enlace.texto} className="group/item relative">
               <a
                 href={enlace.href}
-                aria-current={esActual ? "location" : undefined}
+                aria-current={marca}
                 className={classEnlace}
               >
                 <Icono aria-hidden="true" className="h-[19px] w-[19px]" />

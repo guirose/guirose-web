@@ -9,6 +9,7 @@ import Encabezado from "@/ui/Encabezado";
 import LogoAlternado from "@/ui/LogoAlternado";
 import type { EnlaceMenu } from "@/ui/MenuPrincipal";
 import PieDePagina from "@/ui/PieDePagina";
+import { ruta } from "@/ruta";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -30,40 +31,41 @@ export const metadata: Metadata = {
 const enlacesMenu: EnlaceMenu[] = [
   {
     texto: "Motores",
-    href: "#motores",
+    href: ruta("/#motores"),
     icono: "motores",
     seccion: "motores",
     submenu: [
       {
         texto: "Motores 2 tiempos",
         descripcion: "Sencillos y de fácil mantenimiento",
-        href: "#motores",
+        href: ruta("/#motores"),
       },
       {
         texto: "Motores 4 tiempos",
         descripcion: "Silenciosos y de menor consumo",
-        href: "#motores",
+        href: ruta("/#motores"),
       },
     ],
-    enlaceFinal: { texto: "Ver todos los motores", href: "#motores" },
+    enlaceFinal: { texto: "Ver todos los motores", href: ruta("/#motores") },
   },
   {
     texto: "Clientes",
-    href: "#clientes",
+    href: ruta("/#clientes"),
     icono: "clientes",
     seccion: "clientes",
   },
   {
     texto: "Repuestos y accesorios",
-    href: "#repuestos",
+    href: ruta("/#repuestos"),
     icono: "repuestos",
     seccion: "repuestos",
   },
   { 
     texto: "Garantía y servicios", 
-    href: "#servicios", 
+    href: ruta("/#servicios"), 
     icono: "servicios", 
     seccion: "servicios",
+    paginas: [ruta("/garantia"), ruta("/preguntas-frecuentes")],
   },
   {
     texto: "Contacto",
