@@ -1,6 +1,7 @@
 import Image from "next/image";
 import TarjetaCatalogo from "@/ui/TarjetaCatalogo";
 import {
+  fotoDe,
   idDe,
   infoTipo,
   motoresDe,
@@ -8,12 +9,6 @@ import {
   type TipoMotor,
 } from "@/contenido/motores";
 import { ruta } from "@/ruta";
-
-// fotos de motores provisionales de cada uno
-const fotos: Record<TipoMotor, string> = {
-  "2-tiempos": "/imagenes/motor-2-tiempos.png",
-  "4-tiempos": "/imagenes/motor-4-tiempos.png",
-};
 
 export default function ListaMotores({ tipo }: { tipo: TipoMotor }) {
   const info = infoTipo[tipo];
@@ -47,7 +42,7 @@ export default function ListaMotores({ tipo }: { tipo: TipoMotor }) {
             hrefFicha={ruta(rutaDe(m))}
             imagen={
               <Image
-                src={fotos[tipo]}
+                src={fotoDe(m)}
                 alt={`Motor Mercury ${m.linea} de ${m.hp}`}
                 fill
                 sizes="(min-width: 1280px) 220px, 45vw"

@@ -129,3 +129,12 @@ export const infoTipo: Record<
 
 // Identificadores
 export const idDe = (motor: Motor): string => `${motor.tipo}-${slugDe(motor)}`;
+
+// Carpeta de fotos de cada tipo
+const carpetaFotos: Record<TipoMotor, string> = {
+  "2-tiempos": "2T",
+  "4-tiempos": "4T",
+};
+
+// Foto de cada motor
+export const fotoDe = (motor: Motor): string => `/imagenes/${carpetaFotos[motor.tipo]}/${slugDe(motor)}.png`;
