@@ -1,0 +1,52 @@
+import type { ReactNode } from "react";
+import Boton from "./Boton";
+
+type Props = {
+  id: string;
+  hp: number;
+  linea: string;
+  hrefFicha: string;
+  imagen: ReactNode;
+};
+
+export default function TarjetaCatalogo({
+  id,
+  hp,
+  linea,
+  hrefFicha,
+  imagen,
+}: Props) {
+  return (
+    <article
+      id={id}
+      className="flex scroll-mt-40 flex-col overflow-hidden rounded-xl border border-guirose-borde bg-white"
+    >
+      {/* Panel con foto del motor */}
+      <div className="relative aspect-square bg-guirose-espuma">
+        <div className="absolute inset-3 mix-blend-multiply">{imagen}</div>
+      </div>
+
+      <div className="flex flex-1 flex-col gap-4 p-4">
+        <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+          <p className="text-3xl font-extrabold leading-none text-guirose-marino">
+            {hp}
+            <span className="m-1 text-base font-bold text-guirose-texto">
+              HP
+            </span>
+          </p>
+          <span className="rounded-full bg-guirose-espuma px-2.5 py-1 text-xs font-bold text-guirose-accion">
+            {linea}
+          </span>
+        </div>
+
+        <Boton
+          href={hrefFicha}
+          variante="borde"
+          className="mt-auto h-11 justify-center gap-2 text-base font-semibold"
+        >
+          Ver ficha
+        </Boton>
+      </div>
+    </article>
+  );
+}
