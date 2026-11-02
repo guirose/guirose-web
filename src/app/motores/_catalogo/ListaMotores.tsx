@@ -37,9 +37,10 @@ export default function ListaMotores({ tipo }: { tipo: TipoMotor }) {
       </header>
 
       <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
-        {motoresDe(tipo).map((m) => (
+        {motoresDe(tipo).map((m, i) => (
           <TarjetaCatalogo
             key={idDe(m)}
+            indice={i}
             id={idDe(m)}
             hp={m.hp}
             linea={m.linea}

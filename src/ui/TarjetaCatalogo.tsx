@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import Boton from "./Boton";
 
 type Props = {
@@ -7,6 +7,7 @@ type Props = {
   linea: string;
   hrefFicha: string;
   imagen: ReactNode;
+  indice?: number;
 };
 
 export default function TarjetaCatalogo({
@@ -15,15 +16,19 @@ export default function TarjetaCatalogo({
   linea,
   hrefFicha,
   imagen,
+  indice = 0,
 }: Props) {
   return (
     <article
       id={id}
-      className="flex scroll-mt-40 flex-col overflow-hidden rounded-xl border border-guirose-borde bg-white"
+      style={{ "--i": indice } as CSSProperties}
+      className="tarjeta-catalogo group flex scroll-mt-40 flex-col overflow-hidden rounded-xl border border-guirose-borde bg-white"
     >
       {/* Panel con foto del motor */}
       <div className="relative aspect-square bg-guirose-espuma">
-        <div className="absolute inset-3 mix-blend-multiply">{imagen}</div>
+        <div className="absolute inset-3 origin-bottom mix-blend-multiply transition-transform duration-[250ms] ease-out group-hover:scale-[1.03] motion-reduce:group-hover:scale-100">
+          {imagen}
+        </div>
       </div>
 
       <div className="flex flex-1 flex-col gap-4 p-4">

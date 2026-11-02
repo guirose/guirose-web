@@ -318,3 +318,117 @@ body {
   .pestana-pildora { transition-duration: 1ms; }
   .ayuda-entra { animation: ayuda-fundido 200ms ease both; }
 }
+
+/* Barra del catalogo de motores */
+/* Deslizamiento entre 2 tiempos y 4 tiempos */
+.barra-indicador {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  width: calc((100% - 18px) / 2);
+  border-radius: 12px;
+  border: 1.5px solid var(--color-guirose-accion);
+  background: #F5FAFF;
+  transform: translateX(calc(var(--tipo-pos) * (100% + 6px)));
+  transition: transform 320ms var(--ease-out);
+}
+
+@media (min-width: 64rem) {
+  .barra-indicador {
+    inset: 0 0 auto 0;
+    width: auto;
+    height: 66px;
+    border-radius: 16px;
+    transform: translateY(calc(var(--tipo-pos) * (100% + 10px)));
+  }
+}
+
+/* Lista de potencias: se abre y se cierra como un acordeón */
+.barra-lista {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 320ms var(--ease-out),
+    visibility 0s 320ms;
+}
+
+.barra-lista[data-activo="true"] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows 320ms var(--ease-out),
+    visibility 0s;
+}
+
+.barra-lista > ul {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Cada potencia entra una tras otra */
+.barra-item {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity 200ms ease-out,
+    transform 300ms var(--ease-out);
+}
+
+.barra-lista[data-activo="true"] .barra-item {
+  opacity: 1;
+  transform: none;
+  transition-delay:
+    calc(120ms + var(--i) * 40ms),
+    calc(120ms + var(--i) * 40ms);
+}
+
+/* Vista movil */
+@keyframes pastilla-entra {
+  from { opacity: 0; transform: translateX(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+.barra-pastilla {
+  animation: pastilla-entra 350ms var(--ease-out) calc(var(--i) * 40ms) both;
+}
+
+/* Tarjetas del catálogo */
+@keyframes tarjeta-pulso {
+  0% { box-shadow: 0 0 0 0 rgb(0 105 217 / 0.5); transform: scale(1.03); }
+  70% { box-shadow: 0 0 0 14px rgb(0 105 217 / 0); }
+  100% { box-shadow: 0 0 0 14px rgb(0 105 217 / 0); transform: none; }
+}
+
+@keyframes tarjeta-entra {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+.tarjeta-catalogo {
+  animation: tarjeta-entra 700ms var(--ease-out)
+    min(calc(var(--i) * 80ms), 560ms) backwards;
+}
+
+.tarjeta-catalogo:target {
+  border-color: var(--color-guirose-accion);
+  animation: tarjeta-pulso 1000ms var(--ease-out) 300ms backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barra-indicador { transition-duration: 1ms; }
+  .barra-lista,
+  .barra-lista[data-activo="true"] {
+    transition-duration: 1ms;
+    transition-delay: 0s;
+  }
+  .barra-item,
+  .barra-lista[data-activo="true"] .barra-item {
+    transform: none;
+    transition-duration: 150ms;
+    transition-delay: 0s;
+  }
+  .barra-pastilla { animation: none; }
+  .tarjeta-catalogo,
+  .tarjeta-catalogo:target { animation: none; }
+}
