@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ShieldCheckIcon } from "@phosphor-icons/react/ssr";
-import CabeceraAyuda from "@/app/_ayuda/CabeceraAyuda";
 import SelectorGarantia from "@/ui/SelectorGarantia";
 import Desplegable from "@/ui/Desplegable";
 import Boton from "@/ui/Boton";
@@ -60,7 +59,6 @@ export default function PaginaGarantia() {
 
   return (
     <>
-      <CabeceraAyuda activa="garantia" />
       <section className="mx-auto max-w-[1440px] px-6 py-8 lg:px-[67px] lg:py-10">
         <header className="mx-auto mb-6 flex max-w-[640px] flex-col items-center gap-2 text-center lg:mb-8">
           <span className="flex h-12 w-12 items-center justify-center rounded-full bg-guirose-espuma text-guirose-accion">

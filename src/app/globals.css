@@ -296,3 +296,18 @@ body {
     transition-delay: 0s !important;
   }
 }
+
+/* Entrada del contenido al cambiar de pestaña en el Centro de ayuda */
+@keyframes ayuda-entra {
+  from { opcacity:0; transform: translateX(var(--desde, 24px)); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes ayuda-fundido {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.ayuda-entra { animation: ayuda-entra 300ms var(--ease-out) both; }
+.ayuda-entra[data-desde="izquierda"] {--desde: -24px; }
+@media (prefers-reduced-motion: reduce) {
+  .ayuda-entra { animation: ayuda-fundido 200ms ease both; }
+}

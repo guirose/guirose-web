@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { QuestionIcon } from "@phosphor-icons/react/ssr";
-import CabeceraAyuda from "@/app/_ayuda/CabeceraAyuda";
 import PreguntasFrecuentes from "@/ui/PreguntasFrecuentes";
 import Boton from "@/ui/Boton";
 import { categoriasPreguntas } from "@/contenido/preguntas";
@@ -13,7 +12,6 @@ export const metadata: Metadata = {
 export default function PaginaPreguntasFrecuentes() {
   return (
     <>
-      <CabeceraAyuda activa="preguntas" />
       <section className="mx-auto max-w-[1440px] px-6 py-8 lg:px-[67px] lg:py-10">
         <header className="mx-auto mb-6 flex max-w-[640px] flex-col items-center gap-2 text-center lg:mb-8">
           <span className="flex h-12 w-12 items-center justify-center rounded-full bg-guirose-espuma text-guirose-accion">

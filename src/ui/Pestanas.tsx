@@ -1,4 +1,5 @@
 import { QuestionIcon, ShieldCheckIcon } from "@phosphor-icons/react/ssr";
+import type { ElementType } from "react";
 
 export type Pestana = {
   texto: string;
@@ -12,7 +13,12 @@ const iconos = {
   preguntas: QuestionIcon,
 };
 
-export default function Pestanas({ pestanas }: { pestanas: Pestana[] }) {
+export default function Pestanas({ 
+  pestanas,
+  enlace: Enlace = "a",
+ }: { pestanas: Pestana[];
+  enlace?: ElementType;
+  }) {
   return (
     <nav
       aria-label="Centro de ayuda"
