@@ -1,5 +1,5 @@
+import type { CSSProperties, ElementType } from "react";
 import { QuestionIcon, ShieldCheckIcon } from "@phosphor-icons/react/ssr";
-import type { ElementType } from "react";
 
 export type Pestana = {
   texto: string;
@@ -13,30 +13,43 @@ const iconos = {
   preguntas: QuestionIcon,
 };
 
-export default function Pestanas({ 
+export default function Pestanas({
   pestanas,
   enlace: Enlace = "a",
- }: { pestanas: Pestana[];
+}: {
+  pestanas: Pestana[];
   enlace?: ElementType;
-  }) {
+}) {
+  const indice = pestanas.findIndex((pestana) => pestana.activa);
+
   return (
     <nav
       aria-label="Centro de ayuda"
-      className="mx-auto flex w-full max-w-[640px] gap-1 rounded-[14px] bg-guirose-espuma p-1.5"
+      style={
+        { "--total": pestanas.length, 
+          "--posicion": Math.max(indice, 0),
+        } as CSSProperties
+      }
+      className="relative mx-auto flex w-full max-w-[640px] gap-1 rounded-[14px] bg-guirose-espuma p-1.5"
     >
+      <span
+        aria-hidden="true"
+        className="pestana-pildora pointer-events-none absolute inset-y-1.5 left-1.5 rounded-[10px] bg-guirose-accion"
+      />
+
       {pestanas.map((pestana) => {
         const Icono = iconos[pestana.icono];
 
         return (
-          <a
+          <Enlace
             key={pestana.texto}
             href={pestana.href}
             aria-current={pestana.activa ? "page" : undefined}
-            className="flex h-11 flex-1 items-center justify-center gap-2 rounded-[10px] px-2 text-[15px] font-semibold text-guirose-texto transition duration-150 ease-out hover:bg-guirose-espuma-fuerte hover:text-guirose-marino active:scale-[0.97] aria-[current=page]:bg-guirose-accion aria-[current=page]:text-white aria-[current=page]:hover:bg-guirose-accion aria-[current=page]:hover:text-white sm:gap-3 sm:text-[19px]"
+            className="relative flex h-11 flex-1 items-center justify-center gap-2 rounded-[10px] px-2 text-[15px] font-semibold text-guirose-texto [transition:color_300ms_var(--ease-out),background-color_150ms_ease-out,transform_150ms_ease-out] not-aria-[current=page]:hover:bg-guirose-espuma-fuerte not-aria-[current=page]:hover:text-guirose-marino active:scale-[0.97] aria-[current=page]:text-white sm:gap-3 sm:text-[19px]"
           >
             <Icono aria-hidden="true" className="hidden h-6 w-6 sm:block" />
             {pestana.texto}
-          </a>
+          </Enlace>
         );
       })}
     </nav>

@@ -298,16 +298,23 @@ body {
 }
 
 /* Entrada del contenido al cambiar de pestaña en el Centro de ayuda */
+.pestana-pildora {
+  width: calc((100% - 12px - (var(--total) - 1) * 4px) / var(--total));
+  transform: translateX(calc(var(--posicion) * (100% + 4px)));
+  transition: transform 350ms var(--ease-out);
+}
+
 @keyframes ayuda-entra {
-  from { opcacity:0; transform: translateX(var(--desde, 24px)); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: none; }
 }
 @keyframes ayuda-fundido {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-.ayuda-entra { animation: ayuda-entra 300ms var(--ease-out) both; }
-.ayuda-entra[data-desde="izquierda"] {--desde: -24px; }
+.ayuda-entra { animation: ayuda-entra 350ms var(--ease-out) 60ms both; }
+
 @media (prefers-reduced-motion: reduce) {
+  .pestana-pildora { transition-duration: 1ms; }
   .ayuda-entra { animation: ayuda-fundido 200ms ease both; }
 }
