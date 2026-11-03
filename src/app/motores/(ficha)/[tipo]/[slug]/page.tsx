@@ -3,8 +3,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import BandaFicha from "@/ui/BandaFicha";
 import BarraFicha from "@/ui/BarraFicha";
-import Boton from "@/ui/Boton";
-import FichaTecnica from "@/ui/FichaTecnica";
 import { BENEFICIOS, DESCRIPCION, IDEAL_PARA } from "@/contenido/ficha";
 import {
   buscarMotor,
@@ -18,8 +16,10 @@ import {
   rutaDe,
   slugDe,
   vecinosDe,
+  vistaDe,
 } from "@/contenido/motores";
 import { ruta } from "@/ruta";
+import FichaInteractiva from "../../_ficha/FichaInteractiva";
 
 type Props = { params: Promise<{ tipo: string; slug: string }> };
 
@@ -47,19 +47,13 @@ export default async function PaginaFicha({ params }: Props) {
   const info = infoTipo[tipo];
   const { anterior, siguiente } = vecinosDe(motor);
 
-  const claves = [
-    { valor: motor.datos.cilindrada, etiqueta: "Cilindrada" },
-    { valor: rangoPeso(motor), etiqueta: "Peso" },
-    { valor: rangoAltura(motor), etiqueta: "Altura" },
-  ];
-
   return (
     <>
       <div className="mx-auto max-w-[1440px] px-6 lg:px-[67px]">
         <BarraFicha
           migas={[
             { texto: "Motores", href: ruta("/motores") },
-            { texto: info.nombre, href: ruta(`/motores/${tipo}`) },
+            { texto: info.nombre, href: ruta(`/motores/4{tipo}`) },
             { texto: `${motor.hp} HP` },
           ]}
           anterior={
@@ -76,73 +70,38 @@ export default async function PaginaFicha({ params }: Props) {
           }
         />
 
-        <section
-          aria-label={`Mercury ${motor.linea} ${motor.hp} HP`}
-          className="grid items-center gap-8 pb-4 lg:grid-cols-2 lg:gap-14"
-        >
-          <div className="relative mx-auto aspect-square w-full max-w-[460px] rounded-lg bg-guirose-espuma">
-            <span
-              aria-hidden="true"
-              className="absolute inset-0 flex select-none items-center justify-center text-[120px] font-extrabold leading-none text-white/70 lg:text-[200px]"
-            >
-              {motor.hp}
-            </span>
-            <Image
-              src={fotoDe(motor)}
-              alt={`Motor Mercury ${motor.linea} de ${motor.hp} HP`}
-              fill
-              preload
-              sizes="(min-width: 1024px) 460px, 90vw"
-              className="object-contain mix-blend-multiply"
-            />
-          </div>
-
-          <div>
-            <div className="flex gap-2">
-              <span className="rounded-full bg-guirose-accion px-3 py-1 text-sm font-semibold text-white">
-                {info.nombre}
+        <FichaInteractiva
+          imagen={
+            <div className="relative mx-auto aspect-square w-full max-w-[460px] rounded-lg bg-guirose-espuma">
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 flex select-none items-center justify-center text-[120px] font-extrabold leading-none text-white/70 lg:text-[200px]"
+              >
+                {motor.hp}
               </span>
-              <span className="rounded-full border border-guirose-accion px-3 py-1 text-sm font-semibold text-guirose-accion">
-                {motor.linea}
-              </span>
+              <Image
+                src={fotoDe(motor)}
+                alt={`Motor Mercury ${motor.linea} de ${motor.hp} HP`}
+                fill
+                preload
+                sizes="(min-width: 1024px) 460px, 90vw"
+                className="object-contain mix-blend-multiply"
+              />
             </div>
-
-            <h1 className="mt-4 text-[32px] font-extrabold leading-[1.1] tracking-[-0.02em] text-guirose-marino lg:text-[44px]">
-              Mercury {motor.linea} {motor.hp} HP
-            </h1>
-            <p className="mt-3 max-w-[560px] text-base text-guirose-texto lg:text-lg">
-              {DESCRIPCION}
-            </p>
-
-            <dl className="mt-6 grid grid-cols-3 gap-4 border-y border-guirose-espuma-fuerte py-4">
-              {claves.map((c) => (
-                <div key={c.etiqueta}>
-                  <dd className="text-lg font-bold text-guirose-marino lg:text-xl">
-                    {c.valor}
-                  </dd>
-                  <dt className="text-sm text-guirose-texto">{c.etiqueta}</dt>
-                </div>
-              ))}
-            </dl>
-
-            <Boton
-              href="#"
-              variante="relleno"
-              className="mt-6 h-14 justify-center gap-3 px-6 text-lg font-semibold lg:w-fit"
-            >
-              Cotizar este motor
-            </Boton>
-            <p className="mt-3 text-sm text-guirose-texto">
-              Puedes elegir el control y la altura al cotizar. *Imagen
-              referencial.
-            </p>
-          </div>
-        </section>
-
-        <FichaTecnica hp={motor.hp} base={fichaDe(motor)} />
+          }
+          tipoNombre={info.nombre}
+          linea={motor.linea}
+          hp={motor.hp}
+          descripcion={DESCRIPCION}
+          cilindrada={motor.datos.cilindrada}
+          rangoPeso={rangoPeso(motor)}
+          rangoAltura={rangoAltura(motor)}
+          modelos={motor.variantes.map(vistaDe)}
+          base={fichaDe(motor)}
+        />
       </div>
 
       <BandaFicha beneficios={BENEFICIOS} idealPara={IDEAL_PARA} />
     </>
-  );
+  )
 }
