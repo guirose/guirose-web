@@ -316,6 +316,15 @@ export const rangoPeso = (motor: Motor): string => {
   return min === max ? `${kg(min)} kg` : `${kg(min)} - ${kg(max)} kg`;
 };
 
+export const rangoAltura = (motor: Motor): string => {
+  const alturas = [...new Set(motor.variantes.map((x) => x.altura))].sort(
+    (a, b) => a - b,
+  );
+  return alturas.length === 1
+    ? `${alturas[0]}″`
+    : `${alturas[0]}-${alturas[alturas.length - 1]}″`;
+};
+
 // peso del modelo
 export const pesoDe = (variante: Variante): string => `${kg(variante.peso)} kg`;
 
