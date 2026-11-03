@@ -53,7 +53,7 @@ export default async function PaginaFicha({ params }: Props) {
         <BarraFicha
           migas={[
             { texto: "Motores", href: ruta("/motores") },
-            { texto: info.nombre, href: ruta(`/motores/4{tipo}`) },
+            { texto: info.nombre, href: ruta(`/motores/${tipo}`) },
             { texto: `${motor.hp} HP` },
           ]}
           anterior={
