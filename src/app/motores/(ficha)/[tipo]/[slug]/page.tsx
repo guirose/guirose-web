@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import BandaFicha from "@/ui/BandaFicha";
 import BarraFicha from "@/ui/BarraFicha";
-import { BENEFICIOS, DESCRIPCION, IDEAL_PARA } from "@/contenido/ficha";
+import { BENEFICIOS, IDEAL_PARA } from "@/contenido/ficha";
 import {
   buscarMotor,
   esTipoMotor,
@@ -48,8 +48,8 @@ export default async function PaginaFicha({ params }: Props) {
   const { anterior, siguiente } = vecinosDe(motor);
 
   return (
-    <>
-      <div className="mx-auto max-w-[1440px] px-6 lg:px-[67px]">
+    <FichaInteractiva
+      barra={
         <BarraFicha
           migas={[
             { texto: "Motores", href: ruta("/motores") },
@@ -69,39 +69,30 @@ export default async function PaginaFicha({ params }: Props) {
             }
           }
         />
-
-        <FichaInteractiva
-          imagen={
-            <div className="relative mx-auto aspect-square w-full max-w-[460px] rounded-lg bg-guirose-espuma">
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 flex select-none items-center justify-center text-[120px] font-extrabold leading-none text-white/70 lg:text-[200px]"
-              >
-                {motor.hp}
-              </span>
-              <Image
-                src={fotoDe(motor)}
-                alt={`Motor Mercury ${motor.linea} de ${motor.hp} HP`}
-                fill
-                preload
-                sizes="(min-width: 1024px) 460px, 90vw"
-                className="object-contain mix-blend-multiply"
-              />
-            </div>
-          }
-          tipoNombre={info.nombre}
-          linea={motor.linea}
-          hp={motor.hp}
-          descripcion={DESCRIPCION}
-          cilindrada={motor.datos.cilindrada}
-          rangoPeso={rangoPeso(motor)}
-          rangoAltura={rangoAltura(motor)}
-          modelos={motor.variantes.map(vistaDe)}
-          base={fichaDe(motor)}
-        />
-      </div>
-
+      }
+      imagen={
+        <div className="ficha-foto relative mx-auto aspect-square w-full max-w-[560px] lg:max-w-[640px]">
+          <Image
+            src={fotoDe(motor)}
+            alt={`Motor Mercury ${motor.linea} de ${motor.hp} HP`}
+            fill
+            preload
+            sizes="(min-width: 1024px) 640px, 90vw"
+            className="object-contain mix-blend-multiply"
+          />
+        </div>
+      }
+      tipoNombre={info.nombre}
+      linea={motor.linea}
+      hp={motor.hp}
+      descripcion={motor.descripcion}
+      cilindrada={motor.datos.cilindrada}
+      rangoPeso={rangoPeso(motor)}
+      rangoAltura={rangoAltura(motor)}
+      modelos={motor.variantes.map(vistaDe)}
+      base={fichaDe(motor)}
+    >
       <BandaFicha beneficios={BENEFICIOS} idealPara={IDEAL_PARA} />
-    </>
-  )
+    </FichaInteractiva>
+  );
 }

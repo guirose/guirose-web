@@ -24,7 +24,7 @@ export type DatosMotor = {
   cilindrada: string;
   arranque: Arranque;
   rango: string;
-  relacion:string;
+  relacion: string;
   aceite?: string; // 2 tiempos no tiene
 };
 
@@ -37,6 +37,7 @@ export type Motor = {
   tipo: TipoMotor;
   hp: number;
   linea: Linea;
+  descripcion: string; // propio de cada potencia
   datos: DatosMotor;
   variantes: Variante[];
 };
@@ -50,12 +51,18 @@ const v = (
   inclinacion: Inclinacion,
 ): Variante => ({ codigo, altura, peso, control, inclinacion });
 
+// La guía describe juntos al 75 y al 115
+const DESCRIPCION_75_115 =
+  "Motor de 2.1 litros, compacto y liviano, con buen torque desde bajas revoluciones y mejor planeo con carga. Su caja Command Thrust admite hélices de mayor diámetro para el trabajo pesado, y su diseño mejora la distribución del peso y la maniobrabilidad.";
+
 export const motores: Motor[] = [
   // 2 tiempos
   {
     tipo: "2-tiempos",
     hp: 15,
     linea: "SeaPro",
+    descripcion:
+      "Motor de 2 tiempos liviano, pensado para el trabajo diario en río o mar. Su sistema carburado responde rápido y no depende de electrónica complicada, por lo que es fácil de reparar en zonas alejadas. Buen equilibrio entre peso y potencia para pesca y transporte.",
     datos: {
       tipoMotor: "2T / carburado",
       cilindros: "2 en línea",
@@ -74,6 +81,8 @@ export const motores: Motor[] = [
     tipo: "2-tiempos",
     hp: 25,
     linea: "SeaPro",
+    descripcion:
+      "Motor de 2 tiempos de diseño sencillo, con buena fuerza de empuje y rendimiento de combustible. Su tecnología convencional, probada en el trabajo, facilita el uso y el mantenimiento: una buena opción si navegas lejos de la ciudad.",
     datos: {
       tipoMotor: "2T / carburado",
       cilindros: "2 en línea",
@@ -91,6 +100,8 @@ export const motores: Motor[] = [
     tipo: "2-tiempos",
     hp: 40,
     linea: "SeaPro",
+    descripcion:
+      "Motor de 2 tiempos con tres carburadores, que le dan una respuesta firme para trabajar contra la corriente y avanzar con buena velocidad en mar abierto. Mantiene una buena relación peso/potencia y es fácil de montar, desmontar y reparar.",
     datos: {
       tipoMotor: "2T / carburado",
       cilindros: "3 en línea",
@@ -111,6 +122,8 @@ export const motores: Motor[] = [
     tipo: "4-tiempos",
     hp: 15,
     linea: "SeaPro",
+    descripcion:
+      "Motor de 4 tiempos calibrado para el trabajo comercial. Sus 333 cc de cilindrada dan buen torque a bajas revoluciones para mover carga sin exigirlo. Es liviano y fácil de instalar, con manubrio ergonómico y cambio en el timón para jornadas largas.",
     datos: {
       tipoMotor: "4T / carburado",
       cilindros: "2 en línea",
@@ -129,6 +142,8 @@ export const motores: Motor[] = [
     tipo: "4-tiempos",
     hp: 25,
     linea: "SeaPro",
+    descripcion:
+      "Motor comercial compacto de 4 tiempos para trabajar todos los días. Su relación de transmisión 2.17:1 mejora la tracción y la respuesta con carga, y su construcción resiste la corrosión del agua salada con poco mantenimiento.",
     datos: {
       tipoMotor: "4T / inyección / SOHC",
       cilindros: "3 en línea",
@@ -149,6 +164,8 @@ export const motores: Motor[] = [
     tipo: "4-tiempos",
     hp: 60,
     linea: "SeaPro",
+    descripcion:
+      "Motor de 4 cilindros y 995 cc sobre una plataforma comercial pensada para durar en uso continuo. Su caja Command Thrust mueve hélices de mayor diámetro y ayuda a levantar embarcaciones pesadas, con un peso desde 118 kg.",
     datos: {
       tipoMotor: "4T / inyección / SOHC",
       cilindros: "4 en línea",
@@ -170,6 +187,7 @@ export const motores: Motor[] = [
     tipo: "4-tiempos",
     hp: 75,
     linea: "SeaPro",
+    descripcion: DESCRIPCION_75_115,
     datos: {
       tipoMotor: "4T / inyección / SOHC",
       cilindros: "4 en línea",
@@ -189,6 +207,7 @@ export const motores: Motor[] = [
     tipo: "4-tiempos",
     hp: 115,
     linea: "SeaPro",
+    descripcion: DESCRIPCION_75_115,
     datos: {
       tipoMotor: "4T / inyección / SOHC",
       cilindros: "4 en línea",
@@ -210,6 +229,8 @@ export const motores: Motor[] = [
     tipo: "4-tiempos",
     hp: 150,
     linea: "SeaPro",
+    descripcion:
+      "Motor de 3.0 litros con caja de engranajes comercial reforzada, pensado para jornadas largas y trabajo pesado. Su alternador de 60 A mantiene estable la carga eléctrica, y su peso en seco desde 206 kg ayuda a repartir mejor la carga en popa.",
     datos: {
       tipoMotor: "4T / inyección / SOHC",
       cilindros: "4 en línea",
@@ -230,6 +251,8 @@ export const motores: Motor[] = [
     tipo: "4-tiempos",
     hp: 200,
     linea: "SeaPro",
+    descripcion:
+      "Motor V6 de 3.4 litros con calibración comercial, que entrega torque desde bajas revoluciones para empujar con fuerza en jornadas continuas. Incluye transmisión Heavy Duty y tecnología SmartCraft, con control adaptativo de revoluciones.",
     datos: {
       tipoMotor: "4T / inyección / SOHC",
       cilindros: "6 en V",
@@ -240,9 +263,7 @@ export const motores: Motor[] = [
       relacion: "1.85:1",
       aceite: "6,6 L",
     },
-    variantes: [
-      v("200EXLPT", 25, 225, "Control remoto", "Eléctrica"),
-    ],
+    variantes: [v("200EXLPT", 25, 225, "Control remoto", "Eléctrica")],
   },
 ];
 
@@ -250,18 +271,22 @@ export const motores: Motor[] = [
 
 export const slugDe = (motor: Motor): string => `${motor.hp}-hp`;
 
-export const rutaDe = (motor: Motor): string => `/motores/${motor.tipo}/${slugDe(motor)}`;
+export const rutaDe = (motor: Motor): string =>
+  `/motores/${motor.tipo}/${slugDe(motor)}`;
 
-export const motoresDe = (tipo: TipoMotor): Motor[] => motores.filter((m) => m.tipo === tipo);
+export const motoresDe = (tipo: TipoMotor): Motor[] =>
+  motores.filter((m) => m.tipo === tipo);
 
-export const buscarMotor = (tipo: TipoMotor, slug: string): Motor | undefined => motores.find((m) => m.tipo === tipo && slugDe(m) === slug);
+export const buscarMotor = (tipo: TipoMotor, slug: string): Motor | undefined =>
+  motores.find((m) => m.tipo === tipo && slugDe(m) === slug);
 
 export const TIPOS_MOTOR: TipoMotor[] = ["2-tiempos", "4-tiempos"];
 
-export const esTipoMotor = (valor: string): valor is TipoMotor => TIPOS_MOTOR.some((tipo) => tipo === valor);
+export const esTipoMotor = (valor: string): valor is TipoMotor =>
+  TIPOS_MOTOR.some((tipo) => tipo === valor);
 
 export const infoTipo: Record<
-  TipoMotor, 
+  TipoMotor,
   { nombre: string; titulo: string; subtitulo: string }
 > = {
   "2-tiempos": {
@@ -286,7 +311,8 @@ const carpetaFotos: Record<TipoMotor, string> = {
 };
 
 // Foto de cada motor
-export const fotoDe = (motor: Motor): string => `/imagenes/${carpetaFotos[motor.tipo]}/${slugDe(motor)}.png`;
+export const fotoDe = (motor: Motor): string =>
+  `/imagenes/${carpetaFotos[motor.tipo]}/${slugDe(motor)}.png`;
 
 // Características base
 export const fichaDe = (motor: Motor): FilaFicha[] => {
@@ -349,8 +375,8 @@ export type VistaVariante = {
 export const vistaDe = (variante: Variante): VistaVariante => ({
   codigo: variante.codigo,
   control: variante.control,
-  altura: `&{variante.altura} pulgadas`,
-  alturaCorta: `${variante.altura}`,
+  altura: `${variante.altura} pulgadas`,
+  alturaCorta: `${variante.altura}″`,
   inclinacion: variante.inclinacion,
   peso: pesoDe(variante),
 });

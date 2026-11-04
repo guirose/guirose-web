@@ -175,7 +175,7 @@ body {
 }
 
 @keyframes onda {
-  from { transform: sclae(0.3); opacity: 0.55; }
+  from { transform: scale(0.3); opacity: 0.55; }
   to { transform: scale(1.5); opacity: 0; }
 }
 
@@ -431,4 +431,72 @@ body {
   .barra-pastilla { animation: none; }
   .tarjeta-catalogo,
   .tarjeta-catalogo:target { animation: none; }
+}
+
+/* Entrada de la ficha del motor */
+@keyframes ficha-foto-entra {
+  from {
+    oacity: 0;
+    transform: translateX(var(--ficha-desde, 0px)) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ficha-info-entra {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ficha-info-lateral {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ficha-fundido {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ficha-foto {
+  animation: ficha-foto-entra 700ms var(--ease-out) both;
+}
+
+.ficha-info {
+  animation: ficha-info-entra 600ms var(--ease-out) 250ms both;
+}
+
+/* pantalla grande */
+@media (min-width: 64rem) {
+  .ficha-foto {
+    --ficha-desde: 45%;
+  }
+  .ficha-info {
+    animation-name: ficha-info-lateral;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ficha-foto,
+  .ficha-info {
+    animation: ficha-fundido 200ms ease-out both;
+  }
 }
