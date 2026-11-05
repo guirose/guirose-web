@@ -2,6 +2,7 @@ import Buscador from "./Buscador";
 import BotonCotizacion from "./BotonCotizacion";
 import MenuPrincipal, { type EnlaceMenu } from "./MenuPrincipal";
 import type { ReactNode } from "react";
+import { ruta } from "@/ruta"
 
 type Sugerencia = { texto: string; href: string };
 
@@ -23,7 +24,7 @@ export default function Encabezado({
       <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-x-9 gap-y-3 px-6 py-3 lg:px-[88px]">
         {/* Logo */}
         <a
-          href="/"
+          href={ruta("/")}
           aria-label="GUIROSE, inicio"
           className="flex shrink-0 items-center transition-opacity hover:opacity-80"
         >
