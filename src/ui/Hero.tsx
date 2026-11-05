@@ -50,7 +50,7 @@ export default function Hero({
           <Boton
             href={hrefBoton}
             variante="relleno"
-            className="h-[60px] gap-10 px-6 text-xl font-medium lg:text-2xl"
+            className="h-14 gap-8 px-6 text-lg font-medium lg:h-[60px] lg:gap-10 lg:text-2xl"
           >
             {textoBoton}
           </Boton>

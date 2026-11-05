@@ -37,7 +37,7 @@ export default function TarjetaMotor({
 
       {/* Panel celeste con la foto del motor */}
       <div className="flex items-end justify-center overflow-hidden bg-guirose-espuma px-4 py-6 sm:flex-[1_1_48%]">
-        <div className="relative aspect-square h-full min-h-[360px] shrink-0 origin-bottom mix-blend-multiply transition-transform duration-[250ms] ease-out group-hover:scale-[1.03] motion-reduce:group-hover:scale-100">
+        <div className="relative aspect-square h-full min-h-[240px] shrink-0 origin-bottom mix-blend-multiply transition-transform duration-[250ms] ease-out group-hover:scale-[1.03] motion-reduce:group-hover:scale-100 sm:min-h-[360px]">
           {imagen}
         </div>
       </div>

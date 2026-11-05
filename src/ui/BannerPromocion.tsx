@@ -30,7 +30,7 @@ export default function BannerPromocion({
         <div className="absolute inset-0 -z-30">{fondo}</div>
 
         {/* Capa azul marino a la izquierda */}
-        <div className="absolute inset-0 -z-20 bg-linear-to-r from-guirose-marino from-40% to-transparent to-65%" />
+        <div className="absolute inset-0 -z-20 bg-guirose-marino/80 lg:bg-transparent lg:bg-linear-to-r lg:from-guirose-marino lg:from-40% lg:to-transparent lg:to-65%" />
 
         {/* Curvas de nivel, muy suaves */}
         <svg
@@ -61,25 +61,22 @@ export default function BannerPromocion({
           />
         </svg>
 
-        <div className="flex min-h-[420px] flex-col items-start justify-center px-6 py-12 lg:px-[52px]">
+        <div className="flex min-h-[360px] flex-col items-start justify-center px-6 py-12 lg:min-h-[420px] lg:px-[52px]">
           {etiqueta && (
             <p className="mb-5 rounded-md bg-guirose-rojo px-5 py-2 text-lg font-semibold lg:text-[19px]">
               {etiqueta}
             </p>
           )}
-
           <h2 className="max-w-[560px] text-4xl font-bold leading-[1.08] tracking-[-0.03em] lg:text-[52px]">
             {titulo}
           </h2>
-
           <p className="mt-4 max-w-[500px] text-lg lg:text-[21px] lg:leading-[1.45]">
             {descripcion}
           </p>
-
           <Boton
             href={hrefBoton}
             variante="relleno"
-            className="mt-7 h-[58px] gap-3.5 px-7 text-xl font-semibold"
+            className="mt-7 h-14 gap-3 px-6 text-lg font-semibold lg:h-[58px] lg:gap-3.5 lg:px-7 lg:text-xl"
           >
             {textoBoton}
           </Boton>
