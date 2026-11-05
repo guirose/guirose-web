@@ -18,7 +18,7 @@ export default function Home() {
         textoBoton="Encontrar mi motor"
         hrefBoton="#motores"
         textoEnlace="Ver todos los motores"
-        hrefEnlace="#motores"
+        hrefEnlace={ruta("/motores")}
         fondo={
           <Image
             src="/imagenes/hero.jpg"
@@ -37,7 +37,7 @@ export default function Home() {
               titulo={"Motores 2\u00A0tiempos"}
               descripcion="Rendimiento confiable de arranque rápido y fácil de transporte."
               textoBoton="Ver motores"
-              hrefBoton="#"
+              hrefBoton={ruta("/motores/2-tiempos")}
               imagen={
                 <Image
                   src="/imagenes/motor-2-tiempos.png"
@@ -55,7 +55,7 @@ export default function Home() {
               titulo={"Motores 4\u00A0tiempos"}
               descripcion="Potencia y ahorro de combustible, con funcionamiento silencioso y gran durabilidad."
               textoBoton="Ver motores"
-              hrefBoton="#"
+              hrefBoton={ruta("/motores/4-tiempos")}
               imagen={
                 <Image
                   src="/imagenes/motor-4-tiempos.png"
