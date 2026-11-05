@@ -28,8 +28,7 @@ export default function Hero({
       <div className="absolute inset-0 -z-20">{fondo}</div>
 
       {/* capa azul marino */}
-      <div className="absolute inset-0 -z-10 bg-linear-to-r from-guirose-marino via-guirose-marino/90 via-30% to-transparent to-60%" />
-
+      <div className="absolute inset-0 -z-10 bg-guirose-marino/75 lg:bg-transparent lg:bg-linear-to-r lg:from-guirose-marino lg:via-guirose-marino/90 lg:via-30% lg:to-transparent lg:to-60%" />
       <div className="mx-auto w-full max-w-[1440px] px-6 py-16 lg:px-[88px] lg:py-[72px]">
         <div className="entra [--retraso:100ms]">
           <p className="text-lg font-medium lg:text-[22px]">{etiqueta}</p>

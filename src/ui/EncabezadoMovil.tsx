@@ -34,8 +34,7 @@ const quitarBarra = (texto: string) => texto.replace(/\/+$/, "");
 const noSuscribir = () => () => {};
 
 const botonIcono =
-  "flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-full border-2 border-guirose-borde text-guirose-marino transition duration-150 ease-out active:scale-[0.95] aria-expanded:border-guirose-accion aria-expanded:bg-guirose-espuma aria-expanded:text-guirose-accion";
-
+  "flex aspect-square h-11 min-w-11 shrink-0 touch-manipulation items-center justify-center rounded-full ...";
 export default function EncabezadoMovil({
   enlaces,
   sugerencias,
@@ -55,11 +54,15 @@ export default function EncabezadoMovil({
     () => null,
   );
 
-  const esActual = (enlace: EnlaceMenu) => 
-    enlace.paginas?.some((pagina) => {
-      const base = quitarBarra(pagina);
-      return camino === base || camino?.startsWith(`${base}/`);
-    }) == false;
+  const esActual = (enlace: EnlaceMenu) => {
+    if (!camino) return false;
+    return (
+      enlace.paginas?.some((pagina) => {
+        const base = quitarBarra(pagina);
+        return camino === base || camino.startsWith(`${base}/`);
+      }) ?? false
+    );
+  };
 
   // Al abrir la busqueda el cursos entra al campo
   useEffect(() => {

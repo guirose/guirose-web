@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 const enlacesMenu: EnlaceMenu[] = [
   {
     texto: "Motores",
-    href: ruta("/motores"),
+    href: ruta("/#motores"),
     icono: "motores",
     seccion: "motores",
     paginas: [ruta("/motores")],
@@ -78,8 +78,8 @@ const enlacesMenu: EnlaceMenu[] = [
 
 // Provisional: busquedas mas frecuentes
 const sugerenciasBuscador = [
-  { texto: "Motores 2 tiempos", href: "/motores/2-tiempos" },
-  { texto: "Motores 4 tiempos", href: "/motores/4-tiempos" },
+  { texto: "Motores 2 tiempos", href: ruta("/motores/2-tiempos") },
+  { texto: "Motores 4 tiempos", href: ruta("/motores/4-tiempos") },
   { texto: "Hélices", href: "#" },
   { texto: "Lubricantes", href: "#" },
   { texto: "Repuestos", href: "#" },

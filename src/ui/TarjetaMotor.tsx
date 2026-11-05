@@ -19,7 +19,7 @@ export default function TarjetaMotor({
   return (
     <article className="group flex min-h-[420px] flex-col overflow-hidden rounded-xl border border-guirose-borde bg-white transition-transform duration-200 ease-out hover:-translate-y-1 motion-reduce:hover:translate-y-0 sm:flex-row">
       {/* Texto y botón */}
-      <div className="flex flex-col py-9 pl-9 pr-7 sm:flex-[1_1_52%]">
+      <div className="flex flex-col p-6 sm:flex-[1_1_52%] sm:py-9 sm:pl-9 sm:pr-7">
         <h3 className="max-w-[200px] text-[32px] font-bold leading-[1.12] tracking-[-0.02em] text-guirose-marino">
           {titulo}
         </h3>
@@ -29,7 +29,7 @@ export default function TarjetaMotor({
         <Boton
           href={hrefBoton}
           variante="borde"
-          className="mt-auto h-[52px] self-start px-[26px] text-lg font-semibold"
+          className="mt-6 h-[52px] self-start px-[26px] text-lg font-semibold sm:mt-auto"
         >
           {textoBoton}
         </Boton>
