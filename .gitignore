@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Excel de trabajo: la fuente es el que está en el contexto/OneDrive
+datos/*.xlsx

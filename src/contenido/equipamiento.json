@@ -1,0 +1,1889 @@
+[
+  {
+    "tipo": "4-tiempos",
+    "modelo": "60EXLPT",
+    "hoja": "4T-REMOTO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "MANUAL DE USUARIO Y GUÍA DE REFERENCIA RÁPIDA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE TACÓMETRO SMARTCRAFT® SC1000 FONDO NEGRO 7K",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "BARRA DE UNIÓN DE SISTEMA DE DIRECCIÓN MECÁNICA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE CABLES DE ALIMENTACIÓN POSITIVO Y NEGATIVO",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "FILTRO DE COMBUSTIBLE SEPARADOR DE AGUA EXTERNO DE 10 MICRONES",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE PERNOS DE ANCLAJE DE 4.5'' DE LONGITUD X 1/2'' DE ESPESOR (PERNOS, TUERCAS Y ARANDELAS) (PACK 4 UNID.)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE MANGUERA DE COMBUSTIBLE",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M4507538",
+        "descripcion": "CONTROL REMOTO TIPO CONSOLA [GEN II]",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "879305A01",
+        "descripcion": "BASE P/INTERRUPTOR DE ENCENDIDO DE MOTOR",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "19674A07",
+        "descripcion": "INTERRUPTOR DE PARADA DE EMERGENCIA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0165557",
+        "descripcion": "CAJA DE EMPALMES (5 ENTRADAS)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "6006",
+        "descripcion": "INTERRUPTOR DE BATERIA (ON/OFF)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "260325",
+        "descripcion": "SET DE BORNES PARA BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "4018",
+        "descripcion": "PROTECTOR DE TERMINAL DE BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "80D26R",
+        "descripcion": "BATERIA [70A/13 PLACAS/600 CCA] -BOSCH-",
+        "categoria": "opcional",
+        "cantidad": 1
+      },
+      {
+        "codigo": "77338A45",
+        "descripcion": "HELICE (3X14X11) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "77340A45",
+        "descripcion": "HELICE (3X14X13) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "8M0082554",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (32FT / 9.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082556",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (36FT / 10.9M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082558",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (40FT / 12.2M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X42",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (42FT / 12.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X44",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (44FT / 13.4M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X46",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (46FT / 14.0M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X48",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (48FT / 14.6M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "896537K29",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (30FT/9.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "896537K40",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (40FT/12.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "892451T06",
+        "descripcion": "EXTENSIÓN DE ARNES (6FT / 1.80M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T10",
+        "descripcion": "EXTENSIÓN DE ARNES (10FT / 3.05M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T15",
+        "descripcion": "EXTENSIÓN DE ARNES (15FT / 4.60M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T20",
+        "descripcion": "EXTENSIÓN DE ARNES (20FT / 6.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T25",
+        "descripcion": "EXTENSIÓN DE ARNES (25FT / 7.6M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T30",
+        "descripcion": "EXTENSIÓN DE ARNES (30FT / 9.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "75ELPT",
+    "hoja": "4T-REMOTO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "MANUAL DE USUARIO Y GUÍA DE REFERENCIA RÁPIDA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE TACÓMETRO SMARTCRAFT® SC1000 FONDO NEGRO 7K",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "BARRA DE UNIÓN DE SISTEMA DE DIRECCIÓN MECÁNICA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE CABLES DE ALIMENTACIÓN POSITIVO Y NEGATIVO",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "FILTRO DE COMBUSTIBLE SEPARADOR DE AGUA EXTERNO DE 10 MICRONES",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE PERNOS DE ANCLAJE DE 4.5'' DE LONGITUD X 1/2'' DE ESPESOR (PERNOS, TUERCAS Y ARANDELAS) (PACK 4 UNID.)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M4507538",
+        "descripcion": "CONTROL REMOTO TIPO CONSOLA [GEN II]",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "879305A01",
+        "descripcion": "BASE P/INTERRUPTOR DE ENCENDIDO DE MOTOR",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "19674A07",
+        "descripcion": "INTERRUPTOR DE PARADA DE EMERGENCIA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0142696",
+        "descripcion": "SENSOR DE PRESIÓN DE AGUA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0165557",
+        "descripcion": "CAJA DE EMPALMES (5 ENTRADAS)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "6006",
+        "descripcion": "INTERRUPTOR DE BATERIA (ON/OFF)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "260325",
+        "descripcion": "SET DE BORNES PARA BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "4018",
+        "descripcion": "PROTECTOR DE TERMINAL DE BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "M27MF",
+        "descripcion": "BATERIA [105A/17 PLACAS/570 CCA] -BOSCH-",
+        "categoria": "opcional",
+        "cantidad": 1
+      },
+      {
+        "codigo": "116-368-0380",
+        "descripcion": "MANGUERA DE COMBUSTIBLE 3/8\" (12 FT)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "184008-10",
+        "descripcion": "ABRAZADERA DE 3/8\" PARA MANGUERA DE COMBUSTIBLE (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0088822",
+        "descripcion": "SET DE MANGUERA CORRUGADA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "78112A45",
+        "descripcion": "HELICE (3X16X11) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "78114A45",
+        "descripcion": "HELICE (3X16X13) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "8M0082554",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (32FT / 9.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082556",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (36FT / 10.9M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082558",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (40FT / 12.2M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X42",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (42FT / 12.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X44",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (44FT / 13.4M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X46",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (46FT / 14.0M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X48",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (48FT / 14.6M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "896537K29",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (30FT/9.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "896537K40",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (40FT/12.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "892451T06",
+        "descripcion": "EXTENSIÓN DE ARNES (6FT / 1.80M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T10",
+        "descripcion": "EXTENSIÓN DE ARNES (10FT / 3.05M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T15",
+        "descripcion": "EXTENSIÓN DE ARNES (15FT / 4.60M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T20",
+        "descripcion": "EXTENSIÓN DE ARNES (20FT / 6.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T25",
+        "descripcion": "EXTENSIÓN DE ARNES (25FT / 7.6M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T30",
+        "descripcion": "EXTENSIÓN DE ARNES (30FT / 9.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "90EXLPT",
+    "hoja": "4T-REMOTO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "MANUAL DE USUARIO Y GUÍA DE REFERENCIA RÁPIDA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE TACÓMETRO SMARTCRAFT® SC1000 FONDO NEGRO 7K",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "BARRA DE UNIÓN DE SISTEMA DE DIRECCIÓN MECÁNICA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE CABLES DE ALIMENTACIÓN POSITIVO Y NEGATIVO",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "FILTRO DE COMBUSTIBLE SEPARADOR DE AGUA EXTERNO DE 10 MICRONES",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE PERNOS DE ANCLAJE DE 4.5'' DE LONGITUD X 1/2'' DE ESPESOR (PERNOS, TUERCAS Y ARANDELAS) (PACK 4 UNID.)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M4507538",
+        "descripcion": "CONTROL REMOTO TIPO CONSOLA [GEN II]",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "879305A01",
+        "descripcion": "BASE P/INTERRUPTOR DE ENCENDIDO DE MOTOR",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "19674A07",
+        "descripcion": "INTERRUPTOR DE PARADA DE EMERGENCIA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0142696",
+        "descripcion": "SENSOR DE PRESIÓN DE AGUA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0165557",
+        "descripcion": "CAJA DE EMPALMES (5 ENTRADAS)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "6006",
+        "descripcion": "INTERRUPTOR DE BATERIA (ON/OFF)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "260325",
+        "descripcion": "SET DE BORNES PARA BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "4018",
+        "descripcion": "PROTECTOR DE TERMINAL DE BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "M27MF",
+        "descripcion": "BATERIA [105A/17 PLACAS/570 CCA] -BOSCH-",
+        "categoria": "opcional",
+        "cantidad": 1
+      },
+      {
+        "codigo": "116-368-0380",
+        "descripcion": "MANGUERA DE COMBUSTIBLE 3/8\" (12 FT)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "184008-10",
+        "descripcion": "ABRAZADERA DE 3/8\" PARA MANGUERA DE COMBUSTIBLE (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0088822",
+        "descripcion": "SET DE MANGUERA CORRUGADA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "78112A45",
+        "descripcion": "HELICE (3X16X11) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "78114A45",
+        "descripcion": "HELICE (3X16X13) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "8M0082554",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (32FT / 9.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082556",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (36FT / 10.9M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082558",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (40FT / 12.2M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X42",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (42FT / 12.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X44",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (44FT / 13.4M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X46",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (46FT / 14.0M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X48",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (48FT / 14.6M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "896537K29",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (30FT/9.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "896537K40",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (40FT/12.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "892451T06",
+        "descripcion": "EXTENSIÓN DE ARNES (6FT / 1.80M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T10",
+        "descripcion": "EXTENSIÓN DE ARNES (10FT / 3.05M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T15",
+        "descripcion": "EXTENSIÓN DE ARNES (15FT / 4.60M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T20",
+        "descripcion": "EXTENSIÓN DE ARNES (20FT / 6.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T25",
+        "descripcion": "EXTENSIÓN DE ARNES (25FT / 7.6M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T30",
+        "descripcion": "EXTENSIÓN DE ARNES (30FT / 9.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "115EXLPT",
+    "hoja": "4T-REMOTO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "MANUAL DE USUARIO Y GUÍA DE REFERENCIA RÁPIDA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE TACÓMETRO SMARTCRAFT® SC1000 FONDO NEGRO 7K",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "BARRA DE UNIÓN DE SISTEMA DE DIRECCIÓN MECÁNICA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE CABLES DE ALIMENTACIÓN POSITIVO Y NEGATIVO",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "FILTRO DE COMBUSTIBLE SEPARADOR DE AGUA EXTERNO DE 10 MICRONES",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE PERNOS DE ANCLAJE DE 4.5'' DE LONGITUD X 1/2'' DE ESPESOR (PERNOS, TUERCAS Y ARANDELAS) (PACK 4 UNID.)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M4507538",
+        "descripcion": "CONTROL REMOTO TIPO CONSOLA [GEN II]",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "879305A01",
+        "descripcion": "BASE P/INTERRUPTOR DE ENCENDIDO DE MOTOR",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "19674A07",
+        "descripcion": "INTERRUPTOR DE PARADA DE EMERGENCIA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0142696",
+        "descripcion": "SENSOR DE PRESIÓN DE AGUA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0165557",
+        "descripcion": "CAJA DE EMPALMES (5 ENTRADAS)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "6006",
+        "descripcion": "INTERRUPTOR DE BATERIA (ON/OFF)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "260325",
+        "descripcion": "SET DE BORNES PARA BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "4018",
+        "descripcion": "PROTECTOR DE TERMINAL DE BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "M27MF",
+        "descripcion": "BATERIA [105A/17 PLACAS/570 CCA] -BOSCH-",
+        "categoria": "opcional",
+        "cantidad": 1
+      },
+      {
+        "codigo": "116-368-0380",
+        "descripcion": "MANGUERA DE COMBUSTIBLE 3/8\" (12 FT)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "184008-10",
+        "descripcion": "ABRAZADERA DE 3/8\" PARA MANGUERA DE COMBUSTIBLE (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0088822",
+        "descripcion": "SET DE MANGUERA CORRUGADA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "78112A45",
+        "descripcion": "HELICE (3X16X11) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "78114A45",
+        "descripcion": "HELICE (3X16X13) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "8M0082554",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (32FT / 9.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082556",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (36FT / 10.9M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082558",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (40FT / 12.2M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X42",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (42FT / 12.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X44",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (44FT / 13.4M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X46",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (46FT / 14.0M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X48",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (48FT / 14.6M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "896537K29",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (30FT/9.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "896537K40",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (40FT/12.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "892451T06",
+        "descripcion": "EXTENSIÓN DE ARNES (6FT / 1.80M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T10",
+        "descripcion": "EXTENSIÓN DE ARNES (10FT / 3.05M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T15",
+        "descripcion": "EXTENSIÓN DE ARNES (15FT / 4.60M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T20",
+        "descripcion": "EXTENSIÓN DE ARNES (20FT / 6.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T25",
+        "descripcion": "EXTENSIÓN DE ARNES (25FT / 7.6M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T30",
+        "descripcion": "EXTENSIÓN DE ARNES (30FT / 9.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "150EXLPT",
+    "hoja": "4T-REMOTO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "MANUAL DE USUARIO Y GUÍA DE REFERENCIA RÁPIDA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE TACÓMETRO SMARTCRAFT® SC1000 FONDO NEGRO 7K",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "BARRA DE UNIÓN DE SISTEMA DE DIRECCIÓN MECÁNICA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE CABLES DE ALIMENTACIÓN POSITIVO Y NEGATIVO",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "FILTRO DE COMBUSTIBLE SEPARADOR DE AGUA EXTERNO DE 10 MICRONES",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE PERNOS DE ANCLAJE DE 4.5'' DE LONGITUD X 1/2'' DE ESPESOR (PERNOS, TUERCAS Y ARANDELAS) (PACK 4 UNID.)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M4507538",
+        "descripcion": "CONTROL REMOTO TIPO CONSOLA [GEN II]",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "879305A01",
+        "descripcion": "BASE P/INTERRUPTOR DE ENCENDIDO DE MOTOR",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "19674A07",
+        "descripcion": "INTERRUPTOR DE PARADA DE EMERGENCIA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0059531",
+        "descripcion": "SENSOR DE PRESIÓN DE AGUA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0165557",
+        "descripcion": "CAJA DE EMPALMES (5 ENTRADAS)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "6006",
+        "descripcion": "INTERRUPTOR DE BATERIA (ON/OFF)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "260325",
+        "descripcion": "SET DE BORNES PARA BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "4018",
+        "descripcion": "PROTECTOR DE TERMINAL DE BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "M27MF",
+        "descripcion": "BATERIA [105A/17 PLACAS/570 CCA] -BOSCH-",
+        "categoria": "opcional",
+        "cantidad": 1
+      },
+      {
+        "codigo": "116-368-0380",
+        "descripcion": "MANGUERA DE COMBUSTIBLE 3/8\" (12 FT)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "184008-10",
+        "descripcion": "ABRAZADERA DE 3/8\" PARA MANGUERA DE COMBUSTIBLE (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0062693",
+        "descripcion": "SET DE MANGUERA CORRUGADA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "78112A45",
+        "descripcion": "HELICE (3X16X11) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "78114A45",
+        "descripcion": "HELICE (3X16X13) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "8M0082554",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (32FT / 9.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082556",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (36FT / 10.9M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082558",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (40FT / 12.2M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X42",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (42FT / 12.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X44",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (44FT / 13.4M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X46",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (46FT / 14.0M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X48",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (48FT / 14.6M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "896537K29",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (30FT/9.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "896537K40",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (40FT/12.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "892451T06",
+        "descripcion": "EXTENSIÓN DE ARNES (6FT / 1.80M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T10",
+        "descripcion": "EXTENSIÓN DE ARNES (10FT / 3.05M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T15",
+        "descripcion": "EXTENSIÓN DE ARNES (15FT / 4.60M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T20",
+        "descripcion": "EXTENSIÓN DE ARNES (20FT / 6.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T25",
+        "descripcion": "EXTENSIÓN DE ARNES (25FT / 7.6M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T30",
+        "descripcion": "EXTENSIÓN DE ARNES (30FT / 9.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "200EXLPT",
+    "hoja": "4T-REMOTO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "MANUAL DE USUARIO Y GUÍA DE REFERENCIA RÁPIDA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M4507538",
+        "descripcion": "CONTROL REMOTO TIPO CONSOLA [GEN II]",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "879305A01",
+        "descripcion": "BASE P/INTERRUPTOR DE ENCENDIDO DE MOTOR",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "19674A07",
+        "descripcion": "INTERRUPTOR DE PARADA DE EMERGENCIA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0142696",
+        "descripcion": "SENSOR DE PRESIÓN DE AGUA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0165557",
+        "descripcion": "CAJA DE EMPALMES (5 ENTRADAS)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "6006",
+        "descripcion": "INTERRUPTOR DE BATERIA (ON/OFF)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "260325",
+        "descripcion": "SET DE BORNES PARA BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "4018",
+        "descripcion": "PROTECTOR DE TERMINAL DE BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "M27MF",
+        "descripcion": "BATERIA [105A/17 PLACAS/570 CCA] -BOSCH-",
+        "categoria": "opcional",
+        "cantidad": 1
+      },
+      {
+        "codigo": "116-368-0380",
+        "descripcion": "MANGUERA DE COMBUSTIBLE 3/8\" (12 FT)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "184008-10",
+        "descripcion": "ABRAZADERA DE 3/8\" PARA MANGUERA DE COMBUSTIBLE (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0149598",
+        "descripcion": "SET DE MANGUERA CORRUGADA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0135641",
+        "descripcion": "TACOMETRO SC1000",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0214969",
+        "descripcion": "BISEL NEGRO (85MM)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0127682",
+        "descripcion": "MAZO CLEAN POWER CON DTS (15FT/4.6M)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0101601",
+        "descripcion": "FLO-TORQ SSR-HD DE TRABAJO PESADO DE 1.25\"",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0109543",
+        "descripcion": "FILTRO SEPARADOR DE AGUA CON SENSOR [QUICKSILVER]",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0082554",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (32FT / 9.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082556",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (36FT / 10.9M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "8M0082558",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS MERCURY (40FT / 12.2M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X42",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (42FT / 12.8M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X44",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (44FT / 13.4M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X46",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (46FT / 14.0M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "MACH36X48",
+        "descripcion": "CABLE DE ACELERACION/CAMBIOS UFLEX (48FT / 14.6M)",
+        "categoria": "medida",
+        "cantidad": 2,
+        "grupo": "cable"
+      },
+      {
+        "codigo": "896537K29",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (30FT/9.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "896537K40",
+        "descripcion": "INTERRUPTORES DE ENCENDIDO DE MOTOR CON LLAVE P/INSTALACIÓN CON ARNÉS ELECTRICO DE (40FT/12.1M)",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "llave"
+      },
+      {
+        "codigo": "892451T06",
+        "descripcion": "EXTENSIÓN DE ARNES (6FT / 1.80M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T10",
+        "descripcion": "EXTENSIÓN DE ARNES (10FT / 3.05M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T15",
+        "descripcion": "EXTENSIÓN DE ARNES (15FT / 4.60M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T20",
+        "descripcion": "EXTENSIÓN DE ARNES (20FT / 6.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T25",
+        "descripcion": "EXTENSIÓN DE ARNES (25FT / 7.6M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      },
+      {
+        "codigo": "892451T30",
+        "descripcion": "EXTENSIÓN DE ARNES (30FT / 9.1M)",
+        "categoria": "medida",
+        "cantidad": "elige",
+        "grupo": "extension"
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "60EXLHPT",
+    "hoja": "4T-POPERO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "MANUAL DE USUARIO Y GUÍA DE REFERENCIA RÁPIDA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE TACÓMETRO SMARTCRAFT® SC1000 FONDO NEGRO 7K",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "BARRA DE UNIÓN DE SISTEMA DE DIRECCIÓN MECÁNICA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE CABLES DE ALIMENTACIÓN POSITIVO Y NEGATIVO",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "FILTRO DE COMBUSTIBLE SEPARADOR DE AGUA EXTERNO DE 10 MICRONES",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE PERNOS DE ANCLAJE DE 4.5'' DE LONGITUD X 1/2'' DE ESPESOR (PERNOS, TUERCAS Y ARANDELAS) (PACK 4 UNID.)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE MANGUERA DE COMBUSTIBLE",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "260325",
+        "descripcion": "SET DE BORNES PARA BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "4018",
+        "descripcion": "PROTECTOR DE TERMINAL DE BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "80D26R",
+        "descripcion": "BATERIA [70A/13 PLACAS/600 CCA] -BOSCH-",
+        "categoria": "opcional",
+        "cantidad": 1
+      },
+      {
+        "codigo": "77338A45",
+        "descripcion": "HELICE (3X14X11) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "77340A45",
+        "descripcion": "HELICE (3X14X13) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "75ELHPT",
+    "hoja": "4T-POPERO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "MANUAL DE USUARIO Y GUÍA DE REFERENCIA RÁPIDA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE TACÓMETRO SMARTCRAFT® SC1000 FONDO NEGRO 7K",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "BARRA DE UNIÓN DE SISTEMA DE DIRECCIÓN MECÁNICA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE CABLES DE ALIMENTACIÓN POSITIVO Y NEGATIVO",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "FILTRO DE COMBUSTIBLE SEPARADOR DE AGUA EXTERNO DE 10 MICRONES",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE PERNOS DE ANCLAJE DE 4.5'' DE LONGITUD X 1/2'' DE ESPESOR (PERNOS, TUERCAS Y ARANDELAS) (PACK 4 UNID.)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0142696",
+        "descripcion": "SENSOR DE PRESIÓN DE AGUA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "260325",
+        "descripcion": "SET DE BORNES PARA BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "4018",
+        "descripcion": "PROTECTOR DE TERMINAL DE BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "M27MF",
+        "descripcion": "BATERIA [105A/17 PLACAS/570 CCA] -BOSCH-",
+        "categoria": "opcional",
+        "cantidad": 1
+      },
+      {
+        "codigo": "116-368-0380",
+        "descripcion": "MANGUERA DE COMBUSTIBLE 3/8\" (12 FT)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "184008-10",
+        "descripcion": "ABRAZADERA DE 3/8\" PARA MANGUERA DE COMBUSTIBLE (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "78112A45",
+        "descripcion": "HELICE (3X16X11) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "78114A45",
+        "descripcion": "HELICE (3X16X13) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "90EXLHPT",
+    "hoja": "4T-POPERO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "MANUAL DE USUARIO Y GUÍA DE REFERENCIA RÁPIDA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE TACÓMETRO SMARTCRAFT® SC1000 FONDO NEGRO 7K",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "BARRA DE UNIÓN DE SISTEMA DE DIRECCIÓN MECÁNICA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE CABLES DE ALIMENTACIÓN POSITIVO Y NEGATIVO",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "FILTRO DE COMBUSTIBLE SEPARADOR DE AGUA EXTERNO DE 10 MICRONES",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE PERNOS DE ANCLAJE DE 4.5'' DE LONGITUD X 1/2'' DE ESPESOR (PERNOS, TUERCAS Y ARANDELAS) (PACK 4 UNID.)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0142696",
+        "descripcion": "SENSOR DE PRESIÓN DE AGUA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "260325",
+        "descripcion": "SET DE BORNES PARA BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "4018",
+        "descripcion": "PROTECTOR DE TERMINAL DE BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "M27MF",
+        "descripcion": "BATERIA [105A/17 PLACAS/570 CCA] -BOSCH-",
+        "categoria": "opcional",
+        "cantidad": 1
+      },
+      {
+        "codigo": "116-368-0380",
+        "descripcion": "MANGUERA DE COMBUSTIBLE 3/8\" (12 FT)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "184008-10",
+        "descripcion": "ABRAZADERA DE 3/8\" PARA MANGUERA DE COMBUSTIBLE (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "78112A45",
+        "descripcion": "HELICE (3X16X11) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "78114A45",
+        "descripcion": "HELICE (3X16X13) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "115EXLHPT",
+    "hoja": "4T-POPERO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "MANUAL DE USUARIO Y GUÍA DE REFERENCIA RÁPIDA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "KIT DE TACÓMETRO SMARTCRAFT® SC1000 FONDO NEGRO 7K",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "BARRA DE UNIÓN DE SISTEMA DE DIRECCIÓN MECÁNICA",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE CABLES DE ALIMENTACIÓN POSITIVO Y NEGATIVO",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "FILTRO DE COMBUSTIBLE SEPARADOR DE AGUA EXTERNO DE 10 MICRONES",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "SET DE PERNOS DE ANCLAJE DE 4.5'' DE LONGITUD X 1/2'' DE ESPESOR (PERNOS, TUERCAS Y ARANDELAS) (PACK 4 UNID.)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0142696",
+        "descripcion": "SENSOR DE PRESIÓN DE AGUA",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "260325",
+        "descripcion": "SET DE BORNES PARA BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "4018",
+        "descripcion": "PROTECTOR DE TERMINAL DE BATERIA (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "M27MF",
+        "descripcion": "BATERIA [105A/17 PLACAS/570 CCA] -BOSCH-",
+        "categoria": "opcional",
+        "cantidad": 1
+      },
+      {
+        "codigo": "116-368-0380",
+        "descripcion": "MANGUERA DE COMBUSTIBLE 3/8\" (12 FT)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "184008-10",
+        "descripcion": "ABRAZADERA DE 3/8\" PARA MANGUERA DE COMBUSTIBLE (Pack x 2 unid.)",
+        "categoria": "obligatorio",
+        "cantidad": 1
+      },
+      {
+        "codigo": "78112A45",
+        "descripcion": "HELICE (3X16X11) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      },
+      {
+        "codigo": "78114A45",
+        "descripcion": "HELICE (3X16X13) -ALUMINIO-",
+        "categoria": "medida",
+        "cantidad": 1,
+        "grupo": "helice"
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "15MLH",
+    "hoja": "4T-POPERO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "KIT DE MANGUERA DE COMBUSTIBLE",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "TANQUE DE COMBUSTIBLE (3 GAL / 12 L)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "HELICE (3X9.3X9) -ALUMINIO-",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0050399",
+        "descripcion": "TACOMETRO / HOROMETRO [Tiny Tacho]",
+        "categoria": "opcional",
+        "cantidad": 1
+      }
+    ]
+  },
+  {
+    "tipo": "4-tiempos",
+    "modelo": "25MLH",
+    "hoja": "4T-POPERO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "KIT DE MANGUERA DE COMBUSTIBLE",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "TANQUE DE COMBUSTIBLE (6 GAL / 25 L)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "HELICE (3X9.5X11) -ALUMINIO-",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0050399",
+        "descripcion": "TACOMETRO / HOROMETRO [Tiny Tacho]",
+        "categoria": "opcional",
+        "cantidad": 1
+      }
+    ]
+  },
+  {
+    "tipo": "2-tiempos",
+    "modelo": "15MXLH",
+    "hoja": "2T-POPERO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "KIT DE MANGUERA DE COMBUSTIBLE",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "TANQUE DE COMBUSTIBLE (6.6 GAL / 25 L)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "HELICE (3X9.3X9) -ALUMINIO-",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0050399",
+        "descripcion": "TACOMETRO / HOROMETRO [Tiny Tacho]",
+        "categoria": "opcional",
+        "cantidad": 1
+      }
+    ]
+  },
+  {
+    "tipo": "2-tiempos",
+    "modelo": "25MLH",
+    "hoja": "2T-POPERO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "KIT DE MANGUERA DE COMBUSTIBLE",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "TANQUE DE COMBUSTIBLE (6.6 GAL / 25 L)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "HELICE (3X9.9X11) -ALUMINIO-",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0050399",
+        "descripcion": "TACOMETRO / HOROMETRO [Tiny Tacho]",
+        "categoria": "incluido",
+        "cantidad": 1
+      }
+    ]
+  },
+  {
+    "tipo": "2-tiempos",
+    "modelo": "40MXLH",
+    "hoja": "2T-POPERO",
+    "items": [
+      {
+        "codigo": null,
+        "descripcion": "KIT DE MANGUERA DE COMBUSTIBLE",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "TANQUE DE COMBUSTIBLE (6.6 GAL / 25 L)",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": null,
+        "descripcion": "HELICE (3X9.9X11) -ALUMINIO-",
+        "categoria": "incluido",
+        "cantidad": 1
+      },
+      {
+        "codigo": "8M0050399",
+        "descripcion": "TACOMETRO / HOROMETRO [Tiny Tacho]",
+        "categoria": "incluido",
+        "cantidad": 1
+      }
+    ]
+  }
+]
