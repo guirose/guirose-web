@@ -50,7 +50,10 @@ export default function MenuPrincipal({ enlaces }: { enlaces: EnlaceMenu[] }) {
 
   const paginaActual =
     enlaces.find((enlace) =>
-      enlace.paginas?.some((pagina) => quitarBarra(pagina) === camino),
+      enlace.paginas?.some((pagina) => {
+        const base = quitarBarra(pagina);
+        return camino === base || camino?.startsWith(`${base}/`);
+      }),
     )?.texto ?? null;
 
   useEffect(() => {
@@ -95,7 +98,7 @@ export default function MenuPrincipal({ enlaces }: { enlaces: EnlaceMenu[] }) {
           const Icono = iconos[enlace.icono];
           const esActual = 
             !paginaActual &&
-            enlace.seccion != undefined && 
+            enlace.seccion !== undefined && 
             enlace.seccion === activa;
           const marca = 
             enlace.texto === paginaActual

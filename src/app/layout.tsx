@@ -31,22 +31,23 @@ export const metadata: Metadata = {
 const enlacesMenu: EnlaceMenu[] = [
   {
     texto: "Motores",
-    href: ruta("/#motores"),
+    href: ruta("/motores"),
     icono: "motores",
     seccion: "motores",
+    paginas: [ruta("/motores")],
     submenu: [
       {
         texto: "Motores 2 tiempos",
         descripcion: "Sencillos y de fácil mantenimiento",
-        href: ruta("/#motores"),
+        href: ruta("/motores/2-tiempos"),
       },
       {
         texto: "Motores 4 tiempos",
         descripcion: "Silenciosos y de menor consumo",
-        href: ruta("/#motores"),
+        href: ruta("/motores/4-tiempos"),
       },
     ],
-    enlaceFinal: { texto: "Ver todos los motores", href: ruta("/#motores") },
+    enlaceFinal: { texto: "Ver todos los motores", href: ruta("/motores") },
   },
   {
     texto: "Clientes",
@@ -77,8 +78,8 @@ const enlacesMenu: EnlaceMenu[] = [
 
 // Provisional: busquedas mas frecuentes
 const sugerenciasBuscador = [
-  { texto: "Motores 2 tiempos", href: "#" },
-  { texto: "Motores 4 tiempos", href: "#" },
+  { texto: "Motores 2 tiempos", href: "/motores/2-tiempos" },
+  { texto: "Motores 4 tiempos", href: "/motores/4-tiempos" },
   { texto: "Hélices", href: "#" },
   { texto: "Lubricantes", href: "#" },
   { texto: "Repuestos", href: "#" },
@@ -86,7 +87,7 @@ const sugerenciasBuscador = [
 
 // Provisional: los enlaces apuntan a "#" hasta definir las páginas
 const enlacesCatalogo = [
-  { texto: "Motores", href: "#" },
+  { texto: "Motores", href: ruta("/motores") },
   { texto: "Repuestos y accesorios", href: "#" },
   { texto: "Servicios", href: "#" },
 ];
