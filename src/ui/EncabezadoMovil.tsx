@@ -15,7 +15,7 @@ import {
   MapPinIcon,
   XIcon,
 } from "@phosphor-icons/react/ssr";
-import { ruta } from "@/ruta"
+import { ruta } from "@/ruta";
 import BotonCotizacion from "./BotonCotizacion";
 import type { EnlaceMenu } from "./MenuPrincipal";
 
@@ -30,11 +30,14 @@ type PropsEncabezadoMovil = {
 
 type Panel = "buscar" | "menu" | null;
 
+const LINEA_LECTURA = 140;
+
 const quitarBarra = (texto: string) => texto.replace(/\/+$/, "");
 const noSuscribir = () => () => {};
 
 const botonIcono =
-  "flex aspect-square h-11 min-w-11 shrink-0 touch-manipulation items-center justify-center rounded-full ...";
+  "flex aspect-square h-11 min-w-11 shrink-0 touch-manipulation items-center justify-center rounded-full border-2 border-guirose-borde text-guirose-marino transition duration-150 ease-out active:scale-[0.95] aria-expanded:border-guirose-accion aria-expanded:bg-guirose-espuma aria-expanded:text-guirose-accion";
+
 export default function EncabezadoMovil({
   enlaces,
   sugerencias,
@@ -42,10 +45,12 @@ export default function EncabezadoMovil({
   logo,
 }: PropsEncabezadoMovil) {
   const [panel, setPanel] = useState<Panel>(null);
+  const [seccionActiva, setSeccionActiva] = useState<string | null>(null);
   const entrada = useRef<HTMLInputElement>(null);
   const idBase = useId();
   const idBuscar = `${idBase}-buscar`;
   const idMenu = `${idBase}-menu`;
+  const bloqueoHasta = useRef(0);
 
   // Ruta actual
   const camino = useSyncExternalStore(
@@ -64,13 +69,70 @@ export default function EncabezadoMovil({
     );
   };
 
-  // Al abrir la busqueda el cursos entra al campo
+  const hayPaginaActual = enlaces.some(esActual);
+
+  const marcaDe = (enlace: EnlaceMenu) => {
+    if (esActual(enlace)) return "page";
+    if (
+      !hayPaginaActual &&
+      enlace.seccion &&
+      enlace.seccion === seccionActiva
+    ) {
+      return "location";
+    }
+    return undefined;
+  };
+
+  // Al abrir la busqueda el cursor entra al campo
   useEffect(() => {
-    if (panel == "buscar") entrada.current?.focus();
+    if (panel === "buscar") entrada.current?.focus();
   }, [panel]);
 
-  const alternar = (destino: Exclude<Panel, null>) =>
+  // Vigila el scroll y guarda las secciones visitadas
+  useEffect(() => {
+    const ids = enlaces
+      .map((enlace) => enlace.seccion)
+      .filter((id): id is string => Boolean(id));
+
+    let pendiente = false;
+
+    const actualizar = () => {
+      pendiente = false;
+      if (Date.now() < bloqueoHasta.current) return;
+      let activa: string | null = null;
+      let mejorTop = -Infinity;
+      const linea = Math.max(LINEA_LECTURA, window.innerHeight * 0.4);
+
+      for (const id of ids) {
+        const elemento = document.getElementById(id);
+        if (!elemento) continue;
+        const top = elemento.getBoundingClientRect().top;
+        if (top <= linea && top > mejorTop) {
+          mejorTop = top;
+          activa = id;
+        }
+      }
+
+      const alFinal = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (alFinal && ids.length > 0) activa = ids[ids.length - 1];
+
+      setSeccionActiva(activa);
+    };
+
+    const alHacerScroll = () => {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(actualizar);
+    };
+
+    alHacerScroll();
+    window.addEventListener("scroll", alHacerScroll, { passive: true });
+    return () => window.removeEventListener("scroll", alHacerScroll);
+  }, [enlaces]);
+
+  const alternar = (destino: Exclude<Panel, null>) => {
     setPanel((actual) => (actual === destino ? null : destino));
+  };
 
   return (
     <div
@@ -132,7 +194,7 @@ export default function EncabezadoMovil({
       {panel === "buscar" && (
         <div
           id={idBuscar}
-          className="panel-movil max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-guirose-borde bg-white px-4 pb-4 pt-3"
+          className="panel-movil absolute inset-x-0 top-full max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-guirose-borde bg-white px-4 pb-4 pt-3 shadow-lg"
         >
           <div role="search" className="relative">
             <label htmlFor={`${idBuscar}-campo`} className="sr-only">
@@ -174,16 +236,22 @@ export default function EncabezadoMovil({
         <nav
           id={idMenu}
           aria-label="Principal"
-          className="panel-movil max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-guirose-borde bg-white px-4 pb-5 pt-1"
+          className="panel-movil absolute inset-x-0 top-full max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-guirose-borde bg-white px-4 pb-5 pt-1 shadow-lg"
         >
           <ul>
             {enlaces.map((enlace) => (
               <li key={enlace.texto}>
                 <a
                   href={enlace.href}
-                  aria-current={esActual(enlace) ? "page" : undefined}
-                  onClick={() => setPanel(null)}
-                  className="flex min-h-14 items-center border-b border-guirose-borde text-[19px] font-semibold text-guirose-marino active:bg-guirose-espuma aria-[current=page]:font-bold aria-[current=page]:text-guirose-accion"
+                  aria-current={marcaDe(enlace)}
+                  onClick={() => {
+                    if (enlace.seccion) {
+                      bloqueoHasta.current = Date.now() + 1500;
+                      setSeccionActiva(enlace.seccion);
+                    }
+                    setPanel(null);
+                  }}
+                  className="flex min-h-14 items-center border-b border-guirose-borde text-[19px] font-semibold text-guirose-marino transition-colors duration-200 active:bg-guirose-espuma aria-[current=location]:font-bold aria-[current=location]:text-guirose-accion aria-[current=page]:font-bold aria-[current=page]:text-guirose-accion"
                 >
                   {enlace.texto}
                 </a>
@@ -198,7 +266,7 @@ export default function EncabezadoMovil({
                 aria-hidden="true"
                 className="h-5 w-5 shrink-0 text-guirose-accion"
               />
-              Aseosría para tu embarcación
+              Asesoría para tu embarcación
             </p>
             <p className="flex items-center gap-2">
               <MapPinIcon

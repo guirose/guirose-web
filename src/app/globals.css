@@ -544,3 +544,13 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .panel-movil { animation: none; }
 }
+
+html {
+  scroll-padding-top: 72px;
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 150px;
+  }
+}

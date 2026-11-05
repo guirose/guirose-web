@@ -70,7 +70,7 @@ const enlacesMenu: EnlaceMenu[] = [
   },
   {
     texto: "Contacto",
-    href: "#contacto",
+    href: ruta("/#contacto"),
     icono: "contacto",
     seccion: "contacto",
   },
