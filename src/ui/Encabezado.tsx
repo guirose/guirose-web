@@ -3,6 +3,7 @@ import BotonCotizacion from "./BotonCotizacion";
 import MenuPrincipal, { type EnlaceMenu } from "./MenuPrincipal";
 import type { ReactNode } from "react";
 import { ruta } from "@/ruta"
+import EncabezadoMovil from "./EncabezadoMovil";
 
 type Sugerencia = { texto: string; href: string };
 
@@ -20,31 +21,42 @@ export default function Encabezado({
   logo,
 }: PropsEncabezado) {
   return (
-    <header className="z-30 border-b border-guirose-borde bg-white lg:sticky lg:top-0">
-      <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-x-9 gap-y-3 px-6 py-3 lg:px-[88px]">
-        {/* Logo */}
-        <a
-          href={ruta("/")}
-          aria-label="GUIROSE, inicio"
-          className="flex shrink-0 items-center transition-opacity hover:opacity-80"
-        >
-          {logo}
-        </a>
+    <header className="sticky top-0 z-30 border-b border-guirose-borde bg-white">
+      {/* Escritorio */}
+      <div className="hidden lg:block">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center gap-x-9 gap-y-3 px-6 py-3 lg:px-[88px]">
+          <a
+            href={ruta("/")}
+            aria-label="GUIROSE, inicio"
+            className="flex shrink-0 items-center transition-opacity hover:opacity-80"
+          >
+            {logo}
+          </a>
 
-        <Buscador
-          id="buscador"
-          sugerencias={sugerencias}
-          className="min-w-[260px] flex-1"
-        />
+          <Buscador
+            id="buscador"
+            sugerencias={sugerencias}
+            className="min-w-[260px] flex-1"
+          />
 
-        <BotonCotizacion cantidad={cantidadCotizacion} className="h-[50px]" />
+          <BotonCotizacion cantidad={cantidadCotizacion} className="h-[50px]" />
+        </div>
+
+        <div className="border-t border-guirose-espuma-fuerte bg-guirose-espuma">
+          <div className="mx-auto max-w-[1440px] px-2.5 py-1.5 lg:px-[74px]">
+            <MenuPrincipal enlaces={enlaces} />
+          </div>
+        </div>
       </div>
 
-      {/* Franja celeste con el menú */}
-      <div className="border-t border-guirose-espuma-fuerte bg-guirose-espuma">
-        <div className="mx-auto max-w-[1440px] px-2.5 py-1.5 lg:px-[74px]">
-          <MenuPrincipal enlaces={enlaces} />
-        </div>
+      {/* Celular */}
+      <div className="lg:hidden">
+        <EncabezadoMovil
+          enlaces={enlaces}
+          sugerencias={sugerencias}
+          cantidadCotizacion={cantidadCotizacion}
+          logo={logo}
+        />
       </div>
     </header>
   );
