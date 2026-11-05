@@ -29,7 +29,7 @@ export default function TarjetaMotor({
         <Boton
           href={hrefBoton}
           variante="borde"
-          className="mt-6 h-[52px] self-start px-[26px] text-lg font-semibold sm:mt-auto"
+          className="mt-6 h-[52px] gap-3 self-start px-[26px] text-lg font-semibold sm:mt-auto"
         >
           {textoBoton}
         </Boton>

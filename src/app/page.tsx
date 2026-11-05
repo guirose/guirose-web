@@ -92,7 +92,7 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-7 lg:grid-cols-2">
           <Aparecer>
             <TarjetaMotor
-              titulo={"Motores 2\u00A0tiempos"}
+              titulo={"Motores Mercury 2\u00A0tiempos"}
               descripcion="Arranque rápido, respuesta ágil y mecánica sencilla para pesca y navegación."
               textoBoton="Ver motores 2T"
               hrefBoton={ruta("/motores/2-tiempos")}
@@ -110,7 +110,7 @@ export default function Home() {
           </Aparecer>
           <Aparecer retraso={100}>
             <TarjetaMotor
-              titulo={"Motores 4\u00A0tiempos"}
+              titulo={"Motores Mercury 4\u00A0tiempos"}
               descripcion="Consumo eficiente, funcionamiento suave y rendimiento para jornadas de navegación."
               textoBoton="Ver motores 4T"
               hrefBoton={ruta("/motores/4-tiempos")}

@@ -76,7 +76,7 @@ export default function BannerPromocion({
           <Boton
             href={hrefBoton}
             variante="relleno"
-            className="mt-7 h-14 gap-3 px-6 text-lg font-semibold lg:h-[58px] lg:gap-3.5 lg:px-7 lg:text-xl"
+            className="mt-7 h-14 gap-3 whitespace-nowrap px-5 text-base font-semibold sm:px-6 sm:text-lg lg:h-[58px] lg:gap-3.5 lg:px-7 lg:text-xl"
           >
             {textoBoton}
           </Boton>
