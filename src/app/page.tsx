@@ -6,19 +6,17 @@ import BannerPromocion from "@/ui/BannerPromocion";
 import TarjetaCategoria from "@/ui/TarjetaCategoria";
 import BannerServicio from "@/ui/BannerServicio";
 import Aparecer from "@/ui/Aparecer";
+import TarjetaActividad from "@/ui/TarjetaActividad";
 import { ruta } from "@/ruta";
 
 export default function Home() {
   return (
     <main>
       <Hero
-        etiqueta="Prepárate para la temporada"
-        titulo="Tu próximo motor empieza aquí"
-        descripcion="Elige sus características y completa tu equipo con asesoría GUIROSE"
-        textoBoton="Encontrar mi motor"
-        hrefBoton="#motores"
-        textoEnlace="Ver todos los motores"
-        hrefEnlace={ruta("/motores")}
+        titulo="Encuentra el motor Mercury ideal para tu embarcación"
+        descripcion="Motores de 2 y 4 tiempos para pesca artesanal. Elige la potencia que necesitas y solicita tu cotización con GUIROSE."
+        textoBoton="Cotizar mi motor"
+        hrefBoton={ruta("/motores")}
         fondo={
           <Image
             src="/imagenes/hero.jpg"
@@ -30,6 +28,65 @@ export default function Home() {
           />
         }
       />
+      <Seccion
+        id="actividad"
+        titulo="El motor ideal según tu actividad"
+        subtitulo="Conoce las recomendaciones de motores Mercury para cada tipo de uso."
+      >
+        <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-12">
+          <Aparecer>
+            <TarjetaActividad
+              titulo="Turismo"
+              descripcion="Confiabilidad y eficiencia para paseos y operaciones turísticas."
+              textoBoton="Ver motores"
+              hrefBoton={ruta("/motores")}
+              imagen={
+                <Image
+                  src="/imagenes/actividades/turismo.jpg"
+                  alt="Lancha turística con dos motores Mercury"
+                  fill
+                  sizes="(min-width: 1024px) 340px, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              }
+            />
+          </Aparecer>
+          <Aparecer retraso={100}>
+            <TarjetaActividad
+              titulo="Transporte fluvial"
+              descripcion="Ideales para pasajeros, cargas y transporte en ríos y lagos."
+              textoBoton="Ver motores"
+              hrefBoton={ruta("/motores")}
+              imagen={
+                <Image
+                  src="/imagenes/actividades/fluvial.jpg"
+                  alt="Bote en un río con motor Mercury SeaPro"
+                  fill
+                  sizes="(min-width: 1024px) 340px, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              }
+            />
+          </Aparecer>
+          <Aparecer retraso={200}>
+            <TarjetaActividad
+              titulo="Recreativo"
+              descripcion="Disfruta la navegación, pesca deportiva y actividades en familia."
+              textoBoton="Ver motores"
+              hrefBoton={ruta("/motores")}
+              imagen={
+                <Image
+                  src="/imagenes/actividades/recreativo.jpg"
+                  alt="Pescador deportivo en un bote con motor Mercury de 40 HP"
+                  fill
+                  sizes="(min-width: 1024px) 340px, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              }
+            />
+          </Aparecer>
+        </div>
+      </Seccion>
       <Seccion id="motores" titulo="Explora Motores Mercury">
         <div className="grid grid-cols-1 gap-7 lg:grid-cols-2">
           <Aparecer>

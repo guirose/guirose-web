@@ -18,12 +18,12 @@ export default function TarjetaCategoria({
   return (
     <a
       href={href}
-      className="flex min-h-[240px] items-center gap-5 ounded-xl bg-guirose-espuma px-6 py-5 transition duration-200 ease-out hover:-translate-y-1 hover:bg-guirose-espuma-fuerte active:scale-[0.98] motion-reduce:hover:translate-y-0"
+      className="flex min-h-[240px] items-center gap-5 rounded-xl bg-guirose-espuma px-6 py-5 transition duration-200 ease-out hover:-translate-y-1 hover:bg-guirose-espuma-fuerte active:scale-[0.98] motion-reduce:hover:translate-y-0"
     >
       <div className="relative h-[190px] w-[150px] shrink-0 mix-blend-multiply">
         {imagen}
       </div>
-      <div className="min-2-0">
+      <div className="min-w-0">
         <h3 className="text-[26px] font-bold leading-[1.2] text-guirose-marino">
           {titulo}
         </h3>
