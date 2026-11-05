@@ -10,6 +10,11 @@ import {
 } from "@/contenido/motores";
 import { ruta } from "@/ruta";
 
+const colorPastilla: Record<TipoMotor, string> = {
+  "2-tiempos": "bg-guirose-rojo",
+  "4-tiempos": "bg-guirose-accion",
+};
+
 export default function ListaMotores({ tipo }: { tipo: TipoMotor }) {
   const info = infoTipo[tipo];
 
@@ -27,11 +32,13 @@ export default function ListaMotores({ tipo }: { tipo: TipoMotor }) {
         </p>
         <span
           aria-hidden="true"
-          className="absolute -bottom-0.5 left-0 h-0.5 w-[72px] bg-guirose-azul lg:w-24"
-        />
+          className={`mt-3.5 inline-flex h-[30px] items-center rounded-lg px-3.5 text-[13px] font-bold uppercase tracking-[0.02em] text-white lg:mt-4 ${colorPastilla[tipo]}`}
+        >
+          {info.nombre}
+        </span>
       </header>
 
-      <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-5 md:grid-cols-3 xl:grid-cols-4 min-[1400px]:grid-cols-5 min-[1400px]:gap-x-4">
         {motoresDe(tipo).map((m, i) => (
           <TarjetaCatalogo
             key={idDe(m)}
@@ -45,7 +52,7 @@ export default function ListaMotores({ tipo }: { tipo: TipoMotor }) {
                 src={fotoDe(m)}
                 alt={`Motor Mercury ${m.linea} de ${m.hp}`}
                 fill
-                sizes="(min-width: 1280px) 220px, 45vw"
+                sizes="(min-width: 1400px) 190px, (min-width: 1280px) 200px, 45vw"
                 className="object-contain"
               />
             }
@@ -53,7 +60,9 @@ export default function ListaMotores({ tipo }: { tipo: TipoMotor }) {
         ))}
       </div>
 
-      <p className="mt-6 text-sm text-guirose-texto">*Imágenes referenciales.</p>
+      <p className="mt-6 text-sm text-guirose-texto">
+        *Imágenes referenciales.
+      </p>
     </section>
   );
 }

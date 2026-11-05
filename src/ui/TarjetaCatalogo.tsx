@@ -22,20 +22,20 @@ export default function TarjetaCatalogo({
     <article
       id={id}
       style={{ "--i": indice } as CSSProperties}
-      className="tarjeta-catalogo group flex scroll-mt-40 flex-col overflow-hidden rounded-xl border border-guirose-borde bg-white"
+      className="tarjeta-catalogo group flex scroll-mt-40 flex-col"
     >
-      {/* Panel con foto del motor */}
-      <div className="relative aspect-square bg-guirose-espuma">
-        <div className="absolute inset-3 origin-bottom mix-blend-multiply transition-transform duration-[250ms] ease-out group-hover:scale-[1.03] motion-reduce:group-hover:scale-100">
-          {imagen}
+      {/* bloque foto y potencia */}
+      <div className="tarjeta-caja overflow-hidden rounded-xl border border-guirose-borde bg-white transition-colors duration-200 ease-out group-hover:border-guirose-accion">
+        <div className="relative aspect-square bg-guirose-espuma">
+          <div className="absolute inset-3 origin-bottom mix-blend-multiply transition-transform duration-[250ms] ease-out group-hover:scale-[1.03] motion-reduce:group-hover:scale-100">
+            {imagen}
+          </div>
         </div>
-      </div>
 
-      <div className="flex flex-1 flex-col gap-4 p-4">
-        <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
-          <p className="text-3xl font-extrabold leading-none text-guirose-marino">
+        <div className="flex flex-col items-center gap-2 px-3 pb-4 pt-3 text-center">
+          <p className="text-[28px] font-extrabold leading-none text-guirose-marino lg:text-[32px]">
             {hp}
-            <span className="m-1 text-base font-bold text-guirose-texto">
+            <span className="ml-1 text-sm font-bold text-guirose-texto lg:text-base">
               HP
             </span>
           </p>
@@ -43,15 +43,16 @@ export default function TarjetaCatalogo({
             {linea}
           </span>
         </div>
-
-        <Boton
-          href={hrefFicha}
-          variante="borde"
-          className="mt-auto h-11 justify-center gap-2 text-base font-semibold"
-        >
-          Ver ficha
-        </Boton>
       </div>
+
+      {/* Boton */}
+      <Boton
+        href={hrefFicha}
+        variante="borde"
+        className="mt-3 h-11 justify-center gap-2 text-[15px] font-semibold"
+      >
+        Ver detalles
+      </Boton>
     </article>
   );
 }
