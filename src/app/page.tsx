@@ -7,6 +7,7 @@ import TarjetaCategoria from "@/ui/TarjetaCategoria";
 import BannerServicio from "@/ui/BannerServicio";
 import Aparecer from "@/ui/Aparecer";
 import TarjetaActividad from "@/ui/TarjetaActividad";
+import BandaComunidad from "@/ui/BandaComunidad";
 import { ruta } from "@/ruta";
 
 export default function Home() {
@@ -216,6 +217,13 @@ export default function Home() {
             className="object-cover object-left"
           />
         }
+      />
+      <BandaComunidad
+        id="nosotros"
+        titulo="Conoce más de nosotros"
+        descripcion="Mira nuestras entregas y nuestra comunidad pesquera"
+        textoBoton="Nuestra comunidad"
+        hrefBoton="#"
       />
     </main>
   );
