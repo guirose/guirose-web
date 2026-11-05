@@ -205,6 +205,26 @@ export const motores: Motor[] = [
   },
   {
     tipo: "4-tiempos",
+    hp: 90,
+    linea: "SeaPro",
+    descripcion:
+      "Motor de 4 tiempos de 2.1 litros y 4 cilindros, con inyección electrónica. Su caja Command Thrust mueve hélices de mayor diámetro para trabajar con carga, y se ubica entre el 75 y el 115 HP para quien necesita un punto intermedio.",
+    datos: {
+      tipoMotor: "4T / inyección",
+      cilindros: "4 en línea",
+      cilindrada: "2,100 cc",
+      arranque: "Eléctrico",
+      rango: "Por confirmar",
+      relacion: "2.38:1",
+      aceite: "5,2 L",
+    },
+    variantes: [
+      v("90EXLPT", 25, 173, "Control remoto", "Eléctrica"),
+      v("90EXLHPT", 25, 175, "Mando popero", "Eléctrica"),
+    ],
+  },
+  {
+    tipo: "4-tiempos",
     hp: 115,
     linea: "SeaPro",
     descripcion: DESCRIPCION_75_115,
