@@ -20,7 +20,7 @@ export default function TarjetaMotor({
     <article className="group flex min-h-[420px] flex-col overflow-hidden rounded-xl border border-guirose-borde bg-white transition-transform duration-200 ease-out hover:-translate-y-1 motion-reduce:hover:translate-y-0 sm:flex-row">
       {/* Texto y botón */}
       <div className="flex flex-col p-6 sm:flex-[1_1_52%] sm:py-9 sm:pl-9 sm:pr-7">
-        <h3 className="max-w-[200px] text-[32px] font-bold leading-[1.12] tracking-[-0.02em] text-guirose-marino">
+        <h3 className="max-w-[260px] text-[32px] font-bold leading-[1.12] tracking-[-0.02em] text-guirose-marino">
           {titulo}
         </h3>
         <p className="mt-4 max-w-[260px] text-lg text-guirose-texto">

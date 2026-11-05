@@ -87,13 +87,13 @@ export default function Home() {
           </Aparecer>
         </div>
       </Seccion>
-      <Seccion id="motores" titulo="Explora Motores Mercury">
+      <Seccion id="motores" titulo="Motores Mercury de 2 y 4 tiempos">
         <div className="grid grid-cols-1 gap-7 lg:grid-cols-2">
           <Aparecer>
             <TarjetaMotor
               titulo={"Motores 2\u00A0tiempos"}
-              descripcion="Rendimiento confiable de arranque rápido y fácil de transporte."
-              textoBoton="Ver motores"
+              descripcion="Arranque rápido, respuesta ágil y mecánica sencilla para pesca y navegación."
+              textoBoton="Ver motores 2T"
               hrefBoton={ruta("/motores/2-tiempos")}
               imagen={
                 <Image
@@ -110,8 +110,8 @@ export default function Home() {
           <Aparecer retraso={100}>
             <TarjetaMotor
               titulo={"Motores 4\u00A0tiempos"}
-              descripcion="Potencia y ahorro de combustible, con funcionamiento silencioso y gran durabilidad."
-              textoBoton="Ver motores"
+              descripcion="Consumo eficiente, funcionamiento suave y rendimiento para jornadas de navegación."
+              textoBoton="Ver motores 4T"
               hrefBoton={ruta("/motores/4-tiempos")}
               imagen={
                 <Image
@@ -129,7 +129,7 @@ export default function Home() {
       <BannerPromocion
         id="clientes"
         titulo="La confianza de nuestros clientes nos respalda"
-        descripcion="Conoce las experiencias de nuestros clientes y por qué eligen Mercury"
+        descripcion="Conoce las experiencias con GUIROSE para adquirir motores fuera de borda Mercury."
         textoBoton="Conoce sus experiencias"
         hrefBoton="#"
         fondo={
@@ -144,14 +144,14 @@ export default function Home() {
       />
       <Seccion
         id="repuestos"
-        titulo="Completa tu motor en el siguiente paso"
-        subtitulo="Encuentra los mejores repuestos y accesorios con nosotros"
+        titulo="Repuestos y accesorios originales Mercury"
+        subtitulo="Encuentra accesorios, lubricantes y repuestos para el cuidado y mantenimiento de tu motor fuera de borda Mercury."
       >
         <div className="grid grid-cols-1 gap-[22px] lg:grid-cols-3">
           <Aparecer>
             <TarjetaCategoria
               titulo="Accesorios"
-              descripcion="Hélices, mandos, tanques y más para tu embarcación"
+              descripcion="Hélices, mandos y accesorios para equipar tu embarcación."
               textoEnlace="Ver accesorios"
               href="#"
               imagen={
@@ -168,7 +168,7 @@ export default function Home() {
           <Aparecer retraso={100}>
             <TarjetaCategoria
               titulo="Lubricantes"
-              descripcion="Aceite y productos para el cuidado de tu motor"
+              descripcion="Aceites y lubricantes Mercury y Quicksilver para el cuidado de tu motor."
               textoEnlace="Ver lubricantes"
               href="#"
               imagen={
@@ -185,7 +185,7 @@ export default function Home() {
           <Aparecer retraso={200}>
             <TarjetaCategoria
               titulo="Repuestos"
-              descripcion="Repuestos originales para un rendimiento confiable"
+              descripcion="Repuestos originales para un rendimiento confiable."
               textoEnlace="Ver repuestos"
               href="#"
               imagen={
