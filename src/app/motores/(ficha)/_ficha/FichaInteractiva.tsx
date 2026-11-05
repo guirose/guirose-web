@@ -75,7 +75,7 @@ export default function FichaInteractiva({
         >
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute -bottom-[0.12em] -left-[0.04em] -z-10 select-none text-[190px] font-extrabold leading-none tracking-[-0.04em] text-guirose-accion/10 lg:text-[340px]"
+            className="ficha-numero pointer-events-none absolute -bottom-[0.12em] -left-[0.04em] -z-10 select-none text-[190px] font-extrabold leading-none tracking-[-0.04em] text-guirose-accion/10 lg:text-[340px]"
           >
             {hp}
           </span>

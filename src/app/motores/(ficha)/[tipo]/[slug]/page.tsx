@@ -9,6 +9,7 @@ import {
   esTipoMotor,
   fichaDe,
   fotoDe,
+  idDe,
   infoTipo,
   motores,
   rangoAltura,
@@ -49,6 +50,7 @@ export default async function PaginaFicha({ params }: Props) {
 
   return (
     <FichaInteractiva
+      key={idDe(motor)}
       barra={
         <BarraFicha
           migas={[

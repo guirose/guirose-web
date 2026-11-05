@@ -436,7 +436,7 @@ body {
 /* Entrada de la ficha del motor */
 @keyframes ficha-foto-entra {
   from {
-    oacity: 0;
+    opacity: 0;
     transform: translateX(var(--ficha-desde, 0px)) scale(0.96);
   }
   to {
@@ -498,5 +498,35 @@ body {
   .ficha-foto,
   .ficha-info {
     animation: ficha-fundido 200ms ease-out both;
+  }
+}
+
+@keyframes ficha-numero-entra {
+  from {
+    opacity: 0;
+    transform : translateX(160px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ficha-numero-fundido {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ficha-numero {
+  animation: ficha-numero-entra 900ms var(--ease-out) 500ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ficha-numero {
+    animation: ficha-numero-fundido 300ms ease-out both;
   }
 }
