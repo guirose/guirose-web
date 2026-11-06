@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import Image from "next/image";
+import { CaretDownIcon } from "@phosphor-icons/react/ssr";
 import Boton from "@/ui/Boton";
 import FichaTecnica from "@/ui/FichaTecnica";
 import type { VistaVariante } from "@/contenido/motores";
@@ -22,6 +24,44 @@ type PropsFichaInteractiva = {
   children: ReactNode; // lo que va debajo (la banda)
 };
 
+// la configuracion que elige el cliente
+type Campo = "control" | "alturaCorta" | "inclinacion";
+const CAMPOS: Campo[] = ["control", "alturaCorta", "inclinacion"];
+
+// lo que el cliente elige
+type Eleccion = Partial<Record<Campo, string>>;
+
+const NOMBRE_CORTO: Record<Campo, string> = {
+  control: "mando",
+  alturaCorta: "cola",
+  inclinacion: "elevación",
+};
+
+const NOMBRE_COLA: Record<string, string> = {
+  "15″": "15″ - cola corta",
+  "20″": "20″ - cola larga",
+  "25″": "25″ - cola extra larga",
+};
+
+const nombreElevacion = (valor: string) =>
+  valor === "Eléctrica" ? "Eléctrica (Power Trim)" : valor;
+
+// foto de mandos
+const FOTO_MANDO: Record<string, string> = {
+  "Mando popero": "/imagenes/mandos/mando-popero.jpg",
+  "Control remoto": "/imagenes/mandos/mando-remoto.jpg",
+};
+
+const unicos = (lista: VistaVariante[], campo: Campo) => [
+  ...new Set(lista.map((m) => m[campo])),
+];
+
+const cumple = (m: VistaVariante, eleccion: Eleccion) =>
+  CAMPOS.every((c) => eleccion[c] === undefined || m[c] === eleccion[c]);
+
+const juntar = (lista: string[]) =>
+  lista.length <= 1 ? (lista[0] ?? "") : `${lista.slice(0, -1).join(", ")} y ${lista[lista.length - 1]}`;
+
 export default function FichaInteractiva({
   barra,
   imagen,
@@ -36,17 +76,26 @@ export default function FichaInteractiva({
   base,
   children,
 }: PropsFichaInteractiva) {
-  // Código del modelo elegido
-  const [elegido, setElegido] = useState<string | null>(null);
-  const modelo = modelos.find((m) => m.codigo === elegido);
+  const [eleccion, setEleccion] = useState<Eleccion>({});
 
-  // Tocar el modelo elegido lo deselecciona
-  const alternar = (codigo: string) =>
-    setElegido((actual) => (actual === codigo ? null : codigo));
+  const candidatos = modelos.filter((m) => cumple(m, eleccion));
 
-  const textoCta = modelo
-    ? `Cotizar el ${modelo.codigo}`
-    : "Cotizar este motor";
+  // configuracion eelgida, si solo hay una se selecciona automaticamente
+  const valorDe = (campo: Campo): string | undefined => {
+    if (eleccion[campo] !== undefined) return eleccion[campo];
+    const posibles = unicos(candidatos, campo);
+    return posibles.length === 1 ? posibles[0] : undefined;
+  };
+
+  const disponible = (campo: Campo, valor: string) =>
+    modelos.some((m) => cumple(m, { ...eleccion, [campo]: valor }));
+
+  const elegir = (campo: Campo, valor: string) =>
+    setEleccion((actual) => ({ ...actual, [campo]: valor || undefined }));
+
+  const faltantes = CAMPOS.filter((c) => valorDe(c) === undefined);
+  const modelo =
+    faltantes.length === 0 ? candidatos.find((m) => CAMPOS.every((c) => m[c] === valorDe(c))) : undefined;
 
   const claves = [
     { valor: cilindrada, etiqueta: "Cilindrada" },
@@ -64,6 +113,20 @@ export default function FichaInteractiva({
       ]
     : undefined;
 
+  // opciones de cada potencia
+  const listas = [
+    {
+      campo: "alturaCorta" as const,
+      titulo: "Longitud de cola",
+      nombre: (v: string) => NOMBRE_COLA[v] ?? v,
+    },
+    {
+      campo: "inclinacion" as const,
+      titulo: "Tipo de elevación",
+      nombre: nombreElevacion,
+    },
+  ];
+
   return (
     <div>
       <div className="mx-auto max-w-[1440px] px-6 lg:px-[67px]">
@@ -71,17 +134,21 @@ export default function FichaInteractiva({
 
         <section
           aria-label={`Mercury ${linea} ${hp} HP`}
-          className="relative isolate mt-4 overflow-hidden rounded-[28px] bg-guirose-espuma px-6 py-8 lg:px-14 lg:py-14"
+          className="mt-4 rounded-[28px] bg-guirose-espuma p-4 sm:p-6"
         >
-          <span
-            aria-hidden="true"
-            className="ficha-numero pointer-events-none absolute -bottom-[0.12em] -left-[0.04em] -z-10 select-none text-[190px] font-extrabold leading-none tracking-[-0.04em] text-guirose-accion/10 lg:text-[340px]"
-          >
-            {hp}
-          </span>
-          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
-            {imagen}
-            <div className="ficha-info">
+          <div className="grid items-stretch gap-6 lg:grid-cols-2 lg:gap-9">
+            {/* Cuadro blanco con foto del motor */}
+            <div className="relative isolate flex items-center justify-center overflow-hidden rounded-2xl bg-white px-4 py-8 lg:min-h-[600px] lg:px-8">
+              <span
+                aria-hidden="true"
+                className="ficha-numero pointer-events-none absolute -bottom-[0.12em] -left-[0.04em] -z-10 select-none text-[190px] font-extrabold leading-none tracking-[-0.04em] text-guirose-accion/10 lg:text-[300px]"
+              >
+                {hp}
+              </span>
+              {imagen}
+            </div>
+
+            <div className="ficha-info py-2 lg:py-6 lg:pr-4">
               <div className="flex gap-2">
                 <span className="rounded-full bg-guirose-accion px-3 py-1 text-sm font-semibold text-white">
                   {tipoNombre}
@@ -100,9 +167,9 @@ export default function FichaInteractiva({
 
               <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
                 {claves.map((c) => (
-                  <div 
+                  <div
                     key={c.etiqueta}
-                    className="border-l-2 border-guirose-accion pl-4"  
+                    className="border-l-2 border-guirose-accion pl-4"
                   >
                     <dd className="whitespace-nowrap text-lg font-bold text-guirose-marino lg:text-xl">
                       {c.valor}
@@ -112,71 +179,140 @@ export default function FichaInteractiva({
                 ))}
               </dl>
 
-              <div
-                role="group"
-                aria-label={`Modelos de ${hp} HP`}
-                className="mt-5"
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-semibold text-guirose-marino">
-                    Revisa los modelos de {hp} HP
+              {/* Configurador */}
+              <div className="mt-7 max-w-[560px]">
+                <fieldset>
+                  <legend className="mb-2.5 text-[17px] font-semibold text-guirose.marino">
+                    Tipo de mando
+                  </legend>
+                  <div className="flex gap-2.5 sm:gap-3">
+                    {unicos(modelos, "control").map((valor) => (
+                      <label
+                        key={valor}
+                        className="flex flex-1 cursor-pointer touch-manipulation flex-col items-center gap-1.5 rounded-[14px] border-[1.5px] border-guirose-borde bg-white p-2.5 text-guirose-marino transition duration-150 ease-out select-none active:scale-[0.97] hover:border-guirose-accion has-checked:border-guirose-accion has-checked:text-guirose-accion has-checked:ring-1 has-checked:ring-guirose-accion has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-guirose-azul has-disabled:cursor-not-allowed has-disabled:opacity-40 sm:w-[150px] sm:flex-none"
+                      >
+                        <input
+                          type="radio"
+                          name="mando"
+                          value={valor}
+                          checked={valorDe("control") === valor}
+                          disabled={!disponible("control", valor)}
+                          onChange={() => elegir("control", valor)}
+                          className="sr-only"
+                        />
+                        {FOTO_MANDO[valor] && (
+                          <Image
+                            src={FOTO_MANDO[valor]}
+                            alt=""
+                            width={252}
+                            height={252}
+                            className="h-[90px] w-[100px] object-contain sm:h-[110px] sm:w-[118px]"
+                          />
+                        )}
+                        <span className="text-sm font-semibold">{valor}</span>
+                      </label>
+                    ))}
+                  </div>
+                  {unicos(modelos, "control").length === 1 && (
+                    <p className="mt-2 text-[13.5px] text-guirose-texto">
+                      Única opción para {hp} HP
+                    </p>
+                  )}
+                </fieldset>
+
+                {listas.map(({ campo, titulo, nombre }) => {
+                  const valores = unicos(modelos, campo);
+                  const id = `opcion-${campo}`;
+                  return (
+                    <div key={campo} className="mt-5">
+                      <label
+                        htmlFor={id}
+                        className="mb-2.5 block text-[17px] font-semibold text-guirose-marino"
+                      >
+                        {titulo}
+                      </label>
+                      <div className="relative">
+                        <select
+                          id={id}
+                          value={valorDe(campo) ?? ""}
+                          onChange={(e) => elegir(campo, e.target.value)}
+                          className="h-14 w-full cursor-pointer appearance-none rounded-[10px] bg-guirose-marino pr-12 pl-5 text-[17px] font-semibold text-white transition-colors duration-150 hover:bg-[#0F3A63] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul"
+                        >
+                          {valores.length > 1 && (
+                            <option value="">Selecciona</option>
+                          )}
+                          {valores.map((v) => (
+                            <option
+                              key={v}
+                              value={v}
+                              disabled={!disponible(campo, v)}
+                            >
+                              {nombre(v)}
+                              {disponible(campo, v)
+                                ? ""
+                                : " - no disponible con tu elección"}
+                            </option>
+                          ))}
+                        </select>
+                        <CaretDownIcon
+                          aria-hidden="true"
+                          size={20}
+                          weight="bold"
+                          className="pointer-events-none absolute top-1/2 right-[18px] -translate-y-1/2 text-white"
+                        />
+                      </div>
+                      {valores.length === 1 && (
+                        <p className="mt-2 text-[13.5px] text-guirose-texto">
+                          Única opción para {hp} HP
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+
+                <div className="mt-5 flex-wrap items-baseline justify-between gap-x-4">
+                  <p className="text-[15px] text-guirose-texto">
+                    Tu modelo:{" "}
+                    <b className="text-[15px] text-guirose-marino">
+                      {modelo
+                        ? modelo.codigo
+                        : `elige ${juntar(faltantes.map((c) => NOMBRE_CORTO[c]))}`}
+                    </b>
                   </p>
-                  {/* invisible conserva el espacio, así nada salta al elegir */}
                   <button
                     type="button"
-                    onClick={() => setElegido(null)}
+                    onClick={() => setEleccion({})}
                     className={`min-h-11 touch-manipulation text-sm font-semibold text-guirose-accion underline underline-offset-4 ${
-                      elegido ? "" : "invisible"
+                      CAMPOS.some((c) => eleccion[c] !== undefined)
+                        ? ""
+                        : "invisible"
                     }`}
                   >
                     Quitar selección
                   </button>
                 </div>
 
-                <div className="mt-1 grid grid-cols-2 gap-2">
-                  {modelos.map((m) => {
-                    const activo = m.codigo === elegido;
-                    return (
-                      <button
-                        key={m.codigo}
-                        type="button"
-                        aria-pressed={activo}
-                        onClick={() => alternar(m.codigo)}
-                        className={`touch-manipulation rounded-lg border px-4 py-3 text-left transition duration-150 ease-out active:scale-[0.97] ${
-                          activo
-                            ? "border-guirose-accion bg-white ring-2 ring-guirose-accion/20"
-                            : "border-guirose-borde bg-white hover:border-guirose-accion"
-                        }`}
-                      >
-                        <b className="block text-base text-guirose-marino">
-                          {m.codigo}
-                        </b>
-                        <span className="block text-sm text-guirose-texto">
-                          {m.control}
-                          <span className="hidden lg:inline"> · </span>
-                          <br className="lg:hidden" />
-                          {m.alturaCorta}
-                        </span>
-                      </button>
-                    );
-                  })}
+                {/* Escritorio */}
+                <div className="mt-3 hidden lg:block">
+                  <Boton
+                    href="#"
+                    variante="relleno"
+                    className="h-14 w-fit justify-center gap-3 px-6 text-lg font-semibold"
+                  >
+                    Continuar a equipamiento
+                  </Boton>
                 </div>
-              </div>
 
-              {/* Escritorio */}
-              <div className="mt-6 hidden lg:block">
-                <Boton
-                  href="#"
-                  variante="relleno"
-                  className="h-14 w-fit justify-center gap-3 px-6 text-lg font-semibold"
+                <p
+                  aria-live="polite"
+                  className="mt-3 text-sm text-guirose-texto"
                 >
-                  {textoCta}
-                </Boton>
+                  {faltantes.length === 0
+                    ? "Listo, ya puedes continuar"
+                    : `Faltan ${faltantes.length} de 3 opciones por elegir`}{" "}
+                  *Imagen referencial
+                </p>
               </div>
-              <p className="mt-3 text-sm text-guirose-texto">
-                Puedes revisar cada modelo o elegir el control y la altura al
-                cotizar. *Imagen referencial.
-              </p>
             </div>
           </div>
         </section>
@@ -193,7 +329,7 @@ export default function FichaInteractiva({
           variante="relleno"
           className="h-14 w-full justify-center gap-3 text-lg font-semibold"
         >
-          {textoCta}
+          Continuar a equipamiento
         </Boton>
       </div>
     </div>
