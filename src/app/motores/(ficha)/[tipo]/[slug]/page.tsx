@@ -90,7 +90,7 @@ export default async function PaginaFicha({ params }: Props) {
           />
         }
         imagen={
-          <div className="ficha-foto relative mx-auto aspect-square w-full max-w-[560px] lg:max-w-[640px]">
+          <div className="ficha-foto relative mx-auto aspect-square w-full max-w-[560px] lg:h-full lg:w-auto lg:max-w-full">
             <Image
               src={fotoDe(motor)}
               alt={`Motor Mercury ${motor.linea} de ${motor.hp} HP`}

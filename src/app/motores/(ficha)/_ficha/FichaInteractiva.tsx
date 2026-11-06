@@ -2,7 +2,6 @@
 
 import { useState, type ReactNode } from "react";
 import Image from "next/image";
-import { CaretDownIcon } from "@phosphor-icons/react/ssr";
 import Boton from "@/ui/Boton";
 import FichaTecnica from "@/ui/FichaTecnica";
 import type { VistaVariante } from "@/contenido/motores";
@@ -37,14 +36,20 @@ const NOMBRE_CORTO: Record<Campo, string> = {
   inclinacion: "elevación",
 };
 
-const NOMBRE_COLA: Record<string, string> = {
-  "15″": "15″ - cola corta",
-  "20″": "20″ - cola larga",
-  "25″": "25″ - cola extra larga",
+const DETALLE_COLA: Record<string, string> = {
+  "15″": "Cola corta",
+  "20″": "Cola larga",
+  "25″": "Cola extra larga",
 };
 
-const nombreElevacion = (valor: string) =>
-  valor === "Eléctrica" ? "Eléctrica (Power Trim)" : valor;
+const DETALLE_ELEVACION: Record<string, string> = {
+  Eléctrica: "Power Trim",
+};
+
+const DETALLE_MANDO: Record<string, string> = {
+  "Mando popero": "Se maneja desde el motor",
+  "Control remoto": "Se maneja desde la consola"
+}
 
 // foto de mandos
 const FOTO_MANDO: Record<string, string> = {
@@ -60,7 +65,9 @@ const cumple = (m: VistaVariante, eleccion: Eleccion) =>
   CAMPOS.every((c) => eleccion[c] === undefined || m[c] === eleccion[c]);
 
 const juntar = (lista: string[]) =>
-  lista.length <= 1 ? (lista[0] ?? "") : `${lista.slice(0, -1).join(", ")} y ${lista[lista.length - 1]}`;
+  lista.length <= 1
+    ? (lista[0] ?? "")
+    : `${lista.slice(0, -1).join(", ")} y ${lista[lista.length - 1]}`;
 
 export default function FichaInteractiva({
   barra,
@@ -93,9 +100,16 @@ export default function FichaInteractiva({
   const elegir = (campo: Campo, valor: string) =>
     setEleccion((actual) => ({ ...actual, [campo]: valor || undefined }));
 
+  // tocar otra vez la opcion que ya se eligió la quita
+  const quitarSiYaEstaba = (campo: Campo, valor: string) => {
+    if (eleccion[campo] === valor) elegir(campo, "");
+  };
+
   const faltantes = CAMPOS.filter((c) => valorDe(c) === undefined);
   const modelo =
-    faltantes.length === 0 ? candidatos.find((m) => CAMPOS.every((c) => m[c] === valorDe(c))) : undefined;
+    faltantes.length === 0
+      ? candidatos.find((m) => CAMPOS.every((c) => m[c] === valorDe(c)))
+      : undefined;
 
   const claves = [
     { valor: cilindrada, etiqueta: "Cilindrada" },
@@ -114,31 +128,31 @@ export default function FichaInteractiva({
     : undefined;
 
   // opciones de cada potencia
-  const listas = [
+  const preguntas = [
     {
       campo: "alturaCorta" as const,
       titulo: "Longitud de cola",
-      nombre: (v: string) => NOMBRE_COLA[v] ?? v,
+      detalle: DETALLE_COLA,
     },
     {
       campo: "inclinacion" as const,
       titulo: "Tipo de elevación",
-      nombre: nombreElevacion,
+      detalle: DETALLE_ELEVACION,
     },
   ];
+
+  const opcionBase =
+    "cursor-pointer touch-manipulation border-[1.5px] border-guirose-borde bg-white text-guirose-marino transition duration-150 ease-out select-none active:scale-[0.97] hover:border-guirose-accion has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-guirose-azul has-disabled:cursor-not-allowed has-disabled:opacity-40";
 
   return (
     <div>
       <div className="mx-auto max-w-[1440px] px-6 lg:px-[67px]">
         {barra}
 
-        <section
-          aria-label={`Mercury ${linea} ${hp} HP`}
-          className="mt-4 rounded-[28px] bg-guirose-espuma p-4 sm:p-6"
-        >
-          <div className="grid items-stretch gap-6 lg:grid-cols-2 lg:gap-9">
-            {/* Cuadro blanco con foto del motor */}
-            <div className="relative isolate flex items-center justify-center overflow-hidden rounded-2xl bg-white px-4 py-8 lg:min-h-[600px] lg:px-8">
+        <div className="mt-4 grid gap-6 pb-12 lg:grid-cols-2 lg:items-start lg:gap-14 lg:pb-20">
+          {/* foto fija al bajar */}
+          <div className="rounded-[28px] bg-guirose-espuma p-4 sm:p-5 lg:sticky lg:top-40">
+            <div className="relative isolate flex items-center justify-center overflow-hidden rounded-2xl bg-white px-4 py-8 lg:h-[min(620px,calc(100vh-13rem))] lg:py-6">
               <span
                 aria-hidden="true"
                 className="ficha-numero pointer-events-none absolute -bottom-[0.12em] -left-[0.04em] -z-10 select-none text-[190px] font-extrabold leading-none tracking-[-0.04em] text-guirose-accion/10 lg:text-[300px]"
@@ -147,180 +161,183 @@ export default function FichaInteractiva({
               </span>
               {imagen}
             </div>
+            <p className="mt-3 px-1 text-[13px] text-guirose-texto">
+              *Imagen referencial.
+            </p>
+          </div>
 
-            <div className="ficha-info py-2 lg:py-6 lg:pr-4">
-              <div className="flex gap-2">
-                <span className="rounded-full bg-guirose-accion px-3 py-1 text-sm font-semibold text-white">
-                  {tipoNombre}
-                </span>
-                <span className="rounded-full border border-guirose-accion px-3 py-1 text-sm font-semibold text-guirose-accion">
-                  {linea}
-                </span>
-              </div>
+          {/* Contenido que se desplaza */}
+          <div className="ficha-info min-w-0 lg:pt-2">
+            <div className="flex gap-2">
+              <span className="rounded-full bg-guirose-accion px-3 py-1 text-sm font-semibold text-white">
+                {tipoNombre}
+              </span>
+              <span className="rounded-full border border-guirose-accion px-3 py-1 text-sm font-semibold text-guirose-accion">
+                {linea}
+              </span>
+            </div>
 
-              <h1 className="mt-4 text-[32px] font-extrabold leading-[1.1] tracking-[-0.02em] text-guirose-marino lg:text-[44px]">
-                Mercury {linea} {hp} HP
-              </h1>
-              <p className="mt-3 max-w-[560px] text-base text-guirose-texto lg:text-lg">
-                {descripcion}
-              </p>
+            <h1 className="mt-4 text-[32px] font-extrabold leading-[1.1] tracking-[-0.02em] text-guirose-marino lg:text-[44px]">
+              Mercury {linea} {hp} HP
+            </h1>
+            <p className="mt-3 max-w-[560px] text-base text-guirose-texto lg:text-lg">
+              {descripcion}
+            </p>
 
-              <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
-                {claves.map((c) => (
-                  <div
-                    key={c.etiqueta}
-                    className="border-l-2 border-guirose-accion pl-4"
-                  >
-                    <dd className="whitespace-nowrap text-lg font-bold text-guirose-marino lg:text-xl">
-                      {c.valor}
-                    </dd>
-                    <dt className="text-sm text-guirose-texto">{c.etiqueta}</dt>
-                  </div>
-                ))}
-              </dl>
-
-              {/* Configurador */}
-              <div className="mt-7 max-w-[560px]">
-                <fieldset>
-                  <legend className="mb-2.5 text-[17px] font-semibold text-guirose.marino">
-                    Tipo de mando
-                  </legend>
-                  <div className="flex gap-2.5 sm:gap-3">
-                    {unicos(modelos, "control").map((valor) => (
-                      <label
-                        key={valor}
-                        className="flex flex-1 cursor-pointer touch-manipulation flex-col items-center gap-1.5 rounded-[14px] border-[1.5px] border-guirose-borde bg-white p-2.5 text-guirose-marino transition duration-150 ease-out select-none active:scale-[0.97] hover:border-guirose-accion has-checked:border-guirose-accion has-checked:text-guirose-accion has-checked:ring-1 has-checked:ring-guirose-accion has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-guirose-azul has-disabled:cursor-not-allowed has-disabled:opacity-40 sm:w-[150px] sm:flex-none"
-                      >
-                        <input
-                          type="radio"
-                          name="mando"
-                          value={valor}
-                          checked={valorDe("control") === valor}
-                          disabled={!disponible("control", valor)}
-                          onChange={() => elegir("control", valor)}
-                          className="sr-only"
-                        />
-                        {FOTO_MANDO[valor] && (
-                          <Image
-                            src={FOTO_MANDO[valor]}
-                            alt=""
-                            width={252}
-                            height={252}
-                            className="h-[90px] w-[100px] object-contain sm:h-[110px] sm:w-[118px]"
-                          />
-                        )}
-                        <span className="text-sm font-semibold">{valor}</span>
-                      </label>
-                    ))}
-                  </div>
-                  {unicos(modelos, "control").length === 1 && (
-                    <p className="mt-2 text-[13.5px] text-guirose-texto">
-                      Única opción para {hp} HP
-                    </p>
-                  )}
-                </fieldset>
-
-                {listas.map(({ campo, titulo, nombre }) => {
-                  const valores = unicos(modelos, campo);
-                  const id = `opcion-${campo}`;
-                  return (
-                    <div key={campo} className="mt-5">
-                      <label
-                        htmlFor={id}
-                        className="mb-2.5 block text-[17px] font-semibold text-guirose-marino"
-                      >
-                        {titulo}
-                      </label>
-                      <div className="relative">
-                        <select
-                          id={id}
-                          value={valorDe(campo) ?? ""}
-                          onChange={(e) => elegir(campo, e.target.value)}
-                          className="h-14 w-full cursor-pointer appearance-none rounded-[10px] bg-guirose-marino pr-12 pl-5 text-[17px] font-semibold text-white transition-colors duration-150 hover:bg-[#0F3A63] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul"
-                        >
-                          {valores.length > 1 && (
-                            <option value="">Selecciona</option>
-                          )}
-                          {valores.map((v) => (
-                            <option
-                              key={v}
-                              value={v}
-                              disabled={!disponible(campo, v)}
-                            >
-                              {nombre(v)}
-                              {disponible(campo, v)
-                                ? ""
-                                : " - no disponible con tu elección"}
-                            </option>
-                          ))}
-                        </select>
-                        <CaretDownIcon
-                          aria-hidden="true"
-                          size={20}
-                          weight="bold"
-                          className="pointer-events-none absolute top-1/2 right-[18px] -translate-y-1/2 text-white"
-                        />
-                      </div>
-                      {valores.length === 1 && (
-                        <p className="mt-2 text-[13.5px] text-guirose-texto">
-                          Única opción para {hp} HP
-                        </p>
-                      )}
-                    </div>
-                  );
-                })}
-
-                <div className="mt-5 flex-wrap items-baseline justify-between gap-x-4">
-                  <p className="text-[15px] text-guirose-texto">
-                    Tu modelo:{" "}
-                    <b className="text-[15px] text-guirose-marino">
-                      {modelo
-                        ? modelo.codigo
-                        : `elige ${juntar(faltantes.map((c) => NOMBRE_CORTO[c]))}`}
-                    </b>
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setEleccion({})}
-                    className={`min-h-11 touch-manipulation text-sm font-semibold text-guirose-accion underline underline-offset-4 ${
-                      CAMPOS.some((c) => eleccion[c] !== undefined)
-                        ? ""
-                        : "invisible"
-                    }`}
-                  >
-                    Quitar selección
-                  </button>
+            <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
+              {claves.map((c) => (
+                <div
+                  key={c.etiqueta}
+                  className="border-l-2 border-guirose-accion pl-4"
+                >
+                  <dd className="whitespace-nowrap text-lg font-bold text-guirose-marino lg:text-xl">
+                    {c.valor}
+                  </dd>
+                  <dt className="text-sm text-guirose-texto">{c.etiqueta}</dt>
                 </div>
+              ))}
+            </dl>
 
-                {/* Escritorio */}
-                <div className="mt-3 hidden lg:block">
+            {/* Configuracion */}
+            <section
+              aria-labelledby="titulo-configura"
+              className="mt-8 border-t border-guirose-espuma-fuerte pt-8"
+            >
+              <h2
+                id="titulo-configura"
+                className="text-[24px] font-bold leading-[1.15] tracking-[-0.02em] text-guirose-marino lg:text-[28px]"
+              >
+                Configura motor
+              </h2>
+              <fieldset className="mt-6">
+                <legend className="mb-3 text-[17px] font-semibold text-guirose-marino">
+                  Tipo de mando
+                </legend>
+                <div className="grid grid-cols-2 gap-3">
+                  {unicos(modelos, "control").map((valor) => (
+                    <label
+                      key={valor}
+                      className={`${opcionBase} flex flex-col items-center gap-2 rounded-2xl p-3 text-center sm:flex-row sm:gap-4 sm:p-4 sm:text-left has-checked:border-guirose-accion has-checked:bg-guirose-espuma/50 has-checked:text-guirose-accion has-checked:ring-1 has-checked:ring-guirose-accion`}
+                    >
+                      <input
+                        type="radio"
+                        name="control"
+                        value={valor}
+                        checked={valorDe("control") === valor}
+                        disabled={!disponible("control", valor)}
+                        onChange={() => elegir("control", valor)}
+                        onClick={() => quitarSiYaEstaba("control", valor)}
+                        className="sr-only"
+                      />
+                      {FOTO_MANDO[valor] && (
+                        <Image
+                          src={FOTO_MANDO[valor]}
+                          alt=""
+                          width={252}
+                          height={252}
+                          className="h-20 w-20 shrink-0 rounded-xl bg-white object-contain sm:h-24 sm:w-24"
+                        />
+                      )}
+                      <span>
+                        <span className="block text-base font-semibold leading-tight sm:text-lg">
+                          {valor}
+                        </span>
+                        <span className="mt-1 block text-[13px] leading-snug text-guirose-texto sm:text-sm">
+                          {DETALLE_MANDO[valor]}
+                        </span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+                {unicos(modelos, "control").length === 1 && (
+                  <p className="mt-2 text-sm text-guirose-texto">
+                    Única opción para {hp} HP
+                  </p>
+                )}
+              </fieldset>
+
+              {preguntas.map(({ campo, titulo, detalle }) => {
+                const valores = unicos(modelos, campo);
+                return (
+                  <fieldset key={campo} className="mt-6">
+                    <legend className="mb-3 text-[17px] font-semibold text-guirose-marino">
+                      {titulo}
+                    </legend>
+                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                      {valores.map((valor) => (
+                        <label
+                          key={valor}
+                          className={`${opcionBase} group flex min-h-[72px] flex-col justify-center rounded-xl px-5 py-3 has-checked:border-guirose-marino has-checked:bg-guirose-marino has-checked:text-white`}
+                        >
+                          <input
+                            type="radio"
+                            name={campo}
+                            value={valor}
+                            checked={valorDe(campo) === valor}
+                            disabled={!disponible(campo, valor)}
+                            onChange={() => elegir(campo, valor)}
+                            onClick={() => quitarSiYaEstaba(campo, valor)}
+                            className="sr-only"
+                          />
+                          <span className="text-lg font-bold leading-tight">
+                            {valor}
+                          </span>
+                          {detalle[valor] && (
+                            <span className="mt-0.5 text-[13px] leading-tight text-guirose-texto group-has-checked:text-white/75">
+                              {detalle[valor]}
+                            </span>
+                          )}
+                        </label>
+                      ))}
+                    </div>
+                    {valores.length === 1 && (
+                      <p className="mt-2 text-sm text-guirose-texto">
+                        Única opción para {hp} HP
+                      </p>
+                    )}
+                  </fieldset>
+                );
+              })}
+
+              {/* Resumen */}
+              <div className="mt-8 rounded-2xl bg-guirose-espuma p-5 sm:p-6">
+                <p className="text-sm text-guirose-texto">Tu modelo</p>
+                <p
+                  aria-live="polite"
+                  className={
+                    modelo
+                      ? "text-[28px] font-bold leading-tight tracking-[-0.01em] text-guirose-marino"
+                      : "mt-1 text-lg font-semibold text-guirose-marino"
+                  }
+                >
+                  {modelo
+                    ? modelo.codigo
+                    : `Elige ${juntar(faltantes.map((c) => NOMBRE_CORTO[c]))}`}
+                </p>
+                <div className="mt-4 hidden lg:block">
                   <Boton
                     href="#"
                     variante="relleno"
-                    className="h-14 w-fit justify-center gap-3 px-6 text-lg font-semibold"
+                    className="h-14 w-full justify-center gap-3 text-lg font-semibold"
                   >
                     Continuar a equipamiento
                   </Boton>
                 </div>
 
-                <p
-                  aria-live="polite"
-                  className="mt-3 text-sm text-guirose-texto"
-                >
+                <p className="mt-3 text-sm text-guirose-texto">
                   {faltantes.length === 0
-                    ? "Listo, ya puedes continuar"
-                    : `Faltan ${faltantes.length} de 3 opciones por elegir`}{" "}
-                  *Imagen referencial
+                    ? "Listo, ya puedes continuar."
+                    : `Faltan ${faltantes.length} de 3 opciones por elegir.`}
                 </p>
               </div>
-            </div>
+            </section>
+
+            <FichaTecnica hp={hp} base={base} configuracion={configuracion} />
+
+            {children}
           </div>
-        </section>
-
-        <FichaTecnica hp={hp} base={base} configuracion={configuracion} />
+        </div>
       </div>
-
-      {children}
 
       {/* Celular */}
       <div className="sticky bottom-0 z-30 border-t border-guirose-espuma-fuerte bg-white px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] lg:hidden">
