@@ -102,7 +102,7 @@ export default function FichaInteractiva({
                 {claves.map((c) => (
                   <div 
                     key={c.etiqueta}
-                    className="border-1-2 border-guirose-accion pl-4"  
+                    className="border-l-2 border-guirose-accion pl-4"  
                   >
                     <dd className="whitespace-nowrap text-lg font-bold text-guirose-marino lg:text-xl">
                       {c.valor}
