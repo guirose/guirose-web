@@ -56,17 +56,30 @@ export default async function PaginaEquipamiento({ params }: Props) {
         ]}
       />
 
-      <header className="pt-2 pb-4 lg:pb-8">
+      <header className="pt-2 pb-2 lg:pb-4">
         <h1 className="text-[32px] font-extrabold leading-[1.1] tracking-[-0.02em] text-guirose-marino lg:text-[44px]">
-          Mercury {motor.linea} {motor.hp} HP - {variante.codigo}
+          Equipa tu Mercury {motor.linea} {motor.hp} HP
         </h1>
-        <p className="mt-3 text-lg text-guirose-texto">
-          {variante.control} - {COLA[variante.altura]} {variante.altura}″ -{" "}
-          Inclinación {variante.inclinacion.toLowerCase()}
-        </p>
+        <ul className="mt-4 flex flex-wrap gap-2">
+          <li className="rounded-full bg-guirose-accion px-3 py-1 text-sm font-semibold text-white">
+            {variante.codigo}
+          </li>
+          {[
+            variante.control,
+            `${COLA[variante.altura]} ${variante.altura}″`,
+            `Elevación ${variante.inclinacion.toLowerCase()}`,
+          ].map((texto) => (
+            <li
+              key={texto}
+              className="rounded-full border border-guirose-accion px-3 py-1 text-sm font-semibold text-guirose-accion"
+            >
+              {texto}
+            </li>
+          ))}
+        </ul>
         <a
           href={ruta(rutaDe(motor))}
-          className="mt-3 inline-block text-base font-semibold text-guirose-accion hover:underline"
+          className="mt-4 inline-block text-base font-semibold text-guirose-accion hover:underline"
         >
           Cambiar motor
         </a>
@@ -88,7 +101,8 @@ export default async function PaginaEquipamiento({ params }: Props) {
             Tu asesor confirma el equipamiento
           </h2>
           <p className="mt-2 max-w-[560px] text-lg txt-guirose-texto">
-            Para este modelo el equipo se define contigo. Continúa y tu asesor te enviará la lista completa por WhatsApp.
+            Para este modelo el equipo se define contigo. Continúa y tu asesor
+            te enviará la lista completa por WhatsApp.
           </p>
         </section>
       )}
