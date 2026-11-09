@@ -400,3 +400,21 @@ export const vistaDe = (variante: Variante): VistaVariante => ({
   inclinacion: variante.inclinacion,
   peso: pesoDe(variante),
 });
+
+// buscar una variante por su codigo dentro de un tipo de motor
+export const buscarVariante = (
+  tipo: TipoMotor,
+  codigo: string,
+): { motor: Motor; variante: Variante } | undefined => {
+  for (const motor of motoresDe(tipo)) {
+    const variante = motor.variantes.find((x) => x.codigo === codigo);
+    if (variante) return { motor, variante };
+  }
+  return undefined;
+};
+
+// entrada por variante, pagina por modelo
+export const todasLasVariantes = (): { tipo: TipoMotor; codigo: string }[] =>
+  motores.flatMap ((m) =>
+    m.variantes.map((x) => ({ tipo: m.tipo, codigo: x.codigo })),
+  );

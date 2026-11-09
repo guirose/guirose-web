@@ -1,6 +1,6 @@
 import type { ItemEquipamiento } from "./equipamiento";
 
-const EXTENSION_FOTOS = "jpg";
+const EXTENSION_FOTOS = "png";
 
 type Regla = {
   patron: RegExp;
@@ -12,7 +12,8 @@ const REGLAS: Regla[] = [
   // Medidas que el cliente elige
   { patron: /^HELICE \(/, nombre: "Hélice de aluminio", foto: "helice-aluminio" },
   { patron: /^CABLE DE ACELERACION.*MERCURY/, nombre: "Cable de aceleración y cambios Mercury", foto: "cable-aceleracion-mercury" },
-  { patron: /^CABLE DE ACELERACION.*UFLEX/, nombre: "Cable de aceleración y cambios Uflex", foto: "cable-aceleracion-uflex" },  { patron: /^INTERRUPTORES? DE ENCENDIDO D MOTOR CON LLLAVE/, nombre: "Interruptor de encendido con llave", foto: "interruptor-llave" },
+  { patron: /^CABLE DE ACELERACION.*UFLEX/, nombre: "Cable de aceleración y cambios Uflex", foto: "cable-aceleracion-uflex" },  
+  { patron: /^INTERRUPTORES? DE ENCENDIDO D MOTOR CON LLLAVE/, nombre: "Interruptor de encendido con llave", foto: "interruptor-llave" },
   { patron: /^EXTENSI[OÓ]N DE ARNES/, nombre: "Extensión de arnés", foto: "extension-arnes" },
 
   // Incluido
@@ -77,7 +78,7 @@ export function etiquetaOpcion(item: ItemEquipamiento): string {
   const paso = d.match(/\((\d+)X(\d+)X(\d+)\)/);
   if (paso) return `${paso[1]} x ${paso[2]} x ${paso[3]}`;
   const largo = d.match(/(\d+)\s?FT/);
-  if (largo) return `%{largo[1]} ft`;
+  if (largo) return `${largo[1]} ft`;
   return aTitulo(d);
 }
 
@@ -92,4 +93,18 @@ export function marcaCable(item: ItemEquipamiento): string | undefined {
 export function detalleBateria(item: ItemEquipamiento): string | undefined {
   const m = item.descripcion.match(/\[(\d+)A\/(\d+) PLACAS\/(\d+) CCA\]/);
   return m ? `${m[1]} A - ${m[2]} placas - ${m[3]} CCA` : undefined;
+}
+
+export function tamanoOpcion(item: ItemEquipamiento): number {
+  const d = item.descripcion;
+  const paso = d.match(/\((\d+)X(\d+)X(\d+)\)/);
+  if (paso) return Number(paso[2]) * 100 + Number(paso[3]);
+  const largo = d.match(/(\d+)\s?FT/);
+  return largo ? Number(largo[1]) : 0;
+}
+
+export function masGrande(opciones: ItemEquipamiento[]): ItemEquipamiento {
+  return opciones.reduce((mayor, o) =>
+    tamanoOpcion(o) >= tamanoOpcion(mayor) ? o : mayor,
+  );
 }
