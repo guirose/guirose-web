@@ -111,10 +111,10 @@ export default async function PaginaFicha({ params }: Props) {
         rangoAltura={rangoAltura(motor)}
         modelos={motor.variantes.map(vistaDe)}
         base={fichaDe(motor)}
+        final={<PasosCotizacion />}
       >
         <BandaFicha beneficios={BENEFICIOS} idealPara={IDEAL_PARA} />
       </FichaInteractiva>
-      <PasosCotizacion/>
     </>
   );
 }

@@ -22,6 +22,7 @@ type PropsFichaInteractiva = {
   modelos: VistaVariante[];
   base: Fila[];
   children: ReactNode; // lo que va debajo (la banda)
+  final?: ReactNode;
 };
 
 // la configuracion que elige el cliente
@@ -83,6 +84,7 @@ export default function FichaInteractiva({
   modelos,
   base,
   children,
+  final,
 }: PropsFichaInteractiva) {
   const [eleccion, setEleccion] = useState<Eleccion>({});
 
@@ -339,6 +341,7 @@ export default function FichaInteractiva({
           </div>
         </AnimarAlVer>
       </div>
+      {final}
 
       {/* Celular */}
       <div className="sticky bottom-0 z-30 border-t border-guirose-espuma-fuerte bg-white px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] lg:hidden">
