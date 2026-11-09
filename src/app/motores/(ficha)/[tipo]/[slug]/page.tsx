@@ -22,6 +22,7 @@ import {
 import { ruta } from "@/ruta";
 import FichaInteractiva from "../../_ficha/FichaInteractiva";
 import HeroInterno from "@/ui/HeroInterno";
+import PasosCotizacion from "@/ui/PasosCotizacion";
 
 type Props = { params: Promise<{ tipo: string; slug: string }> };
 
@@ -113,6 +114,7 @@ export default async function PaginaFicha({ params }: Props) {
       >
         <BandaFicha beneficios={BENEFICIOS} idealPara={IDEAL_PARA} />
       </FichaInteractiva>
+      <PasosCotizacion/>
     </>
   );
 }
