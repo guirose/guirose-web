@@ -554,3 +554,9 @@ html {
     scroll-padding-top: 150px;
   }
 }
+
+.animar-al-ver[data-visto="false"] *,
+.animar-al-ver[data-visto="false"] *::before,
+.animar-al-ver[data-visto="false"] *::after {
+  animation-play-state: paused;
+}

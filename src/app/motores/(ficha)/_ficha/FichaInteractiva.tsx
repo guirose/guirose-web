@@ -3,6 +3,7 @@
 import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import Boton from "@/ui/Boton";
+import AnimarAlVer from "@/ui/AnimarAlVer";
 import FichaTecnica from "@/ui/FichaTecnica";
 import type { VistaVariante } from "@/contenido/motores";
 
@@ -149,7 +150,7 @@ export default function FichaInteractiva({
       <div className="mx-auto max-w-[1440px] px-6 lg:px-[67px]">
         {barra}
 
-        <div className="mt-4 grid gap-6 pb-12 lg:grid-cols-2 lg:items-start lg:gap-14 lg:pb-20">
+        <AnimarAlVer className="mt-4 grid gap-6 pb-12 lg:grid-cols-2 lg:items-start lg:gap-14 lg:pb-20">
           {/* foto fija al bajar */}
           <div className="rounded-[28px] bg-guirose-espuma p-4 sm:p-5 lg:sticky lg:top-40">
             <div className="relative isolate flex items-center justify-center overflow-hidden rounded-2xl bg-white px-4 py-8 lg:h-[min(620px,calc(100vh-13rem))] lg:py-6">
@@ -336,7 +337,7 @@ export default function FichaInteractiva({
 
             {children}
           </div>
-        </div>
+        </AnimarAlVer>
       </div>
 
       {/* Celular */}

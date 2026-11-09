@@ -1,5 +1,6 @@
 import Image from "next/image";
 import TarjetaCatalogo from "@/ui/TarjetaCatalogo";
+import AnimarAlVer from "@/ui/AnimarAlVer";
 import {
   fotoDe,
   idDe,
@@ -38,7 +39,7 @@ export default function ListaMotores({ tipo }: { tipo: TipoMotor }) {
         </span>
       </header>
 
-      <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-5 md:grid-cols-3 xl:grid-cols-4 min-[1400px]:grid-cols-5 min-[1400px]:gap-x-4">
+      <AnimarAlVer className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-5 md:grid-cols-3 xl:grid-cols-4 min-[1400px]:grid-cols-5 min-[1400px]:gap-x-4">
         {motoresDe(tipo).map((m, i) => (
           <TarjetaCatalogo
             key={idDe(m)}
@@ -58,7 +59,7 @@ export default function ListaMotores({ tipo }: { tipo: TipoMotor }) {
             }
           />
         ))}
-      </div>
+      </AnimarAlVer>
 
       <p className="mt-6 text-sm text-guirose-texto">
         *Imágenes referenciales.
