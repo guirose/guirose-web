@@ -89,7 +89,7 @@ export default function FichaTecnica({
                   return (
                     <FilaDato key={etiqueta} etiqueta={etiqueta}>
                       {valor ?? (
-                        <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-guirose-accion">
+                        <span className="whitespace-nowrap rounded-full bg-white px-3 py-1 text-xs font-semibold text-guirose-accion">
                           Al cotizar
                         </span>
                       )}

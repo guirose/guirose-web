@@ -19,7 +19,7 @@ export default function MotoresLayout({ children }: { children: ReactNode }) {
           />
         }
       />
-      <div className="mx-auto grid max-w-[1440px] gap-6 px-6 py-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12 lg:px-[67px] lg:py-14">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-6 px-6 py-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12 lg:px-[67px] lg:py-14">
         <BarraMotores />
         <div>{children}</div>
       </div>
