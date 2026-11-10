@@ -7,7 +7,7 @@ import FotoAccesorio from "./FotoAccesorio";
 
 type Props = { items: ItemEquipamiento[] };
 
-const VISIBLES = 8; // los primeros accesorios se ven y el resto en el desplegable
+const VISIBLES = 9; // los primeros accesorios se ven y el resto en el desplegable
 
 function Tarjeta({ item }: { item: ItemEquipamiento }) {
   const datos = describirItem(item);
@@ -26,9 +26,11 @@ function Tarjeta({ item }: { item: ItemEquipamiento }) {
             </span>
           )}
         </p>
-        <p className="mt-1 text-sm leading-snug text-guirose-texto">
-          {descripcionDetallada(item)}
-        </p>
+        {descripcionDetallada(item).toLowerCase() !== datos.nombre.toLowerCase() && (
+          <p className="mt-1 text-sm leading-snug text-guirose-texto">
+            {descripcionDetallada(item)}
+          </p>
+        )}
       </div>
     </li>
   );

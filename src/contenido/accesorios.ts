@@ -256,3 +256,9 @@ export function descripcionDetallada(item: ItemEquipamiento): string {
     .replace(/\bp\//g, "para ");
   return texto.charAt(0).toUpperCase() + texto.slice(1);
 }
+
+// Largo en metro de una medida
+export function metrosOpcion(item: ItemEquipamiento): string | undefined {
+  const m = item.descripcion.match(/\/\s?([\d.]+)\s?M\)/);
+  return m ? `${m[1].replace(".", ",")} m` : undefined;
+}
