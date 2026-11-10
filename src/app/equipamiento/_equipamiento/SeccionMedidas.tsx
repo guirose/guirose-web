@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useEffect } from "react";
 import {
   CaretDownIcon,
   CheckIcon,
@@ -18,19 +18,27 @@ import {
   detalleBateria,
   etiquetaOpcion,
   marcaCable,
-  masGrande,
   metrosOpcion,
   tamanoOpcion,
 } from "@/contenido/accesorios";
 import FotoAccesorio from "./FotoAccesorio";
+import type { TipoMotor } from "@/contenido/motores";
+import {
+  ajustarSeleccion,
+  claveDe,
+  CONSULTAR,
+  MAX_CANTIDAD,
+  seleccionInicial,
+  type Seleccion,
+} from "@/cotizacion/seleccion";
+import { useCotizacion } from "@/cotizacion/useCotizacion";
 
 type Props = {
+  tipo: TipoMotor;
+  modelo: string;
   grupos: GrupoDeMedidas[];
   opcionales: ItemEquipamiento[];
 };
-
-const CONSULTAR = "consultar"; // "No estoy seguro"
-const MAX_CANTIDAD = 5; // máximo de unidades de una misma medida
 
 // Frase de ayuda
 const AYUDA: Record<GrupoMedida, (g: GrupoDeMedidas) => string> = {
@@ -141,7 +149,7 @@ function FilaExtension({
     (a, b) => tamanoOpcion(a) - tamanoOpcion(b),
   );
   const total = opciones.reduce(
-    (suma, o) => suma + (cantidades[o.descripcion] ?? 0),
+    (suma, o) => suma + (cantidades[claveDe(o)] ?? 0),
     0,
   );
 
@@ -226,7 +234,7 @@ function FilaExtension({
         className="grid grid-cols-2 gap-2.5 min-[1360px]:grid-cols-3"
       >
         {opciones.map((o) => {
-          const cantidad = cantidades[o.descripcion] ?? 0;
+          const cantidad = cantidades[claveDe(o)] ?? 0;
           return (
             <li
               key={o.descripcion}
@@ -252,7 +260,7 @@ function FilaExtension({
                 valor={cantidad}
                 bloqueado={consultar}
                 nombre={`extensión de ${etiquetaOpcion(o)}`}
-                onCambiar={(n) => onCambiar(o.descripcion, n)}
+                onCambiar={(n) => onCambiar(claveDe(o), n)}
               />
             </li>
           );
@@ -262,43 +270,49 @@ function FilaExtension({
   );
 }
 
-export default function SeccionMedidas({ grupos, opcionales }: Props) {
-  // elección del cliente (la extensión se maneja aparte: admite varias medidas)
-  const [eleccion, setEleccion] = useState<Record<string, string>>(() =>
-    Object.fromEntries(
-      grupos
-        .filter((g) => g.grupo !== "extension")
-        .map((g) => [g.grupo, masGrande(g.opciones).descripcion]),
-    ),
+export default function SeccionMedidas({
+  tipo,
+  modelo,
+  grupos,
+  opcionales,
+}: Props) {
+  const { seleccion: guardada, listo, guardar } = useCotizacion();
+
+  const inicial = useMemo(
+    () => seleccionInicial(tipo, modelo, grupos),
+    [tipo, modelo, grupos],
   );
-  // extensiones: { descripción de la medida: cantidad }
-  const [extensiones, setExtensiones] = useState<Record<string, number>>({});
-  const [extConsultar, setExtConsultar] = useState(false);
-  // accesorios opcionales agregados
-  const [agregados, setAgregados] = useState<string[]>([]);
+  const esDeEsteModelo = guardada?.tipo === tipo && guardada.modelo === modelo;
+  const sel = esDeEsteModelo ? ajustarSeleccion(guardada, inicial, grupos, opcionales) : inicial;
 
-  const cambiarExtension = (valor: string, cantidad: number) =>
-    setExtensiones((actual) => {
-      const copia = { ...actual };
-      if (cantidad <= 0) delete copia[valor];
-      else copia[valor] = Math.min(cantidad, MAX_CANTIDAD);
-      return copia;
-    });
+  useEffect(() => {
+    if (listo && !esDeEsteModelo) guardar(inicial);
+  }, [listo, esDeEsteModelo, inicial, guardar]);
 
-  const quitarTodasLasExtensiones = () => setExtensiones({});
+  const cambiar = (cambios: Partial<Seleccion>) =>
+    guardar({ ...sel, ...cambios });
 
-  // Marcar "No estoy seguro" borra las medidas elegidas
-  const alternarConsultaExtension = () => {
-    if (!extConsultar) setExtensiones({});
-    setExtConsultar(!extConsultar);
+  const cambiarExtension = (clave: string, cantidad: number) => {
+    const copia = { ...sel.extensiones };
+    if (cantidad <= 0) delete copia[clave];
+    else copia[clave] = Math.min(cantidad, MAX_CANTIDAD);
+    cambiar({ extensiones: copia });
   };
 
-  const alternar = (descripcion: string) =>
-    setAgregados((actual) =>
-      actual.includes(descripcion)
-        ? actual.filter((d) => d !== descripcion)
-        : [...actual, descripcion],
-    );
+  const quitarTodasLasExtensiones = () => cambiar({ extensiones: {} });
+
+  const alternarConsultaExtension = () => 
+    cambiar({
+      extConsultar: !sel.extConsultar,
+      ...(sel.extConsultar ? {} : { extensiones: {} }),
+    });
+
+  const alternar = (clave: string) =>
+    cambiar({
+      agregados: sel.agregados.includes(clave)
+        ? sel.agregados.filter((c) => c !== clave)
+        : [...sel.agregados, clave],
+    });
 
   const conBarra = grupos.filter((g) => g.grupo !== "extension");
   const grupoExtension = grupos.find((g) => g.grupo === "extension");
@@ -324,8 +338,8 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
         {conBarra.map((g) => {
           const datos = describirItem(g.opciones[0]);
           const idTitulo = `titulo-${g.grupo}`;
-          const valor = eleccion[g.grupo];
-          const elegido = g.opciones.find((o) => o.descripcion === valor);
+          const valor = sel.medidas[g.grupo];
+          const elegido = g.opciones.find((o) => claveDe(o) === valor);
           const marcas = porMarca(g.opciones);
 
           return (
@@ -350,10 +364,9 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
                     aria-labelledby={idTitulo}
                     value={valor}
                     onChange={(e) =>
-                      setEleccion((actual) => ({
-                        ...actual,
-                        [g.grupo]: e.target.value,
-                      }))
+                      cambiar({
+                        medidas: { ...sel.medidas, [g.grupo]: e.target.value },
+                      })
                     }
                     className={barra}
                   >
@@ -361,14 +374,14 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
                       ? marcas.map(([marca, lista]) => (
                           <optgroup key={marca} label={marca}>
                             {lista.map((o) => (
-                              <option key={o.descripcion} value={o.descripcion}>
+                              <option key={o.descripcion} value={claveDe(o)}>
                                 {textoOpcion(o)}
                               </option>
                             ))}
                           </optgroup>
                         ))
                       : g.opciones.map((o) => (
-                          <option key={o.descripcion} value={o.descripcion}>
+                          <option key={o.descripcion} value={claveDe(o)}>
                             {textoOpcion(o)}
                           </option>
                         ))}
@@ -397,7 +410,7 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
         {opcionales.map((o) => {
           const datos = describirItem(o);
           const detalle = detalleBateria(o)?.split(" - ");
-          const agregado = agregados.includes(o.descripcion);
+          const agregado = sel.agregados.includes(claveDe(o));
 
           return (
             <article key={o.descripcion} className={tarjeta}>
@@ -420,7 +433,7 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
                   <button
                     type="button"
                     aria-pressed={agregado}
-                    onClick={() => alternar(o.descripcion)}
+                    onClick={() => alternar(claveDe(o))}
                     className={`flex h-13 w-full touch-manipulation select-none items-center justify-center gap-2 rounded-xl border-2 px-6 text-[17px] font-semibold transition duration-150 ease-out active:scale-[0.97] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul ${
                       agregado
                         ? "border-guirose-marino bg-guirose-marino text-white"
@@ -446,8 +459,8 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
       {grupoExtension && (
         <FilaExtension
           grupo={grupoExtension}
-          cantidades={extensiones}
-          consultar={extConsultar}
+          cantidades={sel.extensiones}
+          consultar={sel.extConsultar}
           onCambiar={cambiarExtension}
           onAlternarConsulta={alternarConsultaExtension}
           onQuitarTodo={quitarTodasLasExtensiones}

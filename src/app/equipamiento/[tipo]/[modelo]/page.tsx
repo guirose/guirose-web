@@ -109,6 +109,8 @@ export default async function PaginaEquipamiento({ params }: Props) {
         {equipo ? (
           <>
             <SeccionMedidas
+              tipo={tipo}
+              modelo={modelo}
               grupos={equipo.ofrece.medidas}
               opcionales={equipo.agregar}
             />
