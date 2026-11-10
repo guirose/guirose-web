@@ -134,8 +134,8 @@ export default async function PaginaEquipamiento({ params }: Props) {
       {equipo && (
         <>
           <PasosCotizacion />
-          <FranjaCotizar href="#" />
-          <BarraCotizar href="#" />
+          <FranjaCotizar href={ruta("/cotizacion")} />
+          <BarraCotizar href={ruta("/cotizacion")} />
         </>
       )}
     </>
