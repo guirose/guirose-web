@@ -15,7 +15,6 @@ import type {
 } from "@/contenido/equipamiento";
 import {
   describirItem,
-  descripcionDetallada,
   detalleBateria,
   etiquetaOpcion,
   marcaCable,
@@ -31,22 +30,35 @@ type Props = {
 };
 
 const CONSULTAR = "consultar"; // "No estoy seguro"
-const MAX_CANTIDAD = 5; // "Máximo de unidades de una misma medida"
+const MAX_CANTIDAD = 5; // máximo de unidades de una misma medida
 
 // Frase de ayuda
 const AYUDA: Record<GrupoMedida, (g: GrupoDeMedidas) => string> = {
-  helice: () => "Elige el paso que necesita tu embarcación.",
+  helice: () => "Elige el paso de tu embarcación.",
   cable: (g) => `Van ${g.opciones[0].cantidad} unidades. Elige marca y largo.`,
-  llave: () => "Incluye el arnés eléctrico. Elige su largo.",
-  extension: () => "Suma una extensión si lo necesitas.",
+  llave: () => "Incluye el arnés. Elige su largo.",
+  extension: () => "Elige medidas y cantidad.",
 };
 
-
-// texto en cada opcion
+// texto en cada opción
 const textoOpcion = (o: ItemEquipamiento) => {
   const marca = marcaCable(o);
   return marca ? `${marca} - ${etiquetaOpcion(o)}` : etiquetaOpcion(o);
 };
+
+function detalleCorto(grupo: GrupoMedida, o: ItemEquipamiento) {
+  const metros = metrosOpcion(o);
+  if (grupo === "cable") return metros ? `Largo: ${metros}` : undefined;
+  if (grupo === "llave") return metros ? `Arnés de ${metros}` : undefined;
+  if (grupo === "helice") {
+    const aspas = o.descripcion.match(/\((\d+)X\d+X\d+\)/);
+    const material = /ALUMINIO/.test(o.descripcion) ? "Aluminio" : undefined;
+    return [material, aspas ? `${aspas[1]} aspas` : undefined]
+      .filter(Boolean)
+      .join(", ");
+  }
+  return undefined;
+}
 
 // Agrupa opciones por marca
 function porMarca(opciones: ItemEquipamiento[]) {
@@ -60,28 +72,31 @@ function porMarca(opciones: ItemEquipamiento[]) {
 
 // Estilos que comparten todas las tarjetas
 const tarjeta = "flex flex-col overflow-hidden rounded-2xl border border-guirose-espuma-fuerte bg-white";
-const fotoGrande = "h-36 w-full bg-guirose-espuma/60 sm:h-44";
+const fotoGrande = "h-32 w-full bg-guirose-espuma/60 sm:h-36";
 const etiquetaOpcional = "absolute top-3 left-3 rounded-full bg-white px-3 py-0.5 text-sm font-semibold text-guirose-accion ring-1 ring-guirose-accion";
-const barra = "h-14 w-full cursor-pointer touch-manipulation appearance-none rounded-xl border-[1.5px] border-guirose-borde bg-white pr-12 pl-4 text-lg font-semibold text-guirose-marino transition duration-150 ease-out hover:border-guirose-accion focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul";
+const etiquetaPequena = "absolute -top-1.5 -left-1.5 rounded-full bg-white px-2.5 py-px text-[13px] font-semibold text-guirose-accion ring-1 ring-guirose-accion";
+const barra = "h-13 w-full cursor-pointer touch-manipulation appearance-none rounded-xl border-[1.5px] border-guirose-borde bg-white pr-12 pl-4 text-[17px] font-semibold text-guirose-marino transition duration-150 ease-out hover:border-guirose-accion focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul";
 const botonCantidad = "flex h-11 w-11 touch-manipulation select-none items-center justify-center rounded-lg border-[1.5px] border-guirose-borde bg-white text-guirose-marino transition duration-150 ease-out active:scale-[0.95] hover:border-guirose-accion focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul disabled:cursor-not-allowed disabled:opacity-40";
-const botonSecundario = "inline-flex min-h-11 touch-manipulation select-none items-center gap-2 rounded-[10px] border-[1.5px] border-guirose-borde bg-white px-4 text-base font-semibold text-guirose-marino transition duration-150 ease-out active:scale-[0.97] hover:border-guirose-accion focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul disabled:cursor-not-allowed disabled:opacity-40";
+const botonSecundario = "inline-flex min-h-11 touch-manipulation select-none items-center gap-2 rounded-[10px] border-[1.5px] border-guirose-borde bg-white px-4 text-[15px] font-semibold text-guirose-marino transition duration-150 ease-out active:scale-[0.97] hover:border-guirose-accion focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul disabled:cursor-not-allowed disabled:opacity-40";
 
-// Botones - [n] + de una fila
+// Botones - [n] + de una medida
 function Cantidad({
   valor,
   nombre,
+  bloqueado,
   onCambiar,
 }: {
   valor: number;
   nombre: string;
+  bloqueado: boolean;
   onCambiar: (cantidad: number) => void;
 }) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center justify-between gap-2 sm:justify-start">
       <button
         type="button"
         aria-label={`Una menos de ${nombre}`}
-        disabled={valor <= 0}
+        disabled={bloqueado || valor <= 0}
         onClick={() => onCambiar(valor - 1)}
         className={botonCantidad}
       >
@@ -93,9 +108,9 @@ function Cantidad({
       <button
         type="button"
         aria-label={`Una más de ${nombre}`}
-        disabled={valor >= MAX_CANTIDAD}
+        disabled={bloqueado || valor >= MAX_CANTIDAD}
         onClick={() => onCambiar(valor + 1)}
-        className={`${botonCantidad}`}
+        className={botonCantidad}
       >
         <PlusIcon aria-hidden="true" className="h-5 w-5" />
       </button>
@@ -112,7 +127,6 @@ type PropsExtension = {
   onQuitarTodo: () => void;
 };
 
-// extensión de arnés tiene varias meddias y cantidad de cada una
 function FilaExtension({
   grupo,
   cantidades,
@@ -122,72 +136,110 @@ function FilaExtension({
   onQuitarTodo,
 }: PropsExtension) {
   const datos = describirItem(grupo.opciones[0]);
+  // de menor a mayor largo
   const opciones = [...grupo.opciones].sort(
     (a, b) => tamanoOpcion(a) - tamanoOpcion(b),
   );
-  const total = opciones.reduce((suma, o) => suma + (cantidades[o.descripcion] ?? 0), 0);
+  const total = opciones.reduce(
+    (suma, o) => suma + (cantidades[o.descripcion] ?? 0),
+    0,
+  );
 
   return (
-    <article className="mt-5 grid gap-6 rounded-2xl border border-guirose-espuma-fuerte bg-white p-5 sm:p-6 lg:grid-cols-[380px_1fr] lg:items-center lg:gap-9">
-      <div className="flex items-start gap-5">
-        <div className="relative h-[104px] w-[104px] shrink-0 lg:h-[150px] lg:w-[150px]">
-          <FotoAccesorio
-            foto={datos.foto}
-            className="h-full w-full rounded-2xl bg-guirose-espuma/60"
-          />
-          <span className={etiquetaOpcional}>Opcional</span>
-        </div>
-
-        <div className="min-w-0">
-          <h3
-            id="titulo-extension"
-            className="text-xl leading-tight font-bold text-guirose-marino lg:text-[22px]"
-          >
-            ¿El arnés no te alcanza?
-          </h3>
-          <p className="mt-1.5 text-base text-guirose-texto">
-            {AYUDA.extension(grupo)}
-          </p>
-
-          <div className="mt-3 flex flex-wrap items-center gap-2.5">
-            {total > 0 && (
-              <span
-                aria-live="polite"
-                className="rounded-full bg-guirose-espuma px-3.5 py-1 text-[15px] font-bold text-guirose-accion"
-              >
-                Total: {total} {total === 1 ? "extensión" : "extensiones"}
-              </span>
-            )}
-            <button
-              type="button"
-              disabled={total === 0 && !consultar}
-              onClick={onQuitarTodo}
-              className={botonSecundario}
+    <article className="mt-5 grid gap-5 rounded-2xl border border-guirose-espuma-fuerte bg-white p-4 sm:p-5 lg:grid-cols-[350px_1fr] lg:items-center lg:gap-7">
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center gap-3.5">
+          <div className="relative h-23 w-23 shrink-0">
+            <FotoAccesorio
+              foto={datos.foto}
+              className="h-full w-full rounded-xl bg-guirose-espuma/60"
+            />
+            <span className={etiquetaPequena}>Opcional</span>
+          </div>
+          <div className="min-w-0">
+            <h3
+              id="titulo-extension"
+              className="text-xl leading-tight font-bold text-guirose-marino"
             >
-              <TrashIcon aria-hidden="true" className="h-[18px] w-[18px]" />
-              Quitar todo
-            </button>
+              ¿El arnés no te alcanza?
+            </h3>
+            <p className="mt-1 text-[15px] leading-snug text-guirose-texto">
+              {AYUDA.extension(grupo)}
+            </p>
           </div>
         </div>
+
+        <div className="flex flex-wrap items-center gap-2.5">
+          {total > 0 && (
+            <span
+              aria-live="polite"
+              className="rounded-full bg-guirose-espuma px-3 py-0.5 text-sm font-bold text-guirose-accion"
+            >
+              Total: {total} {total === 1 ? "extensión" : "extensiones"}
+            </span>
+          )}
+          <button
+            type="button"
+            disabled={total === 0}
+            onClick={onQuitarTodo}
+            className={botonSecundario}
+          >
+            <TrashIcon aria-hidden="true" className="h-[18px] w-[18px]" />
+            Quitar todo
+          </button>
+        </div>
+
+        {/* "No estoy seguro" borra y bloquea las medidas */}
+        <button
+          type="button"
+          aria-pressed={consultar}
+          onClick={onAlternarConsulta}
+          className={`flex w-full touch-manipulation select-none items-start gap-3 rounded-[14px] border-[1.5px] px-3.5 py-2.5 text-left transition duration-150 ease-out focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul ${
+            consultar
+              ? "border-guirose-accion bg-guirose-espuma"
+              : "border-dashed border-[#B9CBDD] bg-white hover:border-guirose-accion"
+          }`}
+        >
+          <span
+            aria-hidden="true"
+            className={`mt-0.5 flex h-6.5 w-6.5 shrink-0 items-center justify-center rounded-md border-2 ${
+              consultar
+                ? "border-guirose-accion bg-guirose-accion text-white"
+                : "border-[#9FB3C8] bg-white"
+            }`}
+          >
+            {consultar && <CheckIcon className="h-4 w-4" weight="bold" />}
+          </span>
+          <span>
+            <span className="block text-base leading-snug font-semibold text-guirose-marino">
+              No estoy seguro
+            </span>
+            <span className="block text-sm leading-snug text-guirose-texto">
+              {consultar ? "Un asesor te ayudará a elegir." : "Que me asesoren"}
+            </span>
+          </span>
+        </button>
       </div>
 
       <ul
         aria-labelledby="titulo-extension"
-        className="grid gap-3 sm:grid-cols-2 min-[1360px]:grid-cols-3"
+        className="grid grid-cols-2 gap-2.5 min-[1360px]:grid-cols-3"
       >
         {opciones.map((o) => {
           const cantidad = cantidades[o.descripcion] ?? 0;
           return (
             <li
               key={o.descripcion}
-              className={`flex items-center justify-between gap-2 rounded-[14px] border-[1.5px] py-2 pr-2 pl-4 ${
-                cantidad > 0
-                  ? "border-guirose-accion bg-guirose-espuma"
-                  : "border-guirose-borde bg-white"
+              className={`flex flex-col gap-1.5 rounded-[14px] border-[1.5px] py-2 pr-2 pl-3 sm:flex-row sm:items-center sm:justify-between sm:pl-4 ${
+                consultar
+                  ? "border-[#E3EAF2] bg-[#F5F7FA] opacity-45"
+                  : cantidad > 0
+                    ? "border-guirose-accion bg-guirose-espuma"
+                    : "border-guirose-borde bg-white"
               }`}
             >
-              <div>
-                <span className="block text-xl leading-tight font-bold text-guirose-marino">
+              <div className="flex items-baseline gap-2 sm:block">
+                <span className="block text-lg leading-tight font-bold text-guirose-marino">
                   {etiquetaOpcion(o)}
                 </span>
                 {metrosOpcion(o) && (
@@ -198,55 +250,28 @@ function FilaExtension({
               </div>
               <Cantidad
                 valor={cantidad}
+                bloqueado={consultar}
                 nombre={`extensión de ${etiquetaOpcion(o)}`}
                 onCambiar={(n) => onCambiar(o.descripcion, n)}
               />
             </li>
           );
         })}
-
-        <li className="sm:col-span-2 min-[1360px]:col-span-3">
-          <button
-            type="button"
-            aria-pressed={consultar}
-            onClick={onAlternarConsulta}
-            className="flex min-h-12 w-full touch-manipulation select-none items-center gap-3 rounded-[14px] border-[1.5px] border-dashed border-[#B9CBDD] bg-white px-4 text-left text-[17px] font-semibold text-guirose-marino transition duration-150 ease-out hover:border-guirose-accion focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul"
-          >
-            <span
-              aria-hidden="true"
-              className={`flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-md border-2 ${
-                consultar
-                  ? "border-guirose-accion bg-guirose-accion text-white"
-                  : "border-[#9FB3C8] bg-white"
-              }`}
-            >
-              {consultar && <CheckIcon className="h-3.5 w-3.5" weight="bold" />}
-            </span>
-            No estoy seguro, que me asesoren
-          </button>
-          <div aria-live="polite">
-            {consultar && (
-              <p className="mt-2 text-sm text-guirose-texto">
-                Perfecto, un asesor te ayudará a elegir.
-              </p>
-            )}
-          </div>
-        </li>
       </ul>
     </article>
   );
 }
 
 export default function SeccionMedidas({ grupos, opcionales }: Props) {
-  // elección del cliente
+  // elección del cliente (la extensión se maneja aparte: admite varias medidas)
   const [eleccion, setEleccion] = useState<Record<string, string>>(() =>
     Object.fromEntries(
       grupos
         .filter((g) => g.grupo !== "extension")
-        .map((g) => [g.grupo, masGrande(g.opciones).descripcion])
+        .map((g) => [g.grupo, masGrande(g.opciones).descripcion]),
     ),
   );
-  // extensiones: descripciones, cantidad
+  // extensiones: { descripción de la medida: cantidad }
   const [extensiones, setExtensiones] = useState<Record<string, number>>({});
   const [extConsultar, setExtConsultar] = useState(false);
   // accesorios opcionales agregados
@@ -254,15 +279,18 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
 
   const cambiarExtension = (valor: string, cantidad: number) =>
     setExtensiones((actual) => {
-      const copia = {...actual};
+      const copia = { ...actual };
       if (cantidad <= 0) delete copia[valor];
       else copia[valor] = Math.min(cantidad, MAX_CANTIDAD);
       return copia;
     });
 
-  const quitarTodasLasExtensiones = () => {
-    setExtensiones({});
-    setExtConsultar(false);
+  const quitarTodasLasExtensiones = () => setExtensiones({});
+
+  // Marcar "No estoy seguro" borra las medidas elegidas
+  const alternarConsultaExtension = () => {
+    if (!extConsultar) setExtensiones({});
+    setExtConsultar(!extConsultar);
   };
 
   const alternar = (descripcion: string) =>
@@ -306,18 +334,18 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
                 <FotoAccesorio foto={datos.foto} className={fotoGrande} />
               </div>
 
-              <div className="flex flex-1 flex-col p-5">
+              <div className="flex flex-1 flex-col p-4.5">
                 <h3
                   id={idTitulo}
                   className="text-xl font-bold leading-tight text-guirose-marino"
                 >
                   {g.titulo}
                 </h3>
-                <p className="mt-1.5 text-base text-guirose-texto">
+                <p className="mt-1.5 text-[15px] leading-snug text-guirose-texto">
                   {AYUDA[g.grupo](g)}
                 </p>
 
-                <div className="relative mt-auto pt-5">
+                <div className="relative mt-auto pt-4">
                   <select
                     aria-labelledby={idTitulo}
                     value={valor}
@@ -348,22 +376,19 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
                   </select>
                   <CaretDownIcon
                     aria-hidden="true"
-                    className="pointer-events-none absolute right-4 bottom-[18px] h-5 w-5 text-guirose-marino"
+                    className="pointer-events-none absolute right-4 bottom-[17px] h-5 w-5 text-guirose-marino"
                   />
                 </div>
 
-                <div aria-live="polite" className="min-h-[4.75rem]">
-                  {elegido && (
-                    <p className="mt-3 text-sm leading-snug text-guirose-texto">
-                      {descripcionDetallada(elegido)}
-                    </p>
-                  )}
-                  {valor === CONSULTAR && (
-                    <p className="mt-3 text-sm text-guirose-texto">
-                      Perfecto, un asesor te ayudará a elegir.
-                    </p>
-                  )}
-                </div>
+                {/* una sola línea, con alto reservado para que no salten las tarjetas */}
+                <p
+                  aria-live="polite"
+                  className="mt-2.5 min-h-5 text-sm leading-snug text-guirose-texto"
+                >
+                  {valor === CONSULTAR
+                    ? "Un asesor te ayudará a elegir."
+                    : elegido && detalleCorto(g.grupo, elegido)}
+                </p>
               </div>
             </article>
           );
@@ -381,22 +406,22 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
                 <span className={etiquetaOpcional}>Opcional</span>
               </div>
 
-              <div className="flex flex-1 flex-col p-5">
+              <div className="flex flex-1 flex-col p-4.5">
                 <h3 className="text-xl font-bold leading-tight text-guirose-marino">
                   {datos.nombre} {detalle?.[0]}
                 </h3>
                 {detalle && detalle.length > 1 && (
-                  <p className="mt-1.5 text-base text-guirose-texto">
+                  <p className="mt-1.5 text-[15px] leading-snug text-guirose-texto">
                     {detalle.slice(1).join(" - ")}
                   </p>
                 )}
 
-                <div className="mt-auto pt-5">
+                <div className="mt-auto pt-4">
                   <button
                     type="button"
                     aria-pressed={agregado}
                     onClick={() => alternar(o.descripcion)}
-                    className={`flex h-14 w-full touch-manipulation select-none items-center justify-center gap-2 rounded-xl border-2 px-6 text-lg font-semibold transition duration-150 ease-out active:scale-[0.97] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul ${
+                    className={`flex h-13 w-full touch-manipulation select-none items-center justify-center gap-2 rounded-xl border-2 px-6 text-[17px] font-semibold transition duration-150 ease-out active:scale-[0.97] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul ${
                       agregado
                         ? "border-guirose-marino bg-guirose-marino text-white"
                         : "border-guirose-accion text-guirose-accion hover:bg-guirose-accion hover:text-white"
@@ -410,6 +435,7 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
                     {agregado ? "Agregada" : "Agregar"}
                   </button>
                 </div>
+                <p aria-hidden="true" className="mt-2.5 min-h-5" />
               </div>
             </article>
           );
@@ -423,7 +449,7 @@ export default function SeccionMedidas({ grupos, opcionales }: Props) {
           cantidades={extensiones}
           consultar={extConsultar}
           onCambiar={cambiarExtension}
-          onAlternarConsulta={() => setExtConsultar((actual) => !actual)}
+          onAlternarConsulta={alternarConsultaExtension}
           onQuitarTodo={quitarTodasLasExtensiones}
         />
       )}
