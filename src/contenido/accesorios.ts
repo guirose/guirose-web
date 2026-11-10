@@ -26,7 +26,7 @@ const REGLAS: Regla[] = [
     foto: "cable-aceleracion-uflex",
   },
   {
-    patron: /^INTERRUPTORES? DE ENCENDIDO D MOTOR CON LLLAVE/,
+    patron: /^INTERRUPTORES? DE ENCENDIDO DE MOTOR CON LLAVE/,
     nombre: "Interruptor de encendido con llave",
     foto: "interruptor-llave",
   },
