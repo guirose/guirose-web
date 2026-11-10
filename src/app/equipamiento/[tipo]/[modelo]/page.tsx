@@ -15,6 +15,8 @@ import SeccionOfrece from "../../_equipamiento/SeccionOfrece";
 import PasosCotizacion from "@/ui/PasosCotizacion";
 import FranjaCotizar from "../../_equipamiento/FranjaCotizar";
 import BarraCotizar from "../../_equipamiento/BarraCotizar";
+import Image from "next/image";
+import HeroInterno from "@/ui/HeroInterno";
 
 type Props = { params: Promise<{ tipo: string; modelo: string }> };
 
@@ -50,6 +52,21 @@ export default async function PaginaEquipamiento({ params }: Props) {
 
   return (
     <>
+      <HeroInterno
+        tono="claro"
+        esTituloPrincipal={false}
+        titulo="Arma tu equipamiento"
+        descripcion="Revisa lo que GUIROSE incluye con tu motor y suma los accesorios que necesites"
+        imagen={
+          <Image
+            src="/imagenes/banner-ficha.jpg"
+            alt=""
+            fill
+            sizes="(min-width: 640px) 62vw, 100vw"
+            className="object-cover object-right"
+          />
+        }
+      />
       <div className="mx-auto max-w-[1440px] px-6 pb-0 lg:px-[67px]">
         <BarraFicha
           migas={[
