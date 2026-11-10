@@ -64,11 +64,10 @@ function Flecha({ posicion }: { posicion: number }) {
 export default function PasosCotizacion() {
   return (
     <div className="mx-auto max-w-[1440px] px-6 lg:px-[67px]">
-      <section className="mt-8 border-t border-guirose-espuma-fuerte pt-8 pb-12 lg:mt-10 lg:pt-10 lg:pb-16">
+      <section className="border-t border-guirose-espuma-fuerte pt-8 pb-12 lg:pt-10 lg:pb-16">
         <h2 className="text-[22px] font-bold leading-[1.15] tracking-[-0.02em] text-guirose-marino lg:text-[24px]">
           ¿Qué necesitas para completar tu cotización?
         </h2>
-
         <AnimarAlVer>
           <ol className="mt-5 grid gap-5 lg:mt-6 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-start lg:gap-4">
             {PASOS.map((paso, i) => {

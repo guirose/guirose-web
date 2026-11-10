@@ -43,7 +43,7 @@ export default function SeccionOfrece({ items }: Props) {
   return (
     <section
       aria-labelledby="titulo-ofrece"
-      className="border-t border-guirose-espuma-fuerte py-8 lg:py-12"
+      className="border-t border-guirose-espuma-fuerte pt-8 pb-6 lg:pt-12 lg:pb-8"
     >
       <h2
         id="titulo-ofrece"
