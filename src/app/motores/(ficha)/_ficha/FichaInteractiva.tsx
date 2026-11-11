@@ -2,10 +2,12 @@
 
 import { useState, type ReactNode } from "react";
 import Image from "next/image";
+import { ArrowRightIcon } from "@phosphor-icons/react/ssr";
 import Boton from "@/ui/Boton";
 import AnimarAlVer from "@/ui/AnimarAlVer";
 import FichaTecnica from "@/ui/FichaTecnica";
 import type { VistaVariante } from "@/contenido/motores";
+import { ruta } from "@/ruta";
 
 type Fila = { etiqueta: string; valor: string };
 
@@ -23,6 +25,7 @@ type PropsFichaInteractiva = {
   base: Fila[];
   children: ReactNode; // lo que va debajo (la banda)
   final?: ReactNode;
+  tipo: string;
 };
 
 // la configuracion que elige el cliente
@@ -71,7 +74,29 @@ const juntar = (lista: string[]) =>
     ? (lista[0] ?? "")
     : `${lista.slice(0, -1).join(", ")} y ${lista[lista.length - 1]}`;
 
+function BotonContinuar ({ href }: { href?: string }) {
+  const estilo = "h-14 w-full justify-center gap-3 text-lg font-semibold";
+  if (href) {
+    return (
+      <Boton href={href} variante="relleno" className={estilo}>
+        Continuar a equipamiento
+      </Boton>
+    );
+  }
+  return (
+    <button
+      type="button"
+      disabled
+      className={`flex cursor-not-allowed items-center rounded-[5px] border-2 border-guirose-accion bg-guirose-accion text-white opacity-40 ${estilo}`}
+    >
+      Continuar a equipamiento
+      <ArrowRightIcon aria-hidden="true" className="h-5 w-5" />
+    </button>
+  );
+}
+
 export default function FichaInteractiva({
+  tipo,
   barra,
   imagen,
   tipoNombre,
@@ -113,6 +138,10 @@ export default function FichaInteractiva({
     faltantes.length === 0
       ? candidatos.find((m) => CAMPOS.every((c) => m[c] === valorDe(c)))
       : undefined;
+
+  const hrefEquipamiento = modelo
+    ? ruta(`/equipamiento/${tipo}/${modelo.codigo}`)
+    : undefined;
 
   const claves = [
     { valor: cilindrada, etiqueta: "Cilindrada" },
@@ -317,13 +346,7 @@ export default function FichaInteractiva({
                     : `Elige ${juntar(faltantes.map((c) => NOMBRE_CORTO[c]))}`}
                 </p>
                 <div className="mt-4 hidden lg:block">
-                  <Boton
-                    href="#"
-                    variante="relleno"
-                    className="h-14 w-full justify-center gap-3 text-lg font-semibold"
-                  >
-                    Continuar a equipamiento
-                  </Boton>
+                  <BotonContinuar href={hrefEquipamiento} />
                 </div>
 
                 <p className="mt-3 text-sm text-guirose-texto">
@@ -344,13 +367,12 @@ export default function FichaInteractiva({
 
       {/* Celular */}
       <div className="sticky bottom-0 z-30 border-t border-guirose-espuma-fuerte bg-white px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] lg:hidden">
-        <Boton
-          href="#"
-          variante="relleno"
-          className="h-14 w-full justify-center gap-3 text-lg font-semibold"
-        >
-          Continuar a equipamiento
-        </Boton>
+        <p className="mb-2 text-center text-sm text-guirose-texto">
+          {modelo
+            ? `Tu modelo: ${modelo.codigo}`
+            : `Elige ${juntar(faltantes.map((c) => NOMBRE_CORTO[c]))}`}
+        </p>
+        <BotonContinuar href={hrefEquipamiento} />
       </div>
     </div>
   );

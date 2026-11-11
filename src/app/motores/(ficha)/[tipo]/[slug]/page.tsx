@@ -69,6 +69,7 @@ export default async function PaginaFicha({ params }: Props) {
       />
       <FichaInteractiva
         key={idDe(motor)}
+        tipo={tipo}
         barra={
           <BarraFicha
             migas={[
