@@ -140,7 +140,7 @@ export default function EncabezadoMovil({
         if (evento.key === "Escape") setPanel(null);
       }}
     >
-      <div className="flex items-center justify-between gap-2 px-4 py-2.5">
+      <div className="flex items-center justify-between gap-1.5 px-3 py-2.5 min-[360px]:gap-2 min-[360px]:px-4">
         <a
           href={ruta("/")}
           aria-label="GUIROSE, inicio"
@@ -148,8 +148,7 @@ export default function EncabezadoMovil({
         >
           {logo}
         </a>
-
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 min-[360px]:gap-2">
           <button
             type="button"
             aria-label={panel === "buscar" ? "Cerrar búsqueda" : "Buscar"}
@@ -167,13 +166,11 @@ export default function EncabezadoMovil({
               />
             )}
           </button>
-
           <BotonCotizacion
             cantidad={cantidadCotizacion}
             compacto
             className="h-11"
           />
-
           <button
             type="button"
             aria-label={panel === "menu" ? "Cerrar menú" : "Menú"}

@@ -122,13 +122,13 @@ export default function RootLayout({
               }
               secundario={
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-[11px] font-medium leading-none text-guirose-texto">
+                  <span className="text-[11px] font-medium leading-none text-guirose-texto max-[359px]:hidden">
                     Distribuidor autorizado de
                   </span>
                   <Image
                     src={logoMercury}
                     alt="Mercury"
-                    className="h-6 w-auto lg:h-7"
+                    className="h-5 w-auto min-[360px]:h-6 lg:h-7"
                   />
                 </div>
               }
