@@ -6,7 +6,6 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   CaretDownIcon,
-  CheckIcon,
   PencilSimpleIcon,
 } from "@phosphor-icons/react/ssr";
 import { fotoDe, rutaDe } from "@/contenido/motores";
@@ -17,15 +16,9 @@ import Aparecer from "@/ui/Aparecer";
 import FotoAccesorio from "@/app/equipamiento/_equipamiento/FotoAccesorio";
 import IndicadorPasos from "./IndicadorPasos";
 import TarjetasIncluidos from "./TarjetasIncluidos";
-
-const plural = (n: number, uno: string, varios: string) =>
-  `${n} ${n === 1 ? uno : varios}`;
-
-const enlace =
-  "inline-flex min-h-11 touch-manipulation select-none items-center gap-1.5 text-base font-semibold text-guirose-accion transition duration-150 ease-out hover:underline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul";
-
-const botonPrincipal =
-  "flex min-h-14 w-full touch-manipulation select-none items-center justify-center gap-2.5 rounded-xl bg-guirose-accion px-4 py-3 text-base leading-tight sm:px-6 sm:text-[17px] font-semibold text-white transition duration-150 ease-out hover:bg-guirose-marino active:scale-[0.97] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul";
+import PanelCotizacion, { textoCorto } from "./PanelCotizacion";
+import Vacio from "./Vacio";
+import { botonPrincipal, enlace } from "./estilos";
 
 function TituloSeccion({
   children,
@@ -89,27 +82,6 @@ function Tarjeta({ linea }: { linea: LineaResumen }) {
   );
 }
 
-function Vacio() {
-  return (
-    <div className="mx-auto max-w-[1440px] px-6 py-16 lg:px-[67px] lg:py-24">
-      <h1 className="text-[28px] leading-tight font-bold tracking-[-0.02em] text-guirose-marino lg:text-[36px]">
-        Aún no elegiste tu equipo
-      </h1>
-      <p className="mt-3 max-w-[560px] text-lg text-guirose-texto">
-        Elige un motor y sus accesorios para ver aquí el resumen de tu
-        cotización.
-      </p>
-      <a
-        href={ruta("/motores")}
-        className={`${botonPrincipal} mt-8 max-w-[320px]`}
-      >
-        Ver motores
-        <ArrowRightIcon aria-hidden="true" className="h-5 w-5" />
-      </a>
-    </div>
-  );
-}
-
 export default function ResumenCotizacion() {
   const { seleccion, listo } = useCotizacion();
   const resumen = useMemo(
@@ -127,10 +99,7 @@ export default function ResumenCotizacion() {
     nombreMotor,
     caracteristicas,
     medidas,
-    medidasElegidas,
     extensiones,
-    totalExtensiones,
-    extConsultar,
     opcionales,
     tarjetasIncluidos,
     listaIncluidos,
@@ -142,55 +111,8 @@ export default function ResumenCotizacion() {
   );
   const hrefMotor = ruta(rutaDe(motor));
   const elegidas = [...medidas, ...extensiones, ...opcionales];
-  const todasLasMedidas = medidasElegidas === medidas.length;
-
-  const resumenCorto = [
-    variante.codigo,
-    extConsultar
-      ? "extensiones por consultar"
-      : totalExtensiones > 0
-        ? plural(totalExtensiones, "extensión", "extensiones")
-        : undefined,
-    opcionales.length > 0
-      ? plural(opcionales.length, "accesorio", "accesorios")
-      : undefined,
-  ]
-    .filter(Boolean)
-    .join(" · ");
-
-  const filas: { etiqueta: string; valor: ReactNode }[] = [
-    { etiqueta: "Motor", valor: `${motor.linea} ${motor.hp} HP` },
-    { etiqueta: "Modelo", valor: variante.codigo },
-    {
-      etiqueta: "Medidas",
-      valor: (
-        <span className="inline-flex items-center gap-2">
-          {todasLasMedidas && (
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1B7F3B] text-white">
-              <CheckIcon aria-hidden="true" className="h-3 w-3" weight="bold" />
-            </span>
-          )}
-          {medidasElegidas} de {medidas.length}
-        </span>
-      ),
-    },
-    {
-      etiqueta: "Extensiones de arnés",
-      valor: extConsultar
-        ? "Por consultar"
-        : totalExtensiones > 0
-          ? totalExtensiones
-          : "Ninguna",
-    },
-    {
-      etiqueta: "Accesorios agregados",
-      valor: opcionales.length > 0 ? opcionales.length : "Ninguno",
-    },
-    {
-      etiqueta: "Incluido por GUIROSE",
-      valor: plural(totalIncluidos, "ítem", "ítems"),
-    },
-  ];
+  const hrefDatos = ruta("/cotizacion/datos");
+  const resumenCorto = textoCorto(resumen);
 
   return (
     <>
@@ -295,33 +217,15 @@ export default function ResumenCotizacion() {
             </Aparecer>
           </div>
           {/* resumen fijo para vista en escritorio */}
-          <aside
-            aria-label="Resumen de tu cotización"
-            className="hidden rounded-2xl border border-guirose-espuma-fuerte bg-guirose-espuma p-6 lg:sticky lg:top-[140px] lg:block"
+          <PanelCotizacion
+            resumen={resumen}
+            className="hidden lg:sticky lg:top-[140px] lg:block"
           >
-            <h2 className="text-2xl font-bold text-guirose-marino">
-              Tu cotización
-            </h2>
-            <dl className="mt-3">
-              {filas.map((fila) => (
-                <div
-                  key={fila.etiqueta}
-                  className="flex items-center justify-between gap-4 border-b border-guirose-espuma-fuerte py-3 last:border-b-0"
-                >
-                  <dt className="text-base text-guirose-texto">
-                    {fila.etiqueta}
-                  </dt>
-                  <dd className="text-base font-bold text-guirose-marino">
-                    {fila.valor}
-                  </dd>
-                </div>
-              ))}
-            </dl>
             <p className="mt-2 text-[15px] leading-snug text-guirose-texto">
               Todavía no se envía nada. El siguiente paso es dejar tus datos
               para recibir la propuesta.
             </p>
-            <a href="#" className={`${botonPrincipal} mt-5`}>
+            <a href={hrefDatos} className={`${botonPrincipal} mt-5`}>
               Continuar con mis datos
               <ArrowRightIcon aria-hidden="true" className="h-5 w-5" />
             </a>
@@ -332,7 +236,7 @@ export default function ResumenCotizacion() {
               <ArrowLeftIcon aria-hidden="true" className="h-[18px] w-[18px]" />
               Volver al equipamiento
             </a>
-          </aside>
+          </PanelCotizacion>
         </div>
       </div>
 
@@ -341,7 +245,7 @@ export default function ResumenCotizacion() {
         <p className="mb-2 text-center text-sm text-guirose-texto">
           {resumenCorto}
         </p>
-        <a href="#" className={botonPrincipal}>
+        <a href={hrefDatos} className={botonPrincipal}>
           Continuar con mis datos
           <ArrowRightIcon aria-hidden="true" className="h-5 w-5" />
         </a>
