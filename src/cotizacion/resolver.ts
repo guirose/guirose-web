@@ -44,12 +44,12 @@ export type ResumenCotizacion = {
   totalExtensiones: number;
   extConsultar: boolean;
   opcionales: LineaResumen[];
-  destacados: Incluido[];
+  tarjetasIncluidos: Incluido[];
   listaIncluidos: string[];
   totalIncluidos: number;
 };
 
-const POR_CONSULTAR = "Lo eligirá tu asesor";
+const POR_CONSULTAR = "Un asesor te ayudará a elegir.";
 
 const ALTURAS: Record<Altura, string> = {
   15: "Cola corta 15″",
@@ -154,11 +154,10 @@ export function resolverCotizacion(sel: Seleccion): ResumenCotizacion | null {
   const opcionales = equipo.agregar.filter((o) => sel.agregados.includes(claveDe(o))).map(lineaDeOpcional);
 
   const incluidos = [...equipo.ofrece.incluido, ...equipo.ofrece.obligatorio];
-  const destacados = incluidos
-    .map((item) => ({ clave: claveDe(item), ...describirItem(item) }))
-    .filter((d) => d.foto)
-    .slice(0, 6)
-    .map(({ clave, nombre, foto }) => ({ clave, nombre, foto }));
+  const tarjetasIncluidos = incluidos.map((item) => {
+    const { nombre, foto } = describirItem(item);
+    return { clave: claveDe(item), nombre, foto };
+  });
 
   return {
     motor,
@@ -175,7 +174,7 @@ export function resolverCotizacion(sel: Seleccion): ResumenCotizacion | null {
     totalExtensiones,
     extConsultar,
     opcionales,
-    destacados,
+    tarjetasIncluidos,
     listaIncluidos: incluidos.map(descripcionDetallada),
     totalIncluidos: incluidos.length,
   };

@@ -14,13 +14,13 @@ export default function IndicadorPasos({ actual }: Props) {
         return (
           <li
             key={texto}
-            aria-label={activo ? "step" : undefined}
+            aria-current={activo ? "step" : undefined}
             className="flex items-center"
           >
             {i > 0 && (
               <span
                 aria-hidden="true"
-                className={`mx-2.5 h-0.5 w-6 lg:w-8 ${n <= actual ? "bg-[#1B7F3B]" : "bg-guirose-espuma-fuerte"}`}
+                className={`mx-1.5 h-0.5 w-5 sm:mx-2.5 sm:w-6 lg:w-8 ${n <= actual ? "bg-[#1B7F3B]" : "bg-guirose-espuma-fuerte"}`}
               />
             )}
             <span
@@ -43,9 +43,9 @@ export default function IndicadorPasos({ actual }: Props) {
               )}
             </span>
             <span
-              className={`ml-2.5 text-base font-semibold ${
+              className={`ml-2.5 whitespace-nowrap text-base font-semibold ${
                 activo || hecho ? "text-guirose-marino" : "text-[#4B5D70]"
-              } ${activo ? "" : "hidden sm:inline"}`}
+              } ${activo ? "max-[359px]:hidden" : "hidden sm:inline"}`}
             >
               {texto}
             </span>

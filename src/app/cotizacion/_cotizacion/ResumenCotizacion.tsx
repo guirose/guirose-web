@@ -16,6 +16,7 @@ import { ruta } from "@/ruta";
 import Aparecer from "@/ui/Aparecer";
 import FotoAccesorio from "@/app/equipamiento/_equipamiento/FotoAccesorio";
 import IndicadorPasos from "./IndicadorPasos";
+import TarjetasIncluidos from "./TarjetasIncluidos";
 
 const plural = (n: number, uno: string, varios: string) =>
   `${n} ${n === 1 ? uno : varios}`;
@@ -24,7 +25,7 @@ const enlace =
   "inline-flex min-h-11 touch-manipulation select-none items-center gap-1.5 text-base font-semibold text-guirose-accion transition duration-150 ease-out hover:underline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul";
 
 const botonPrincipal =
-  "flex h-14 w-full touch-manipulation select-none items-center justify-center gap-2.5 rounded-xl bg-guirose-accion px-6 text-[17px] font-semibold text-white transition duration-150 ease-out hover:bg-guirose-marino active:scale-[0.97] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul";
+  "flex min-h-14 w-full touch-manipulation select-none items-center justify-center gap-2.5 rounded-xl bg-guirose-accion px-4 py-3 text-base leading-tight sm:px-6 sm:text-[17px] font-semibold text-white transition duration-150 ease-out hover:bg-guirose-marino active:scale-[0.97] focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-guirose-azul";
 
 function TituloSeccion({
   children,
@@ -60,11 +61,13 @@ function Cambiar({ href, children }: { href: string; children: ReactNode }) {
 function Tarjeta({ linea }: { linea: LineaResumen }) {
   return (
     <li className="flex flex-col gap-2">
-      <div className="relative aspect-[4/3]">
-        <FotoAccesorio
-          foto={linea.foto}
-          className="h-full w-full rounded-xl bg-guirose-espuma"
-        />
+      <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+        <div className="absolute inset-0">
+          <FotoAccesorio
+            foto={linea.foto}
+            className="h-full w-full rounded-xl bg-guirose-espuma"
+          />
+        </div>
         {linea.cantidad !== undefined && (
           <span className="absolute top-1.5 right-1.5 flex h-[30px] min-w-[30px] items-center justify-center rounded-full bg-guirose-accion px-2 text-[15px] font-bold text-white">
             ×{linea.cantidad}
@@ -129,7 +132,7 @@ export default function ResumenCotizacion() {
     totalExtensiones,
     extConsultar,
     opcionales,
-    destacados,
+    tarjetasIncluidos,
     listaIncluidos,
     totalIncluidos,
   } = resumen;
@@ -210,16 +213,16 @@ export default function ResumenCotizacion() {
           <span className="absolute top-0 left-0 h-0.5 w-24 -translate-y-px bg-guirose-azul" />
         </div>
 
-        <div className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_400px]">
-          <div className="flex flex-col gap-10">
+        <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-10 lg:grid-cols-[minmax(0,1fr)_400px]">
+          <div className="flex min-w-0 flex-col gap-10">
             {/* tu motor */}
             <Aparecer>
               <section aria-labelledby="titulo-motor">
                 <TituloSeccion>
                   <span id="titulo-motor">Tu motor</span>
                 </TituloSeccion>
-                <div className="mt-5 flex items-start gap-5">
-                  <div className="relative h-[132px] w-[132px] shrink-0 rounded-xl bg-guirose-espuma">
+                <div className="mt-5 flex items-start gap-4 sm:gap-5">
+                  <div className="relative h-24 w-24 sm:h-[132px] sm:w-[132px] shrink-0 rounded-xl bg-guirose-espuma">
                     <Image
                       src={fotoDe(motor)}
                       alt={`Motor ${nombreMotor}`}
@@ -229,8 +232,8 @@ export default function ResumenCotizacion() {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-2xl leading-tight font-bold text-guirose-marino">
+                    <div className="flex flex-col items-start gap-1 sm:flex-row sm:justify-between sm:gap-3">
+                      <h3 className="text-xl sm:text-2xl leading-tight font-bold text-guirose-marino">
                         {nombreMotor}
                       </h3>
                       <Cambiar href={hrefMotor}>Cambiar motor</Cambiar>
@@ -252,7 +255,6 @@ export default function ResumenCotizacion() {
                 </div>
               </section>
             </Aparecer>
-
             {/* lo que elegiste */}
             <Aparecer retraso={80}>
               <section aria-labelledby="titulo-elegiste">
@@ -261,35 +263,20 @@ export default function ResumenCotizacion() {
                 >
                   <span id="titulo-elegiste">Lo que elegiste</span>
                 </TituloSeccion>
-                <ul className="mt-5 grid grid-cols-2 gap-3.5 sm:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 min-[1400px]:grid-cols-6">
+                <ul className="mt-5 grid grid-cols-2 gap-3.5 sm:grid-cols-[repeat(auto-fill,minmax(140px,1fr))]">
                   {elegidas.map((linea) => (
                     <Tarjeta key={linea.clave} linea={linea} />
                   ))}
                 </ul>
               </section>
             </Aparecer>
-
             {/* lo que ofrece GUIROSE */}
             <Aparecer retraso={160}>
               <section aria-labelledby="titulo-ofrece-resumen">
                 <TituloSeccion>
                   <span id="titulo-ofrece-resumen">Lo que ofrece GUIROSE</span>
                 </TituloSeccion>
-                <ul className="mt-5 grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-3 min-[1400px]:grid-cols-6">
-                  {destacados.map((d) => (
-                    <li key={d.clave} className="flex flex-col gap-2">
-                      <div className="relative aspect-[4/3]">
-                        <FotoAccesorio
-                          foto={d.foto}
-                          className="h-full w-full rounded-xl bg-guirose-espuma"
-                        />
-                      </div>
-                      <p className="text-[15px] leading-snug font-semibold text-guirose-marino">
-                        {d.nombre}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
+                <TarjetasIncluidos items={tarjetasIncluidos} />
                 <details className="group mt-5">
                   <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2 text-base font-semibold text-guirose-accion [&::-webkit-details-marker]:hidden">
                     Ver los {totalIncluidos} ítems incluidos
@@ -298,7 +285,7 @@ export default function ResumenCotizacion() {
                       className="h-5 w-5 transition duration-150 ease-out group-open:rotate-180"
                     />
                   </summary>
-                  <ul className="mt-2 list-disc space-y-1.5 pl-5 text-[15px] leading-snug text-guirose-texto">
+                  <ul className="mt-2 list-disc pl-5 text-[15px] leading-snug text-guirose-texto lg:columns-2 lg:gap-x-10 [&>li]:mb-2 [&>li]:break-inside-avoid">
                     {listaIncluidos.map((texto, i) => (
                       <li key={`${i}-${texto}`}>{texto}</li>
                     ))}
@@ -307,7 +294,6 @@ export default function ResumenCotizacion() {
               </section>
             </Aparecer>
           </div>
-
           {/* resumen fijo para vista en escritorio */}
           <aside
             aria-label="Resumen de tu cotización"
