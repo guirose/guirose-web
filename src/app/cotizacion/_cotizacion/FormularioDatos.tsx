@@ -15,6 +15,7 @@ import {
   ORDEN,
   datosVacios,
   formatearCelular,
+  sugerirCorreo,
   validar,
   type Campo,
   type DatosCliente,
@@ -84,6 +85,7 @@ export default function FormularioDatos() {
     [seleccion],
   );
   const [datos, setDatos] = useState<DatosCliente>(datosVacios);
+  const [sugerenciaCorreo, setSugerenciaCorreo] = useState<string>();
   const [intento, setIntento] = useState(false);
   const [aviso, setAviso] = useState<string | null>(null);
   const campos = useRef<Partial<Record<Campo, HTMLElement | null>>>({});
@@ -225,10 +227,7 @@ export default function FormularioDatos() {
                       maxLength={11}
                       value={datos.celular}
                       onChange={(e) =>
-                        cambiar(
-                          "celular",
-                          formatearCelular(e.target.value),
-                        )
+                        cambiar("celular", formatearCelular(e.target.value))
                       }
                       aria-invalid={Boolean(errores.celular)}
                       aria-describedby={describir("celular", true)}
@@ -329,7 +328,13 @@ export default function FormularioDatos() {
                     enterKeyHint="next"
                     placeholder="tucorreo@ejemplo.com"
                     value={datos.correo}
-                    onChange={(e) => cambiar("correo", e.target.value)}
+                    onChange={(e) => {
+                      cambiar("correo", e.target.value);
+                      setSugerenciaCorreo(undefined);
+                    }}
+                    onBlur={() =>
+                      setSugerenciaCorreo(sugerirCorreo(datos.correo))
+                    }
                     aria-invalid={Boolean(errores.correo)}
                     aria-describedby={describir("correo", true)}
                     className={caja(errores.correo)}
@@ -337,6 +342,21 @@ export default function FormularioDatos() {
                   <p id="ayuda-correo" className={ayuda}>
                     Si prefieres recibir la propuesta también por correo.
                   </p>
+                  {sugerenciaCorreo && (
+                    <p className={`${ayuda} mt-1.5`} aria-live="polite">
+                      ¿Quisite decir{" "}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          cambiar("correo", sugerenciaCorreo);
+                        }}
+                        className="min-h-[44px] touch-manipulation font-semibold text-guirose-accion underline underline-offset-4"
+                      >
+                        {sugerenciaCorreo}
+                      </button>
+                      ?
+                    </p>
+                  )}
                   <MensajeError id="error-correo" texto={errores.correo} />
                 </div>
 
