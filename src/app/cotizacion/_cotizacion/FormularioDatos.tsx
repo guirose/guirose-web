@@ -246,7 +246,18 @@ export default function FormularioDatos() {
                     Documento
                   </label>
                   <div className={cajaCompuesta(errores.documento)}>
-                    <div className="relative flex shrink-0 border-r-[1.5px] border-[#D9E3EE] bg-[#F5FAFF]">
+                    <div className="relative flex shrink-0 items-center gap-2 border-r-[1.5px] border-[#D9E3EE] bg-[#F5FAFF] pr-3 pl-4">
+                      <span
+                        aria-hidden="true"
+                        className="text-[17px] font-semibold text-guirose-marino"
+                      >
+                        {documento.corto}
+                      </span>
+                      <CaretDownIcon
+                        aria-hidden="true"
+                        weight="bold"
+                        className="h-4 w-4 text-guirose-marino"
+                      />
                       <select
                         aria-label="Tipo de documento"
                         value={datos.tipoDocumento}
@@ -257,21 +268,16 @@ export default function FormularioDatos() {
                           );
                           cambiar("documento", "");
                         }}
-                        className="cursor-pointer appearance-none bg-transparent pr-10 pl-4 text-[17px] font-semibold text-guirose-marino outline-none"
+                        className="absolute inset-0 h-full w-full cursor-pointer appearance-none text-[17px] opacity-0"
                       >
                         {(Object.keys(DOCUMENTOS) as TipoDocumento[]).map(
                           (tipo) => (
-                            <option key={tipo} value={tipo}>
+                            <option key={tipo} value={tipo} className="py-3">
                               {DOCUMENTOS[tipo].nombre}
                             </option>
                           ),
                         )}
                       </select>
-                      <CaretDownIcon
-                        aria-hidden="true"
-                        weight="bold"
-                        className="pointer-events-none absolute top-1/2 right-3.5 h-4 w-4 -translate-y-1/2 text-guirose-marino"
-                      />
                     </div>
                     <input
                       id="documento"
@@ -344,11 +350,12 @@ export default function FormularioDatos() {
                   </p>
                   {sugerenciaCorreo && (
                     <p className={`${ayuda} mt-1.5`} aria-live="polite">
-                      ¿Quisite decir{" "}
+                      ¿Quisiste decir{" "}
                       <button
                         type="button"
                         onClick={() => {
                           cambiar("correo", sugerenciaCorreo);
+                          setSugerenciaCorreo(undefined);
                         }}
                         className="min-h-[44px] touch-manipulation font-semibold text-guirose-accion underline underline-offset-4"
                       >

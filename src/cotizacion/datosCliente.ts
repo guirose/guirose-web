@@ -20,6 +20,7 @@ export const DOCUMENTOS: Record<
   TipoDocumento,
   {
     nombre: string;
+    corto: string;
     largo: number;
     ejemplo: string;
     soloNumeros: boolean;
@@ -28,6 +29,7 @@ export const DOCUMENTOS: Record<
 > = {
   dni: {
     nombre: "DNI",
+    corto: "DNI",
     largo: 8,
     ejemplo: "8 dígitos",
     soloNumeros: true,
@@ -35,6 +37,7 @@ export const DOCUMENTOS: Record<
   },
   ruc: {
     nombre: "RUC",
+    corto: "RUC",
     largo: 11,
     ejemplo: "11 dígitos",
     soloNumeros: true,
@@ -42,6 +45,7 @@ export const DOCUMENTOS: Record<
   },
   ce: {
     nombre: "Carné ext.",
+    corto: "CE",
     largo: 12,
     ejemplo: "Hasta 12 caracteres",
     soloNumeros: false,
