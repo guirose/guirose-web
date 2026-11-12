@@ -356,14 +356,14 @@ const kg = (n: number): string => String(n).replace(".", ",");
 
 // rango kg
 export const rangoPeso = (motor: Motor): string => {
-  const pesos = motor.variantes.map((x) => x.peso);
+  const pesos = ofrecidas(motor).map((x) => x.peso);
   const min = Math.min(...pesos);
   const max = Math.max(...pesos);
   return min === max ? `${kg(min)} kg` : `${kg(min)} - ${kg(max)} kg`;
 };
 
 export const rangoAltura = (motor: Motor): string => {
-  const alturas = [...new Set(motor.variantes.map((x) => x.altura))].sort(
+  const alturas = [...new Set(ofrecidas(motor).map((x) => x.altura))].sort(
     (a, b) => a - b,
   );
   return alturas.length === 1
@@ -413,8 +413,21 @@ export const buscarVariante = (
   return undefined;
 };
 
-// entrada por variante, pagina por modelo
-export const todasLasVariantes = (): { tipo: TipoMotor; codigo: string }[] =>
-  motores.flatMap ((m) =>
-    m.variantes.map((x) => ({ tipo: m.tipo, codigo: x.codigo })),
-  );
+// Por el momento se ofrecen modelos para el sector de pesca artesanal|
+// Para este caso por cada potencia se mantiene la cola mas larga y la potencia
+export const ofrecidas = (motor: Motor): Variante[] => {
+  const masLarga = Math.max(...motor.variantes.map((x) => x.altura));
+  const largas = motor.variantes.filter((x) => x.altura === masLarga);
+  const electricas = largas.filter((x) => x.inclinacion === "Eléctrica");
+  return electricas.length > 0 ? electricas : largas;
+};
+
+// Modelos que se ofrecen actualmente
+export const seOfrece = (motor: Motor, variante: Variante): boolean =>
+  ofrecidas(motor).some((x) => x.codigo === variante.codigo);
+
+// pagina de equipamiento por cada modelo ofrecido
+export const variantesOfrecidas = (): { tipo: TipoMotor; codigo: string }[] =>
+  motores.flatMap((m) =>
+    ofrecidas(m).map((x) => ({ tipo: m.tipo, codigo: x.codigo })),
+);

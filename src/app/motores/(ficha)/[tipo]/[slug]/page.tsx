@@ -12,6 +12,7 @@ import {
   idDe,
   infoTipo,
   motores,
+  ofrecidas,
   rangoAltura,
   rangoPeso,
   rutaDe,
@@ -110,7 +111,7 @@ export default async function PaginaFicha({ params }: Props) {
         cilindrada={motor.datos.cilindrada}
         rangoPeso={rangoPeso(motor)}
         rangoAltura={rangoAltura(motor)}
-        modelos={motor.variantes.map(vistaDe)}
+        modelos={ofrecidas(motor).map(vistaDe)}
         base={fichaDe(motor)}
         final={<PasosCotizacion />}
       >

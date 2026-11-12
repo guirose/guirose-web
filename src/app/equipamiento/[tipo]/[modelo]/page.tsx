@@ -7,7 +7,7 @@ import {
   esTipoMotor,
   infoTipo,
   rutaDe,
-  todasLasVariantes,
+  variantesOfrecidas,
 } from "@/contenido/motores";
 import { ruta } from "@/ruta";
 import SeccionMedidas from "../../_equipamiento/SeccionMedidas";
@@ -24,7 +24,7 @@ export const dynamicParams = false;
 
 // una pagina por cada variante de cada motor
 export function generateStaticParams() {
-  return todasLasVariantes().map(({ tipo, codigo }) => ({
+  return variantesOfrecidas().map(({ tipo, codigo }) => ({
     tipo,
     modelo: codigo,
   }));
