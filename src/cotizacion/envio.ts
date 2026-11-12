@@ -10,6 +10,14 @@ export function guardarEnvio(envio: Envio) {
   }
 }
 
+export function borrarEnvio() {
+  try {
+    window.sessionStorage.removeItem(LLAVE);
+  } catch {
+    // usando sessionStorage no se borra nada
+  }
+}
+
 export function leerEnvioTexto(): string | null {
   try {
     return window.sessionStorage.getItem(LLAVE);

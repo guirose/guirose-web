@@ -2,13 +2,14 @@
 
 import { useEffect, useMemo, useSyncExternalStore } from "react";
 import {
+  ArrowRightIcon,
   CheckCircleIcon,
   CheckIcon,
   HouseIcon,
   WhatsappLogoIcon,
 } from "@phosphor-icons/react/ssr";
 import { guardarSeleccion } from "@/cotizacion/almacen";
-import { interpretarEnvio, leerEnvioTexto } from "@/cotizacion/envio";
+import { borrarEnvio, interpretarEnvio, leerEnvioTexto } from "@/cotizacion/envio";
 import { ruta } from "@/ruta";
 import { botonPrincipal, enlace } from "./estilos";
 
@@ -20,18 +21,46 @@ const PASOS_SIGUIENTES = [
   "Recibes tu cotización personalizada y resolvemos tus dudas.",
 ];
 
-export default function Gracias() {
-  const texto = useSyncExternalStore(
-    sinSuscripcion,
-    leerEnvioTexto,
-    () => null,
+function SinEnvio() {
+  return (
+    <div className="mx-auto max-w-[1440px] px-6 py-16 lg:px[67px] lg:py-24">
+      <h1 className="text-[28px] leading-tight font-bold tracking-[-0.02em] text-guirose-marino lg:text-[36px]">
+        No hay una cotización reciente
+      </h1>
+      <p className="mt-3 max-w-[560px] text-lg text-guirose-texto">
+        Vuelve a elegir un equipo.
+      </p>
+      <a href={ruta("/motores")} className={`${botonPrincipal} mt-8 max-w-[320px]`}>
+        Ver motores
+        <ArrowRightIcon aria-hidden="true" className="h-5 w-5" />
+      </a>
+    </div>
   );
-  const envio = useMemo(() => interpretarEnvio(texto), [texto]);
+}
 
-  // la cotizacion se vacía
+export default function Gracias() {
+  const texto = useSyncExternalStore(sinSuscripcion, leerEnvioTexto, () => null);
+  const envio = useMemo(() => interpretarEnvio(texto), [texto]);
+  const listo = useSyncExternalStore(sinSuscripcion, () => true, () => false);
+
   useEffect(() => {
     if (envio) guardarSeleccion(null);
   }, [envio]);
+
+  // al salir de la pantalla se borran los datos personales
+  useEffect(() => {
+    const alRestaurar = (e: PageTransitionEvent) => {
+      if (e.persisted) window.location.reload();
+    };
+    window.addEventListener("pagehide", borrarEnvio);
+    window.addEventListener("pageshow", alRestaurar);
+    return () => {
+      window.removeEventListener("pagehide", borrarEnvio);
+      window.removeEventListener("pageshow", alRestaurar);
+    };
+  }, []);
+
+  if(listo && !envio) return <SinEnvio />
 
   return (
     <div className="mx-auto max-w-[1440px] px-6 pt-10 pb-16 lg:px.[67px] lg:pt-16 lg:pb-20">
