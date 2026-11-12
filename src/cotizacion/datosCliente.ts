@@ -53,6 +53,8 @@ export const datosVacios: DatosCliente = {
 
 export const soloDigitos = (texto: string) => texto.replace(/\D/g, "");
 
+export const formatearCelular = (texto: string)
+
 // orden en pantalla
 export const ORDEN: Campo[] = ["nombre", "celular", "documento", "correo", "acepta"];
 
