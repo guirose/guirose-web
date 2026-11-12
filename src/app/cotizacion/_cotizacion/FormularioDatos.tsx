@@ -14,6 +14,7 @@ import {
   DOCUMENTOS,
   ORDEN,
   datosVacios,
+  formatearCelular,
   validar,
   type Campo,
   type DatosCliente,
@@ -226,7 +227,7 @@ export default function FormularioDatos() {
                       onChange={(e) =>
                         cambiar(
                           "celular",
-                          e.target.value.replace(/[^\d ]/g, ""),
+                          formatearCelular(e.target.value),
                         )
                       }
                       aria-invalid={Boolean(errores.celular)}
