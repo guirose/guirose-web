@@ -22,6 +22,7 @@ import {
   type TipoDocumento,
 } from "@/cotizacion/datosCliente";
 import { guardarEnvio } from "@/cotizacion/envio";
+import { guardarCotizacion } from "@/cotizacion/guardar";
 import { armarMensaje, enlaceWhatsApp } from "@/cotizacion/mensaje";
 import { resolverCotizacion } from "@/cotizacion/resolver";
 import { useCotizacion } from "@/cotizacion/useCotizacion";
@@ -88,6 +89,8 @@ export default function FormularioDatos() {
   const [sugerenciaCorreo, setSugerenciaCorreo] = useState<string>();
   const [intento, setIntento] = useState(false);
   const [aviso, setAviso] = useState<string | null>(null);
+  const [idCotizacion] = useState(() => crypto.randomUUID());
+  const [ enviando, setEnviando] = useState(false);
   const campos = useRef<Partial<Record<Campo, HTMLElement | null>>>({});
 
   if (!listo) return <div aria-hidden="true" className="min-h-[70vh]" />;
@@ -105,8 +108,9 @@ export default function FormularioDatos() {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const enviar = (evento: FormEvent<HTMLFormElement>) => {
+  const enviar = async (evento: FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
+    if (enviando) return;
     setIntento(true);
     const encontrados = validar(datos);
     const primero = ORDEN.find((campo) => encontrados[campo]);
@@ -120,17 +124,23 @@ export default function FormularioDatos() {
       );
       return;
     }
-    const enlaceWa = enlaceWhatsApp(
-      WHATSAPP_ASESOR,
-      armarMensaje(resumen, datos),
-    );
-    // se abre dentro del clic para que el navegador no lo bloquee
+    setEnviando(true);
+    const mensaje = armarMensaje(resumen, datos);
+    const enlaceWa = enlaceWhatsApp(WHATSAPP_ASESOR, mensaje);
     const ventana = window.open(enlaceWa, "_blank");
     if (ventana) ventana.opener = null;
     guardarEnvio({
       enlace: enlaceWa,
       motor: `${resumen.nombreMotor} · ${resumen.variante.codigo}`,
       abierto: ventana !== null,
+    });
+    // si Supabase falla, el cliente igual envió por WhatsApp y no se le muestra error
+    await guardarCotizacion({
+      id: idCotizacion,
+      datos,
+      seleccion,
+      sinEquipamiento: resumen.sinEquipamiento,
+      mensaje,
     });
     window.location.assign(ruta("/cotizacion/gracias"));
   };
@@ -195,6 +205,7 @@ export default function FormularioDatos() {
                     }}
                     type="text"
                     autoComplete="name"
+                    maxLength={100}
                     enterKeyHint="next"
                     value={datos.nombre}
                     onChange={(e) => cambiar("nombre", e.target.value)}
@@ -419,12 +430,20 @@ export default function FormularioDatos() {
                 </div>
 
                 <div className="sm:col-span-2">
-                  <button type="submit" className={botonPrincipal}>
+                  <button
+                    type="submit"
+                    disabled={enviando}
+                    className={`${botonPrincipal} disables:cursor-wait disabled:opacity-70`}
+                  >
                     <WhatsappLogoIcon aria-hidden="true" className="h-6 w-6" />
-                    <span className="hidden sm:inline">
-                      Enviar cotización por WhatsApp
-                    </span>
-                    <span className="sm:hidden">Enviar por WhatsApp</span>
+                    {enviando ? (
+                      <span>Enviando...</span>
+                    ) : (
+                      <>
+                        <span className="hidden sm:inline">Enviar cotización por WhatsApp</span>
+                        <span className="sm:hidden">Enviar por WhatsApp</span>
+                      </>
+                    )}
                   </button>
                   {aviso && (
                     <p
