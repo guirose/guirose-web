@@ -431,3 +431,21 @@ export const variantesOfrecidas = (): { tipo: TipoMotor; codigo: string }[] =>
   motores.flatMap((m) =>
     ofrecidas(m).map((x) => ({ tipo: m.tipo, codigo: x.codigo })),
 );
+
+// una página por modelo ofrecido
+export const slugModelo = (variante: Variante): string =>
+  variante.codigo.toLowerCase();
+
+export const rutaModelo = (motor: Motor, variante: Variante): string =>
+  `${rutaDe(motor)}/${slugModelo(variante)}`
+
+export const buscarModelo = (
+  tipo: TipoMotor,
+  slug: string,
+  modelo: string,
+): { motor: Motor; variante: Variante } | undefined => {
+  const motor = buscarMotor(tipo, slug);
+  if (!motor) return undefined;
+  const variante = ofrecidas(motor).find((x) => slugModelo(x) === modelo);
+  return variante ? { motor, variante } : undefined;
+};
