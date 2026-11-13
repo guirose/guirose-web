@@ -382,25 +382,6 @@ export const vecinosDe = (
   return { anterior: lista[i - 1], siguiente: lista[i + 1] };
 };
 
-// Modelo con contenido
-export type VistaVariante = {
-  codigo: string;
-  control: Control;
-  altura: string;
-  alturaCorta: string;
-  inclinacion: Inclinacion;
-  peso: string;
-};
-
-export const vistaDe = (variante: Variante): VistaVariante => ({
-  codigo: variante.codigo,
-  control: variante.control,
-  altura: `${variante.altura} pulgadas`,
-  alturaCorta: `${variante.altura}″`,
-  inclinacion: variante.inclinacion,
-  peso: pesoDe(variante),
-});
-
 // buscar una variante por su codigo dentro de un tipo de motor
 export const buscarVariante = (
   tipo: TipoMotor,
