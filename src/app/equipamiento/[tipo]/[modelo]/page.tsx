@@ -15,6 +15,7 @@ import SeccionOfrece from "../../_equipamiento/SeccionOfrece";
 import PasosCotizacion from "@/ui/PasosCotizacion";
 import FranjaCotizar from "../../_equipamiento/FranjaCotizar";
 import BarraCotizar from "../../_equipamiento/BarraCotizar";
+import ContinuarSinEquipo from "../../_equipamiento/ContinuarSinEquipo";
 import Image from "next/image";
 import HeroInterno from "@/ui/HeroInterno";
 
@@ -124,9 +125,10 @@ export default async function PaginaEquipamiento({ params }: Props) {
               Tu asesor confirma el equipamiento
             </h2>
             <p className="mt-2 max-w-[560px] text-lg text-guirose-texto">
-              Para este modelo el equipo se define contigo. Continúa y tu asesor
-              te enviará la lista completa por WhatsApp.
+              Para este modelo el equipo se define contigo. Continúa con tu
+              cotización y tu asesor te enviará la lista completa por WhatsApp.
             </p>
+            <ContinuarSinEquipo tipo={tipo} modelo={modelo} />
           </section>
         )}
       </div>

@@ -30,11 +30,15 @@ export function armarMensaje(r: ResumenCotizacion, d: DatosCliente): string {
     `*Modelo:* ${r.variante.codigo}`,
     `*Configuración:* ${r.caracteristicas.join(" - ")}`,
     "",
-    "*Lo que elegí:*",
-    ...[...r.medidas, ...r.extensiones, ...r.opcionales].map(lineaDe),
-    "",
-    `*Lo que incluye GUIROSE (${r.totalIncluidos} ítems):*`,
-    ...r.listaIncluidos.map((nombre) => `- ${nombre}`),
+    ...(r.sinEquipamiento
+      ? ["*Accesorios:* por definir con el asesor."]
+      : [
+          "*Lo que elegí:*",
+          ...[...r.medidas, ...r.extensiones, ...r.opcionales].map(lineaDe),
+          "",
+          `*Lo que incluye GUIROSE (${r.totalIncluidos} ítems):*`,
+          ...r.listaIncluidos.map((nombre) => `- ${nombre}`),
+        ]),
     "",
     "*Mis datos:*",
     `Nombre: ${d.nombre.trim()}`,

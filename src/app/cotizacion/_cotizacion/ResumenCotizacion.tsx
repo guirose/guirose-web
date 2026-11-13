@@ -104,6 +104,7 @@ export default function ResumenCotizacion() {
     tarjetasIncluidos,
     listaIncluidos,
     totalIncluidos,
+    sinEquipamiento,
   } = resumen;
 
   const hrefEquipamiento = ruta(
@@ -177,44 +178,71 @@ export default function ResumenCotizacion() {
                 </div>
               </section>
             </Aparecer>
-            {/* lo que elegiste */}
-            <Aparecer retraso={80}>
-              <section aria-labelledby="titulo-elegiste">
-                <TituloSeccion
-                  accion={<Cambiar href={hrefEquipamiento}>Cambiar</Cambiar>}
-                >
-                  <span id="titulo-elegiste">Lo que elegiste</span>
-                </TituloSeccion>
-                <ul className="mt-5 grid grid-cols-2 gap-3.5 sm:grid-cols-[repeat(auto-fill,minmax(140px,1fr))]">
-                  {elegidas.map((linea) => (
-                    <Tarjeta key={linea.clave} linea={linea} />
-                  ))}
-                </ul>
-              </section>
-            </Aparecer>
-            {/* lo que ofrece GUIROSE */}
-            <Aparecer retraso={160}>
-              <section aria-labelledby="titulo-ofrece-resumen">
-                <TituloSeccion>
-                  <span id="titulo-ofrece-resumen">Lo que ofrece GUIROSE</span>
-                </TituloSeccion>
-                <TarjetasIncluidos items={tarjetasIncluidos} />
-                <details className="group mt-5">
-                  <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2 text-base font-semibold text-guirose-accion [&::-webkit-details-marker]:hidden">
-                    Ver los {totalIncluidos} ítems incluidos
-                    <CaretDownIcon
-                      aria-hidden="true"
-                      className="h-5 w-5 transition duration-150 ease-out group-open:rotate-180"
-                    />
-                  </summary>
-                  <ul className="mt-2 list-disc pl-5 text-[15px] leading-snug text-guirose-texto lg:columns-2 lg:gap-x-10 [&>li]:mb-2 [&>li]:break-inside-avoid">
-                    {listaIncluidos.map((texto, i) => (
-                      <li key={`${i}-${texto}`}>{texto}</li>
-                    ))}
-                  </ul>
-                </details>
-              </section>
-            </Aparecer>
+            {sinEquipamiento ? (
+              // modelo sin lista de accesorios que el asesor los confirma
+              <Aparecer retraso={80}>
+                <section aria-labelledby="titulo-accesorios">
+                  <TituloSeccion>
+                    <span id="titulo-accesorios">Accesorios</span>
+                  </TituloSeccion>
+                  <div className="mt-5 rounded-2xl bg-guirose-espuma p-5 lg:p-6">
+                    <p className="text-lg font-semibold text-guirose-marino">
+                      Tu asesor los confirma por WhatsApp
+                    </p>
+                    <p className="mt-1.5 max-w-[560px] text-base text-guirose-texto">
+                      Para este modelo todavía no tenemos la lista de accesorios
+                      en la web. Al recibir tu cotización, un asesor te enviará
+                      lo que incluye y lo que necesita tu motor.
+                    </p>
+                  </div>
+                </section>
+              </Aparecer>
+            ) : (
+              <>
+                {/* lo que elegiste */}
+                <Aparecer retraso={80}>
+                  <section aria-labelledby="titulo-elegiste">
+                    <TituloSeccion
+                      accion={
+                        <Cambiar href={hrefEquipamiento}>Cambiar</Cambiar>
+                      }
+                    >
+                      <span id="titulo-elegiste">Lo que elegiste</span>
+                    </TituloSeccion>
+                    <ul className="mt-5 grid grid-cols-2 gap-3.5 sm:grid-cols-[repeat(auto-fill,minmax(140px,1fr))]">
+                      {elegidas.map((linea) => (
+                        <Tarjeta key={linea.clave} linea={linea} />
+                      ))}
+                    </ul>
+                  </section>
+                </Aparecer>
+                {/* lo que ofrece GUIROSE */}
+                <Aparecer retraso={160}>
+                  <section aria-labelledby="titulo-ofrece-resumen">
+                    <TituloSeccion>
+                      <span id="titulo-ofrece-resumen">
+                        Lo que ofrece GUIROSE
+                      </span>
+                    </TituloSeccion>
+                    <TarjetasIncluidos items={tarjetasIncluidos} />
+                    <details className="group mt-5">
+                      <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2 text-base font-semibold text-guirose-accion [&::-webkit-details-marker]:hidden">
+                        Ver los {totalIncluidos} ítems incluidos
+                        <CaretDownIcon
+                          aria-hidden="true"
+                          className="h-5 w-5 transition duration-150 ease-out group-open:rotate-180"
+                        />
+                      </summary>
+                      <ul className="mt-2 list-disc pl-5 text-[15px] leading-snug text-guirose-texto lg:columns-2 lg:gap-x-10 [&>li]:mb-2 [&>li]:break-inside-avoid">
+                        {listaIncluidos.map((texto, i) => (
+                          <li key={`${i}-${texto}`}>{texto}</li>
+                        ))}
+                      </ul>
+                    </details>
+                  </section>
+                </Aparecer>
+              </>
+            )}
           </div>
           {/* resumen fijo para vista en escritorio */}
           <PanelCotizacion

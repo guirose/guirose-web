@@ -13,6 +13,7 @@ import {
 } from "@/contenido/equipamiento";
 import {
   motoresDe,
+  seOfrece,
   type Altura,
   type Motor,
   type TipoMotor,
@@ -47,6 +48,7 @@ export type ResumenCotizacion = {
   tarjetasIncluidos: Incluido[];
   listaIncluidos: string[];
   totalIncluidos: number;
+  sinEquipamiento: boolean;
 };
 
 const POR_CONSULTAR = "Un asesor te ayudará a elegir.";
@@ -119,9 +121,39 @@ function lineaDeOpcional(item: ItemEquipamiento): LineaResumen {
 // el unico lugar que lee datos del catalogo, cambiar esto cuando vengan de Supabase(u otro proveedor)
 export function resolverCotizacion(sel: Seleccion): ResumenCotizacion | null {
   const encontrado = buscarVariante(sel.tipo, sel.modelo);
-  const equipo = equipamientoDe(sel.tipo, sel.modelo);
-  if (!encontrado || !equipo) return null;
+  if (!encontrado) return null;
   const { motor, variante } = encontrado;
+  // modelo que no se ofrece (no se llega a cotizar)
+  if (!seOfrece(motor, variante)) return null;
+
+  const base = {
+    motor,
+    variante,
+    nombreMotor: `Mercury ${motor.linea} ${motor.hp} HP`,
+    caracteristicas: [
+      variante.control,
+      ALTURAS[variante.altura],
+      `Elevación ${variante.inclinacion.toLowerCase()}`
+    ],
+  };
+
+  const equipo = equipamientoDe(sel.tipo, sel.modelo);
+  // sin lista de equipamiento
+  if (!equipo) {
+    return {
+      ...base,
+      medidas: [],
+      medidasElegidas: 0,
+      extensiones: [],
+      totalExtensiones: 0,
+      extConsultar: false,
+      opcionales: [],
+      tarjetasIncluidos: [],
+      listaIncluidos: [],
+      totalIncluidos: 0,
+      sinEquipamiento: true,
+    };
+  }
 
   const gruposMedida = equipo.ofrece.medidas.filter((g) => g.grupo !== "extension");
   const grupoExtension = equipo.ofrece.medidas.find((g) => g.grupo === "extension");
@@ -160,14 +192,7 @@ export function resolverCotizacion(sel: Seleccion): ResumenCotizacion | null {
   });
 
   return {
-    motor,
-    variante,
-    nombreMotor: `Mercury ${motor.linea} ${motor.hp} HP`,
-    caracteristicas: [
-      variante.control,
-      ALTURAS[variante.altura],
-      `Elevación ${variante.inclinacion.toLowerCase()}`,
-    ],
+    ...base,
     medidas,
     medidasElegidas: medidas.filter((m) => !m.porConsultar).length,
     extensiones,
@@ -177,5 +202,6 @@ export function resolverCotizacion(sel: Seleccion): ResumenCotizacion | null {
     tarjetasIncluidos,
     listaIncluidos: incluidos.map(descripcionDetallada),
     totalIncluidos: incluidos.length,
+    sinEquipamiento: false,
   };
 }

@@ -36,7 +36,11 @@ export default function PanelCotizacion({
   const { motor, variante, medidas, medidasElegidas } = resumen;
   const todasLasMedidas = medidasElegidas === medidas.length;
 
-  const filas: { etiqueta: string; valor: ReactNode }[] = [
+  const filas: { etiqueta: string; valor: ReactNode }[] = resumen.sinEquipamiento ? [
+    { etiqueta: "Motor", valor: `${motor.linea} ${motor.hp} HP` },
+    { etiqueta: "Modelo", valor: variante.codigo },
+    { etiqueta: "Accesorios", valor: "Los confirma tu asesor" },
+  ] : [
     { etiqueta: "Motor", valor: `${motor.linea} ${motor.hp} HP` },
     { etiqueta: "Modelo", valor: variante.codigo },
     {
