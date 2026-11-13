@@ -9,28 +9,31 @@ import {
   WhatsappLogoIcon,
 } from "@phosphor-icons/react/ssr";
 import { guardarSeleccion } from "@/cotizacion/almacen";
-import { borrarEnvio, interpretarEnvio, leerEnvioTexto } from "@/cotizacion/envio";
+import { VIGENCIA_MS, borrarEnvio, interpretarEnvio, leerEnvioTexto } from "@/cotizacion/envio";
 import { ruta } from "@/ruta";
 import { botonPrincipal, enlace } from "./estilos";
 
 const sinSuscripcion = () => () => {};
 
 const PASOS_SIGUIENTES = [
-  "Envías el mensaje que preparamos en Whatsapp.",
+  "Envías el mensaje que preparamos en WhatsApp.",
   "Un asesor de GUIROSE revisa tu equipo y te responde por el mismo chat.",
   "Recibes tu cotización personalizada y resolvemos tus dudas.",
 ];
 
 function SinEnvio() {
   return (
-    <div className="mx-auto max-w-[1440px] px-6 py-16 lg:px[67px] lg:py-24">
+    <div className="mx-auto max-w-[1440px] px-6 py-16 lg:px-[67px] lg:py-24">
       <h1 className="text-[28px] leading-tight font-bold tracking-[-0.02em] text-guirose-marino lg:text-[36px]">
         No hay una cotización reciente
       </h1>
       <p className="mt-3 max-w-[560px] text-lg text-guirose-texto">
-        Vuelve a elegir un equipo.
+        Por tu seguridad, borramos tus datos. Vuelve a elegir un equipo.
       </p>
-      <a href={ruta("/motores")} className={`${botonPrincipal} mt-8 max-w-[320px]`}>
+      <a
+        href={ruta("/motores")}
+        className={`${botonPrincipal} mt-8 max-w-[320px]`}
+      >
         Ver motores
         <ArrowRightIcon aria-hidden="true" className="h-5 w-5" />
       </a>
@@ -45,6 +48,22 @@ export default function Gracias() {
 
   useEffect(() => {
     if (envio) guardarSeleccion(null);
+  }, [envio]);
+
+  // envio vencido o dañado no se muestra borrandose del navegador
+  useEffect(() => {
+    if (texto && !envio) borrarEnvio();
+  }, [texto, envio]);
+
+  // pasados 10 minutos el envio se borra aunque la pestaña siga abierta
+  useEffect(() => {
+    if (!envio) return;
+    const restante = envio.guardadoEn + VIGENCIA_MS - Date.now();
+    const temporizador = window.setTimeout(() => {
+      borrarEnvio();
+      window.location.reload();
+    }, Math.max(0, restante));
+    return () => window.clearTimeout(temporizador);
   }, [envio]);
 
   // al salir de la pantalla se borran los datos personales
@@ -63,7 +82,7 @@ export default function Gracias() {
   if(listo && !envio) return <SinEnvio />
 
   return (
-    <div className="mx-auto max-w-[1440px] px-6 pt-10 pb-16 lg:px.[67px] lg:pt-16 lg:pb-20">
+    <div className="mx-auto max-w-[1440px] px-6 pt-10 pb-16 lg:px-[67px] lg:pt-16 lg:pb-20">
       <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
         <div>
           <span className="gracias-ok flex h-[72px] w-[72px] items-center justify-center rounded-full bg-[#1B7F3B] text-white lg:h-[88px] lg:w-[88px]">
@@ -137,7 +156,6 @@ export default function Gracias() {
           )}
         </section>
       </div>
-
       <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-6">
         <a
           href={ruta("/")}
