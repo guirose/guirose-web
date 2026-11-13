@@ -436,8 +436,15 @@ export const variantesOfrecidas = (): { tipo: TipoMotor; codigo: string }[] =>
 export const slugModelo = (variante: Variante): string =>
   variante.codigo.toLowerCase();
 
+// Elección de mando
+export const tieneDosMandos = (motor: Motor): boolean =>
+  ofrecidas(motor).length > 1;
+
+// pagina de cada modelo con su mando
 export const rutaModelo = (motor: Motor, variante: Variante): string =>
-  `${rutaDe(motor)}/${slugModelo(variante)}`
+  tieneDosMandos(motor)
+    ? `${rutaDe(motor)}/${slugModelo(variante)}`
+    : rutaDe(motor);
 
 export const buscarModelo = (
   tipo: TipoMotor,
