@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import {
   ArrowLeftIcon,
   CaretDownIcon,
@@ -44,6 +44,8 @@ const cajaCompuesta = (error?: string) =>
     error ? "border-[#C62828]" : "border-[#B9CBDD]"
   }`;
 
+const TIEMPO_MINIMO_MS = 3000;
+
 const etiqueta =
   "mb-2 block text-[17px] leading-snug font-semibold text-guirose-marino";
 const opcional = "ml-1.5 text-[15px] font-medium text-[#4B5D70]";
@@ -80,7 +82,7 @@ const CONFIANZA = [
 ];
 
 export default function FormularioDatos() {
-  const { seleccion, listo } = useCotizacion();
+  const { seleccion, listo, vaciar } = useCotizacion();
   const resumen = useMemo(
     () => (seleccion ? resolverCotizacion(seleccion) : null),
     [seleccion],
@@ -91,6 +93,15 @@ export default function FormularioDatos() {
   const [aviso, setAviso] = useState<string | null>(null);
   const [idCotizacion] = useState(() => crypto.randomUUID());
   const [ enviando, setEnviando] = useState(false);
+  const trampa = useRef<HTMLInputElement>(null);
+  const abiertoEn = useRef(0);
+  useEffect(() => {
+    const alRestaurar = (e: PageTransitionEvent) => {
+      if (e.persisted) window.location.reload();
+    };
+    window.addEventListener("pageshow", alRestaurar);
+    return () => window.removeEventListener("pageshow", alRestaurar);
+  }, []);
   const campos = useRef<Partial<Record<Campo, HTMLElement | null>>>({});
 
   if (!listo) return <div aria-hidden="true" className="min-h-[70vh]" />;
@@ -125,6 +136,12 @@ export default function FormularioDatos() {
       return;
     }
     setEnviando(true);
+    const pareceBot = Boolean(trampa.current?.value) || Date.now() - abiertoEn.current < TIEMPO_MINIMO_MS;
+    if (pareceBot) {
+      vaciar();
+      window.location.assign(ruta("/cotizacion/gracias"));
+      return;
+    }
     const mensaje = armarMensaje(resumen, datos);
     const enlaceWa = enlaceWhatsApp(WHATSAPP_ASESOR, mensaje);
     const ventana = window.open(enlaceWa, "_blank");
@@ -189,6 +206,18 @@ export default function FormularioDatos() {
               onSubmit={enviar}
               className="rounded-2xl border-[1.5px] border-guirose-espuma-fuerte bg-white p-5 sm:p-7"
             >
+              {/* campo trampa que las personas no ven y si llega lleno lo hizo un programa */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                <label htmlFor="sitio_web">No llenar este campo</label>
+                <input
+                  ref={trampa}
+                  id="sitio_web"
+                  name="sitio_web"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
               <h2 className="text-2xl font-bold text-guirose-marino">
                 Tus datos
               </h2>

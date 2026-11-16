@@ -79,7 +79,8 @@ export default function Gracias() {
     };
   }, []);
 
-  if(listo && !envio) return <SinEnvio />
+  if(!listo) return <div aria-hidden="true" className="min-h-[60vh]" />
+  if(!envio) return <SinEnvio />
 
   return (
     <div className="mx-auto max-w-[1440px] px-6 pt-10 pb-16 lg:px-[67px] lg:pt-16 lg:pb-20">
