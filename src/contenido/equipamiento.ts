@@ -12,7 +12,7 @@ export type GrupoMedida = (typeof GRUPOS)[number];
 export type Cantidad = number | "elige";
 
 export type ItemEquipamiento = {
-  codigo: string | null;
+  clave: string;
   descripcion: string;
   categoria: Categoria;
   cantidad: Cantidad;
@@ -46,7 +46,7 @@ export type Equipamiento = {
 };
 
 type ItemCrudo = {
-  codigo: string | null;
+  clave: string;
   descripcion: string;
   categoria: string;
   cantidad: number | string;
@@ -62,6 +62,7 @@ function leerItem(item: ItemCrudo, modelo: string): ItemEquipamiento {
   const error = (detalle: string) =>
     new Error(`equipamiento.json, ${modelo}, "${item.descripcion}": ${detalle}`);
 
+  if(!item.clave) throw error("falta la clave (vuelve a correr npm run equipamiento)");
   if (!esUno(CATEGORIAS, item.categoria)) throw error(`categoria "${item.categoria}" desconocida`);
 
   let cantidad: Cantidad;
@@ -70,7 +71,7 @@ function leerItem(item: ItemCrudo, modelo: string): ItemEquipamiento {
   else throw error(`cantidad "${item.cantidad}" no valida`);
 
   const leido: ItemEquipamiento = {
-    codigo: item.codigo,
+    clave: item.clave,
     descripcion: item.descripcion,
     categoria: item.categoria,
     cantidad,

@@ -4,7 +4,7 @@ import type { TipoMotor } from "@/contenido/motores";
 
 export const CONSULTAR = "consultar";
 export const MAX_CANTIDAD = 5;
-export const VERSION = 1;
+export const VERSION = 2;
 
 // lo elegido por el cliente
 export type Seleccion = {
@@ -18,7 +18,7 @@ export type Seleccion = {
 };
 
 export const claveDe = (item: ItemEquipamiento): string =>
-  item.codigo ?? item.descripcion;
+  item.clave;
 
 export function seleccionInicial(
   tipo: TipoMotor,

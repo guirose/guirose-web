@@ -16,6 +16,7 @@ function texto(valor) {
 }
 
 const normal = (t) => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+const claveDe = (descripcion) => normal(descripcion).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 // Seccion del Excel -> categoría del ítem
 function categoriaDe(seccion, requerimiento) {
@@ -86,7 +87,7 @@ libro.eachSheet((hoja) => {
       const cantidad = cantidadDe(fila.getCell(col).value);
       if (cantidad == null) continue;
 
-      const item = { codigo: a || null, descripcion: b, categoria, cantidad };
+      const item = { clave: claveDe(b), codigo: a || null, descripcion: b, categoria, cantidad };
       if (categoria === "medida") {
         item.grupo = grupoDe(b);
         if (item.grupo === "otro") avisos.push(`${hoja.name} : grupo desconocido para "${b}"`);
@@ -99,7 +100,27 @@ libro.eachSheet((hoja) => {
   });
 });
 
-await writeFile(SALIDA, JSON.stringify(Object.values(modelos), null, 2) + "\n", "utf8");
+// clave única dentro de su modelo
+for (const m of Object.values(modelos)) {
+  const vistas = new Set();
+  for (const i of m.items) {
+    if (vistas.has(i.clave)) throw new Error(`${m.tipo} ${m.modelo}: la clave "${i.clave}" se repite`);
+    vistas.add(i.clave);
+  }
+}
+
+// JSON publico sin codigos de producto
+const publico = Object.values(modelos).map((m) => ({
+  ...m,
+  items: m.items.map((i) => ({
+    clave: i.clave,
+    descripcion: i.descripcion,
+    categoria: i.categoria,
+    cantidad: i.cantidad,
+    ...(i.grupo ? { grupo: i.grupo } : {}),
+  })),
+}));
+await writeFile(SALIDA, JSON.stringify(publico, null, 2) + "\n", "utf8");
 
 // resumen terminal
 for (const m of Object.values(modelos)) {
