@@ -1,3 +1,5 @@
+import { ruta } from "@/ruta";
+
 type Enlace = { texto: string; href: string };
 
 type PropsPieDePagina = {
@@ -17,7 +19,7 @@ export default function PieDePagina({
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-y-10 px-6 py-[42px] lg:grid-cols-[1.4fr_1.3fr_1.4fr_1fr] lg:gap-y-0 lg:px-[88px]">
         {/* Logo: texto provisional hasta tener el archivo */}
         <a
-          href="/"
+          href={ruta("/")}
           className="text-4xl font-extrabold tracking-tight text-white lg:self-center"
         >
           GUIROSE
