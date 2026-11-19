@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 type Props = {
   titulo: string;
   descripcion: string;
-  imagen: ReactNode;
+  imagen?: ReactNode;
   tono?: "oscuro" | "claro";
   esTituloPrincipal?: boolean;
 };
@@ -29,14 +29,16 @@ export default function HeroInterno({
       }`}
     >
       {/* imagen */}
-      <div
-        aria-hidden="true"
-        className={`absolute inset-y-0 left-0 right-0 sm:left-[38%] sm:opacity-100 [-webkit-mask-image:linear-gradient(90deg,transparent,#000_45%)] [mask-image:linear-gradient(90deg,transparent,#000_45%)] ${
-          claro ? "opacity-30" : "opacity-40"
-        }`}
-      >
-        {imagen}
-      </div>
+      {imagen && (
+        <div
+          aria-hidden="true"
+          className={`absolute inset-y-0 left-0 right-0 sm:left-[38%] sm:opacity-100 [-webkit-mask-image:linear-gradient(90deg,transparent,#000_45%)] [mask-image:linear-gradient(90deg,transparent,#000_45%)] ${
+            claro ? "opacity-30" : "opacity-40"
+          }`}
+        >
+          {imagen}
+        </div>
+      )}
 
       <div className="relative mx-auto max-w-[1440px] px-6 pt-14 sm:pt-[76px] lg:px-[67px]">
         <Titulo className="hero-entra max-w-[900px] text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[56px]">

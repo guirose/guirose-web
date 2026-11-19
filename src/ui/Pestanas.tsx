@@ -1,30 +1,34 @@
 import type { CSSProperties, ElementType } from "react";
-import { QuestionIcon, ShieldCheckIcon } from "@phosphor-icons/react/ssr";
+import { FileTextIcon, LockSimpleIcon, QuestionIcon, ShieldCheckIcon } from "@phosphor-icons/react/ssr";
 
 export type Pestana = {
   texto: string;
   href: string;
-  icono: "garantia" | "preguntas";
+  icono: "garantia" | "preguntas" | "terminos" | "privacidad";
   activa: boolean;
 };
 
 const iconos = {
   garantia: ShieldCheckIcon,
   preguntas: QuestionIcon,
+  terminos: FileTextIcon,
+  privacidad: LockSimpleIcon,
 };
 
 export default function Pestanas({
   pestanas,
   enlace: Enlace = "a",
+  etiqueta = "Centro de ayuda",
 }: {
   pestanas: Pestana[];
   enlace?: ElementType;
+  etiqueta?: string;
 }) {
   const indice = pestanas.findIndex((pestana) => pestana.activa);
 
   return (
     <nav
-      aria-label="Centro de ayuda"
+      aria-label={etiqueta}
       style={
         { "--total": pestanas.length, 
           "--posicion": Math.max(indice, 0),
