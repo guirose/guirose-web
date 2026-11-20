@@ -3,6 +3,7 @@ import {
   CaretDownIcon,
   ClockIcon,
   CreditCardIcon,
+  EnvelopeSimpleIcon,
   ListBulletsIcon,
   ProhibitIcon,
   ReceiptIcon,
@@ -10,7 +11,12 @@ import {
   UserCircleIcon,
 } from "@phosphor-icons/react/ssr";
 import { ruta } from "@/ruta";
-import type { Bloque, DocumentoLegal as Documento, IconoEsencial } from "@/contenido/legal";
+import {
+  EMPRESA,
+  type Bloque,
+  type DocumentoLegal as Documento,
+  type IconoEsencial,
+} from "@/contenido/legal";
 
 const iconos: Record<IconoEsencial, typeof ReceiptIcon> = {
   cotiza: ReceiptIcon,
@@ -47,7 +53,7 @@ function Texto({ texto }: { texto: string }) {
             </a>
           );
         }
-        return <Fragment key={i}>{trozo}</Fragment>
+        return <Fragment key={i}>{trozo}</Fragment>;
       })}
     </>
   );
@@ -64,7 +70,7 @@ function BloqueLegal({ bloque }: { bloque: Bloque }) {
 
   if (bloque.tipo === "lista") {
     return (
-      <ul className="mb-3 flex flex-col gap.2">
+      <ul className="mb-3 flex flex-col gap-2">
         {bloque.items.map((item) => (
           <li
             key={item}
@@ -284,6 +290,24 @@ export default function DocumentoLegal({ doc }: { doc: Documento }) {
               ))}
             </section>
           ))}
+          {/* Cierre */}
+          <section className="mt-14 flex flex-col gap-5 rounded-3xl bg-guirose-marino px-6 py-7 text-white sm:flex-row sm:items-center sm:justify-between sm:px-10">
+            <div>
+              <h2 className="text-xl font-bold sm:text-2xl">
+                ¿Tienes dudas sobre esta página?
+              </h2>
+              <p className="mt-1.5 text-[#C7D5E3]">
+                Escríbenos y te respondemos.
+              </p>
+            </div>
+            <a
+              href={`mailto:${EMPRESA.correo}`}
+              className="inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-[10px] bg-guirose-accion px-6 font-semibold text-white transition-colors hover:bg-white hover:text-guirose-marino active:scale-[0.97]"
+            >
+              <EnvelopeSimpleIcon aria-hidden="true" className="h-5 w-5" />
+              Escríbenos
+            </a>
+          </section>
         </article>
       </div>
     </div>
