@@ -93,8 +93,8 @@ const enlacesCatalogo = [
 ];
 
 const enlacesPrivacidad = [
-  { texto: "Política de privacidad", href: "#" },
-  { texto: "Términos y condiciones", href: "#" },
+  { texto: "Política de privacidad", href: ruta("/privacidad") },
+  { texto: "Términos y condiciones", href: ruta("/terminos") },
 ];
 
 export default function RootLayout({

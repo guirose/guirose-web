@@ -207,7 +207,10 @@ export default function FormularioDatos() {
               className="rounded-2xl border-[1.5px] border-guirose-espuma-fuerte bg-white p-5 sm:p-7"
             >
               {/* campo trampa que las personas no ven y si llega lleno lo hizo un programa */}
-              <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+              <div
+                aria-hidden="true"
+                className="absolute -left-[9999px] h-px w-px overflow-hidden"
+              >
                 <label htmlFor="sitio_web">No llenar este campo</label>
                 <input
                   ref={trampa}
@@ -447,10 +450,13 @@ export default function FormularioDatos() {
                     <span>
                       Acepto la{" "}
                       <a
-                        href="#"
+                        href={ruta("/privacidad")}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="font-semibold text-guirose-accion underline underline-offset-2"
                       >
                         Política de privacidad
+                        <span className="sr-only"> (se abre en otra pestaña)</span>
                       </a>{" "}
                       de GUIROSE. Usamos tus datos solo para esta cotización.
                     </span>
@@ -462,14 +468,16 @@ export default function FormularioDatos() {
                   <button
                     type="submit"
                     disabled={enviando}
-                    className={`${botonPrincipal} disables:cursor-wait disabled:opacity-70`}
+                    className={`${botonPrincipal} disable:cursor-wait disabled:opacity-70`}
                   >
                     <WhatsappLogoIcon aria-hidden="true" className="h-6 w-6" />
                     {enviando ? (
                       <span>Enviando...</span>
                     ) : (
                       <>
-                        <span className="hidden sm:inline">Enviar cotización por WhatsApp</span>
+                        <span className="hidden sm:inline">
+                          Enviar cotización por WhatsApp
+                        </span>
                         <span className="sm:hidden">Enviar por WhatsApp</span>
                       </>
                     )}
