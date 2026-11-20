@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import {
+  CaretDownIcon,
   ClockIcon,
   CreditCardIcon,
   ListBulletsIcon,
@@ -133,7 +134,37 @@ export default function DocumentoLegal({ doc }: { doc: Documento }) {
       }),
     };
   });
-  
+
+  const indice = (
+    <ol className="flex flex-col gap-4">
+      {partes.map((parte) => (
+        <li key={parte.letra}>
+          <a
+            href={`#${parte.puntos[0].id}`}
+            className="flex items-center gap-3 text-[15px] font-semibold text-guirose-marino hover:text-guirose-accion"
+          >
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-guirose-espuma text-[13px] font-bold">
+              {parte.letra}
+            </span>
+            {parte.titulo}
+          </a>
+          <ol className="mt-1.5 flex flex-col">
+            {parte.puntos.map((punto) => (
+              <li key={punto.id}>
+                <a
+                  href={`#${punto.id}`}
+                  className="block py-1.5 pl-10 text-sm leading-snug text-guirose-texto hover:text-guirose-accion"
+                >
+                  {punto.numero}. {punto.titulo}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </li>
+      ))}
+    </ol>
+  );
+
   return (
     <div className="mx-auto max-w-[1306px] px-6 pb-20 pt-8 lg:px-[67px]">
       {/* Fecha y version */}
@@ -190,7 +221,27 @@ export default function DocumentoLegal({ doc }: { doc: Documento }) {
       </section>
 
       <div className="mt-10 lg:mt-14 lg:grid lg:grid-cols-[280px_minmax(0,720px)] lg:gap-14">
-        <article className="lg:col-start-2">
+        <nav
+          aria-label="Índice"
+          className="hidden self-start lg:sticky lg:top-40 lg:block"
+        >
+          <p className="mb-4 text-sm font-semibold text-guirose-texto">
+            En esta página
+          </p>
+          {indice}
+        </nav>
+        <details className="group mb-8 rounded-2xl border border-guirose-espuma-fuerte lg:hidden">
+          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-3 px-5 font-semibold text-guirose-marino [&::-webkit-details-marker]:hidden">
+            Contenido de esta página
+            <CaretDownIcon
+              aria-hidden="true"
+              className="h-5 w-5 text-guirose-accion transition-transform duration-200 group-open:rotate-180"
+            />
+          </summary>
+          <div className="px-5 pb-5">{indice}</div>
+        </details>
+
+        <article>
           <p className="text-lg leading-relaxed text-guirose-marino">
             <Texto texto={doc.intro} />
           </p>
