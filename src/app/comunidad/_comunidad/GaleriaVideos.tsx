@@ -10,7 +10,6 @@ import {
   type ResultadoVideos,
 } from "@/comunidad/videos";
 import TarjetaVideo from "./TarjetaVideo";
-import VentanaVideo from "./VentanaVideo";
 
 const PERFIL_TIKTOK = "https://www.tiktok.com/@guirose_pe";
 
@@ -26,8 +25,6 @@ export default function GaleriaVideos() {
   // null = todavía cargando
   const [resultado, setResultado] = useState<ResultadoVideos | null>(null);
   const [filtro, setFiltro] = useState<FiltroVideo>("todos");
-  // id del video que está abierto en la ventana
-  const [abierto, setAbierto] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelado = false;
@@ -81,7 +78,6 @@ export default function GaleriaVideos() {
 
   const cantidades = contar(resultado.videos);
   const visibles = filtrar(resultado.videos, filtro);
-  const indiceAbierto = visibles.findIndex((v) => v.id === abierto);
 
   if (cantidades.todos === 0) {
     return (
@@ -135,20 +131,10 @@ export default function GaleriaVideos() {
         <div className={CLASES_GRILLA}>
           {visibles.map((video, i) => (
             <Aparecer key={video.id} retraso={(i % 3) * 100} className="h-full">
-              <TarjetaVideo video={video} alAbrir={(v) => setAbierto(v.id)} />
+              <TarjetaVideo video={video} />
             </Aparecer>
           ))}
         </div>
-      )}
-
-      {indiceAbierto >= 0 && (
-        <VentanaVideo
-          video={visibles[indiceAbierto]}
-          posicion={indiceAbierto + 1}
-          total={visibles.length}
-          alCerrar={() => setAbierto(null)}
-          alIr={(paso) => setAbierto(visibles[indiceAbierto + paso].id)}
-        />
       )}
     </div>
   );

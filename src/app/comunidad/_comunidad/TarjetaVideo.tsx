@@ -5,6 +5,7 @@ import {
   duracionTexto,
   etiquetaMotor,
   motorDe,
+  urlVideoTikTok,
   type TipoVideo,
   type Video,
 } from "@/comunidad/videos";
@@ -12,7 +13,6 @@ import { rutaDe } from "@/contenido/motores";
 
 type PropsTarjetaVideo = {
   video: Video;
-  alAbrir: (video: Video) => void;
 };
 
 const ETIQUETA_TIPO: Record<TipoVideo, string> = {
@@ -25,17 +25,18 @@ const COLOR_TIPO: Record<TipoVideo, string> = {
   consejo: "bg-white text-guirose-marino",
 };
 
-export default function TarjetaVideo({ video, alAbrir }: PropsTarjetaVideo) {
+export default function TarjetaVideo({ video }: PropsTarjetaVideo) {
   const motor = motorDe(video);
   const duracion = duracionTexto(video.duracion);
 
   return (
     <article className="flex h-full flex-col">
-      {/* Toda la tapa es el botón de reproducir */}
-      <button
-        type="button"
-        onClick={() => alAbrir(video)}
-        aria-label={`Ver video: ${video.titulo}`}
+      {/* Toda la tapa es un enlace que abre el video en TikTok */}
+      <a
+        href={urlVideoTikTok(video)}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Ver en TikTok: ${video.titulo} (se abre en otra pestaña)`}
         className="group relative block aspect-[256/374] w-full overflow-hidden rounded-2xl bg-guirose-marino transition-transform duration-150 ease-out active:scale-[0.98]"
       >
         {video.tapaUrl && (
@@ -62,7 +63,7 @@ export default function TarjetaVideo({ video, alAbrir }: PropsTarjetaVideo) {
             {duracion}
           </span>
         )}
-      </button>
+      </a>
 
       <div className="mt-3 flex flex-1 flex-col">
         <h3 className="line-clamp-2 min-h-[2.75rem] text-base font-semibold leading-snug text-guirose-marino">
