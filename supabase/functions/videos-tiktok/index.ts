@@ -260,6 +260,12 @@ function tituloDe(v: VideoTikTok): string {
   return `Video de GUIROSE del ${fecha}`;
 }
 
+// Fecha en que se publicó el video en TikTok (TikTok la entrega en segundos)
+const fechaDe = (v: VideoTikTok): string | null =>
+  Number.isFinite(v.create_time) && Number(v.create_time) > 0
+    ? new Date(Number(v.create_time) * 1000).toISOString()
+    : null;
+
 const esperar = (ms: number) =>
   new Promise<void>((resolver) => setTimeout(resolver, ms));
 
@@ -388,6 +394,7 @@ async function sincronizar(cuenta: Cuenta) {
       const duracion = Number.isFinite(v.duration)
         ? Math.round(Number(v.duration))
         : null;
+      const fechaTiktok = fechaDe(v);
 
       if (fila) {
         // el título y el motor NO se tocan: pueden estar editados por marketing
@@ -397,6 +404,7 @@ async function sincronizar(cuenta: Cuenta) {
           body: JSON.stringify({
             tiktok_id: v.id,
             duracion,
+            fecha_tiktok: fechaTiktok,
             tapa_url: tapaUrl,
             estado,
             error: falloTapa,
@@ -413,6 +421,7 @@ async function sincronizar(cuenta: Cuenta) {
             titulo: tituloDe(v),
             tiktok_id: v.id,
             duracion,
+            fecha_tiktok: fechaTiktok,
             tapa_url: tapaUrl,
             estado,
             error: falloTapa,
