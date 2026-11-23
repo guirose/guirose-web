@@ -1,0 +1,1 @@
+grant select (duracion) on table public.videos to anon, authenticated;
