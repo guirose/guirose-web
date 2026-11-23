@@ -90,6 +90,7 @@ const enlacesCatalogo = [
   { texto: "Motores", href: ruta("/motores") },
   { texto: "Repuestos y accesorios", href: "#" },
   { texto: "Servicios", href: "#" },
+  { texto: "Comunidad", href: ruta("/comunidad") },
 ];
 
 const enlacesPrivacidad = [
