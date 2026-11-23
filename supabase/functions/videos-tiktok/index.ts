@@ -510,11 +510,24 @@ function iguales(a: string, b: string): boolean {
 
 // la revisión diaria manda la clave en una cabecera; a mano se puede usar ?clave=
 function autorizado(req: Request): boolean {
-  const recibida =
-    req.headers.get("x-guirose-secreto") ??
-    new URL(req.url).searchParams.get("clave") ??
-    "";
-  return iguales(recibida, env("VIDEOS_SECRETO"));
+  const deCabecera = req.headers.get("x-guirose-secreto");
+  const deEnlace = new URL(req.url).searchParams.get("clave");
+  const recibida = deCabecera ?? deEnlace ?? "";
+  const esperada = env("VIDEOS_SECRETO");
+  const acierta = iguales(recibida, esperada);
+  if (!acierta) {
+    // solo se anotan los largos y por dónde llegó, nunca las claves
+    const origen =
+      deCabecera !== null
+        ? "cabecera"
+        : deEnlace !== null
+          ? "enlace"
+          : "ninguno";
+    console.error(
+      `No autorizado: llegó por ${origen} con ${recibida.length} caracteres; la clave guardada tiene ${esperada.length}.`,
+    );
+  }
+  return acierta;
 }
 
 async function atender(): Promise<Response> {
