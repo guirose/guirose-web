@@ -87,7 +87,8 @@ export async function leerVideos(): Promise<ResultadoVideos> {
     .from("videos")
     .select(COLUMNAS)
     .order("orden", { ascending: true })
-    .order("fecha_tiktok", { ascending: false, nullsFirst: false });  const limite = new Promise<"tiempo">((resolver) =>
+    .order("fecha_tiktok", { ascending: false, nullsFirst: false });  
+    const limite = new Promise<"tiempo">((resolver) =>
     setTimeout(() => resolver("tiempo"), ESPERA_MAXIMA_MS),
   );
 
