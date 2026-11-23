@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -39,6 +39,8 @@ export default function VentanaVideo({
 }: PropsVentanaVideo) {
   const ref = useRef<HTMLDialogElement>(null);
   const motor = motorDe(video);
+  const [falloId, setFalloId] = useState<string | null>(null);
+  const fallo = falloId === video.id;
 
   // Abre la ventana al aparecer, bloquea el scroll de la página de atrás y lo devuelve al cerrar
   useEffect(() => {
@@ -52,6 +54,19 @@ export default function VentanaVideo({
       if (dialogo.open) dialogo.close();
     };
   }, []);
+
+  // El reproductor de TikTok avisa por mensaje cuando no logra cargar el video
+  useEffect(() => {
+    function alRecibir(evento: MessageEvent) {
+      if (evento.origin !== "https://www.tiktok.com") return;
+      const datos = evento.data;
+      if (datos?.["x-tiktok-player"] && datos.type === "onPlayerError") {
+        setFalloId(video.id);
+      }
+    }
+    window.addEventListener("message", alRecibir);
+    return () => window.removeEventListener("message", alRecibir);
+  }, [video.id]);
 
   function alTeclear(e: React.KeyboardEvent<HTMLDialogElement>) {
     if (e.key === "ArrowLeft" && posicion > 1) alIr(-1);
@@ -102,6 +117,22 @@ export default function VentanaVideo({
             referrerPolicy="strict-origin-when-cross-origin"
             className="absolute inset-0 size-full border-0"
           />
+          {fallo && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-guirose-marino p-6 text-center text-white">
+              <p className="text-base font-semibold">
+                No pudimos cargar el video aquí.
+              </p>
+              <a
+                href={urlVideoTikTok(video)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-12 items-center rounded-full bg-guirose-accion px-5 text-base font-semibold text-white transition-colors duration-150 hover:bg-white hover:text-guirose-marino"
+              >
+                Ver este video en TikTok
+                <span className="sr-only"> (se abre en otra pestaña)</span>
+              </a>
+            </div>
+          )}
         </div>
 
         <div className="flex min-w-0 flex-col lg:pr-10 lg:pt-1">
