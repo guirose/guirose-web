@@ -132,7 +132,7 @@ export default function Home() {
         titulo="La confianza de nuestros clientes nos respalda"
         descripcion="Conoce las experiencias con GUIROSE para adquirir motores fuera de borda Mercury."
         textoBoton="Conoce sus experiencias"
-        hrefBoton="#"
+        hrefBoton={ruta("/comunidad")}
         fondo={
           <Image
             src="/imagenes/banner-confianza.jpg"
@@ -223,7 +223,7 @@ export default function Home() {
         titulo="Conoce más de nosotros"
         descripcion="Mira nuestras entregas y nuestra comunidad pesquera"
         textoBoton="Nuestra comunidad"
-        hrefBoton="#"
+        hrefBoton={ruta("/comunidad")}
       />
     </main>
   );
