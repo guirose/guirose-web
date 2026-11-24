@@ -19,7 +19,8 @@ const FILTROS: { valor: FiltroVideo; texto: string }[] = [
   { valor: "consejo", texto: "Consejos" },
 ];
 
-const CLASES_GRILLA = "grid max-w-[1120px] grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-3 lg:gap-x-6";
+const CLASES_GRILLA =
+  "grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-6";
 
 export default function GaleriaVideos() {
   // null = todavía cargando
@@ -46,7 +47,7 @@ export default function GaleriaVideos() {
           {Array.from({ length: 6 }, (_, i) => (
             <div
               key={i}
-              className="aspect-[256/374] animate-pulse rounded-2xl bg-guirose-espuma"
+              className="aspect-[256/374] w-full animate-pulse rounded-2xl bg-guirose-espuma"
             />
           ))}
         </div>
